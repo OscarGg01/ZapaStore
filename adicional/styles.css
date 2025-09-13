@@ -1,0 +1,88 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #222;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Encabezado */
+header {
+    background-color: #1DB954; /* Verde ZAPASTORE */
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Contenedores principales */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 2rem;
+}
+
+/* Dos cuadros lado a lado */
+.double-box {
+    display: flex;
+    gap: 2rem;
+    max-width: 900px;
+    width: 100%;
+    justify-content: center;
+}
+
+/* Cada caja individual */
+.box {
+    flex: 1;
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Botones */
+button, .btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #1DB954;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+}
+
+button:hover, .btn:hover {
+    background-color: #169c43;
+}
+
+/* Formularios */
+input {
+    width: 100%;
+    padding: 0.7rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+h2 {
+    text-align: center;
+    color: #1DB954;
+}
+
+ul {
+    padding-left: 1.2rem;
+}

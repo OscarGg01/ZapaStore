@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Publicidad - Mi App</title>
+        <link rel="stylesheet" href="/css/interfaces.css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    </head>
+    <body class="page">
+        <header class="site-header">
+            <div class="container header-grid">
+                <div class="logo">ZapaStore</div>
+                <nav class="nav">
+                    <a href="/publicidad" class="nav-link active">Publicidad</a>
+                    <a href="/catalogo" class="nav-link">Catálogo</a>
+                </nav>
+                <div class="header-actions">
+                    <a href="/login" class="btn btn-login">Iniciar sesión</a>
+                </div>
+            </div>
+        </header>
+
+
+        <main class="container">
+            <section class="hero card hero-ad">
+                <div class="hero-content">
+                    <h1>Ofertas imperdibles</h1>
+                    <p class="lead">Descuentos de temporada en productos seleccionados. Oferta válida hasta agotar stock.</p>
+                    <div class="cta-row">
+                        <button class="btn btn-primary">Ver promociones</button>
+                        <button class="btn btn-outline">Contáctanos</button>
+                    </div>
+                </div>
+                <div class="hero-media">
+                    <div class="promo-badge">-40%</div>
+                    <img src="/images/ad-sample.jpg" alt="Promoción" />
+                </div>
+            </section>
+
+
+            <section class="ads-grid">
+                <article class="card small-ad">
+                    <img src="/images/ad1.jpg" alt="Ad 1" />
+                    <div class="card-body">
+                        <h3>Combo Especial</h3>
+                        <p>Producto A + Producto B a precio único.</p>
+                    </div>
+                </article>
+
+
+                <article class="card small-ad">
+                    <div class="card-body">
+                        <h3>Lanzamiento</h3>
+                        <p>Nuevo producto ecológico. Diseño sustentable.</p>
+                    </div>
+                    <img src="/images/ad2.jpg" alt="Ad 2" />
+                </article>
+
+
+                <article class="card small-ad">
+                    <img src="/images/ad3.jpg" alt="Ad 3" />
+                    <div class="card-body">
+                        <h3>Envío Gratis</h3>
+                        <p>En compras mayores a S/ 99.</p>
+                    </div>
+                </article>
+            </section>
+        </main>
+    </body>
+</html>
