@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras | ZapaStore</title>
+    <link rel="stylesheet" href="styles/carrito.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <h1>Carrito de Compras</h1>
+        <button class="volver-inicio"><i class="fas fa-arrow-left"></i> Volver al inicio</button>
+    </header>
+
+    <main class="container">
+        <section class="tabla-carrito">
+            <h2>Productos agregados</h2>
+
+            <div class="carrito">
+                <div class="item">
+                    <img src="https://darkorbitperu.com/wp-content/uploads/2023/01/9711050326046.jpg" alt="Nike Air Max">
+                    <div class="info">
+                        <h3>Nike Air Max</h3>
+                        <p class="categoria">Running</p>
+                        <p class="precio">S/ 450</p>
+                        <div class="cantidad">
+                            <label>Cantidad:</label>
+                            <span>1</span>
+                        </div>
+                        <p class="subtotal">Subtotal: S/ 450</p>
+                    </div>
+                    <div class="acciones">
+                        <button class="editar"><i class="fas fa-edit"></i> Editar</button>
+                        <button class="eliminar"><i class="fas fa-trash"></i> Eliminar</button>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="https://media.revistagq.com/photos/6192af00f654c19d66ebdcb3/16:9/w_2560%2Cc_limit/GettyImages-1234651142.jpg" alt="Adidas Ultraboost">
+                    <div class="info">
+                        <h3>Adidas Ultraboost</h3>
+                        <p class="categoria">Urbanas</p>
+                        <p class="precio">S/ 499</p>
+                        <div class="cantidad">
+                            <label>Cantidad:</label>
+                            <span>2</span>
+                        </div>
+                        <p class="subtotal">Subtotal: S/ 998</p>
+                    </div>
+                    <div class="acciones">
+                        <button class="editar"><i class="fas fa-edit"></i> Editar</button>
+                        <button class="eliminar"><i class="fas fa-trash"></i> Eliminar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="total">
+                <h3>Total: S/ 1448</h3>
+                <button class="finalizar"><i class="fas fa-shopping-cart"></i> Finalizar Compra</button>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
