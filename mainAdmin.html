@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZapaStore | Panel Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/mainAdmin.css}" href="mainAdmin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>ZapaStore</h2>
+                <p>Admin Panel</p>
+            </div>
+            <nav class="menu">
+                <a href="#" class="active"><i class="fa-solid fa-chart-line"></i> Métricas</a>
+                <a href="#"><i class="fa-solid fa-box"></i> CRUD Productos</a>
+                <a href="#"><i class="fa-solid fa-list"></i> CRUD Catálogo</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="admin-header">
+                <h1>Panel de Administración</h1>
+                <div class="admin-user">
+                    <i class="fa-solid fa-user-circle"></i>
+                    <span>Admin</span>
+                </div>
+            </header>
+
+            <!-- Dashboard / Metrics -->
+            <section class="dashboard">
+            <div class="card metric">
+                <i class="fa-solid fa-cart-shopping icon"></i>
+                <div>
+                    <h3>Ventas Totales</h3>
+                    <p>—</p>
+                </div>
+            </div>
+
+            <div class="card metric">
+                <i class="fa-solid fa-users icon"></i>
+                <div>
+                    <h3>Usuarios Activos</h3>
+                    <p>—</p>
+                </div>
+            </div>
+
+            <div class="card metric">
+                <i class="fa-solid fa-box-open icon"></i>
+                <div>
+                    <h3>Productos en Stock</h3>
+                    <p>—</p>
+                </div>
+            </div>
+
+            <!-- Nuevas métricas añadidas -->
+            <div class="card metric">
+                <i class="fa-solid fa-trophy icon"></i>
+                <div>
+                    <h3>Producto más vendido</h3>
+                    <p>—</p>
+                </div>
+            </div>
+
+            <div class="card metric">
+                <i class="fa-solid fa-percent icon"></i>
+                <div>
+                    <h3>Promedio de precios</h3>
+                    <p>—</p>
+                </div>
+            </div>
+
+            <div class="card metric">
+                <i class="fa-solid fa-eye icon"></i>
+                <div>
+                    <h3>Cantidad de visualizaciones</h3>
+                    <p>—</p>
+                </div>
+            </div>
+        </section>
+
+
+            <!-- Placeholder para contenido CRUD o métricas -->
+            <section class="placeholder">
+                <h2>Bienvenido al panel de administración de ZapaStore</h2>
+                <p>Aquí podrás gestionar productos, catálogos y visualizar métricas del sitio.</p>
+                <img src="https://cdn-icons-png.flaticon.com/512/2936/2936887.png" alt="Admin Panel" class="placeholder-img">
+            </section>
+        </div>
+    </div>
+</body>
+</html>
