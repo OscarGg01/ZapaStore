@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZapaStore</title>
+    <title>ZapaStore | Catálogo</title>
     <link rel="stylesheet" href="styles/catalogo.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -23,65 +24,125 @@
         </nav>
     </header>
 
+    <main class="container">
+        <section class="catalog-toolbar">
+            <div>
+                <h1>Catálogo de Productos</h1>
+                <p class="muted">Explora nuestras categorías y encuentra lo que necesitas.</p>
+            </div>
 
-        <main class="container">
-            <section class="catalog-toolbar">
-                <div>
-                    <h1>Catálogo de Productos</h1>
-                    <p class="muted">Explora nuestras categorías y encuentra lo que necesitas.</p>
+            <div class="toolbar-actions">
+                <div class="search">
+                    <input type="search" placeholder="Buscar producto..." disabled />
+                    <i class="fa fa-search"></i>
                 </div>
+                <select disabled>
+                    <option>Categoría</option>
+                    <option>Sport</option>
+                </select>
+            </div>
+        </section>
 
+        <section class="product-grid">
 
-                <div class="toolbar-actions">
-                    <div class="search">
-                        <input type="search" placeholder="Buscar producto..." disabled />
-                        <i class="fa fa-search"></i>
-                    </div>
-                    <select disabled>
-                        <option>Categoría</option>
-                        <option>Accesorios</option>
-                        <option>Indumentaria</option>
-                        <option>Electrónica</option>
-                    </select>
+            <!-- EXISTENTES (mantener sin cambios) -->
+            <!-- Producto 1 -->
+            <article class="product-card card">
+            <div class="product-media">
+                <img src="img/product1.jpg" alt="Producto 1">
+            </div>
+            <div class="product-body">
+                <h3 class="product-title">Producto 1</h3>
+                <div class="product-category">Categoría: Running</div>
+                <p class="product-desc">Descripción corta</p>
+                <div class="product-foot">
+                <strong class="price">S/ 129.90</strong>
+                <div class="product-actions">
+                    <button class="btn-view" disabled><i class="fa-solid fa-eye"></i> Ver</button>
+                    <button class="btn-add" disabled><i class="fa-solid fa-cart-plus"></i> Añadir</button>
                 </div>
-            </section>
+                </div>
+            </div>
+            </article>
 
-
-            <section class="product-grid">
-
-                <article class="product-card card">
-                    <div class="product-media">
-                        <img src="img/product1.jpg" alt="Producto 1" />
-                    </div>
-                    <div class="product-body">
-                        <h3 class="product-title">Producto 1</h3>
-                        <p class="product-desc">Descripción corta y llamativa del producto.</p>
-                        <div class="product-foot">
-                            <strong class="price">S/ 129.90</strong>
-                            <button class="btn btn-sm btn-primary" disabled>Ver</button>
-                            <button class="btn btn-sm btn-primary" disabled>Añadir al carrito</button>
+            <!-- Producto 2 -->
+            <article class="product-card card">
+                <div class="product-media">
+                    <img src="img/product2.jpg" alt="Producto 2">
+                </div>
+                <div class="product-body">
+                    <h3 class="product-title">Producto 2</h3>
+                    <div class="product-category">Categoría: Casual</div>
+                    <p class="product-desc">Descripción corta</p>
+                    <div class="product-foot">
+                        <strong class="price">S/ 59.00</strong>
+                        <div class="product-actions">
+                            <button class="btn-view" disabled><i class="fa-solid fa-eye"></i> Ver</button>
+                            <button class="btn-add" disabled><i class="fa-solid fa-cart-plus"></i> Añadir</button>
                         </div>
                     </div>
-                </article>
+                </div>
+            </article>
 
-                <article class="product-card card">
-                    <div class="product-media">
-                        <img src="img/product2.jpg" alt="Producto 2" />
-                    </div>
-                    <div class="product-body">
-                        <h3 class="product-title">Producto 2</h3>
-                        <p class="product-desc">Características destacadas.</p>
-                        <div class="product-foot">
-                            <strong class="price">S/ 90.90</strong>
-                            <button class="btn btn-sm btn-primary" disabled>Ver</button>
-                            <button class="btn btn-sm btn-primary" disabled>Añadir al carrito</button>
-                        </div>
-                    </div>
-                </article>
-            </section>
-        </main>
+            <!-- Producto 3 -->
+            <article class="product-card card">
+            <div class="product-media">
+                <img src="img/zapatilla-run.jpg" alt="Producto 3">
+            </div>
+            <div class="product-body">
+                <h3 class="product-title">Producto 3</h3>
+                <div class="product-category">Categoría: Lifestyle</div>
+                <p class="product-desc">Descripción corta</p>
+                <div class="product-foot">
+                <strong class="price">S/ 199.00</strong>
+                <div class="product-actions">
+                    <button class="btn-view" disabled><i class="fa-solid fa-eye"></i> Ver</button>
+                    <button class="btn-add" disabled><i class="fa-solid fa-cart-plus"></i> Añadir</button>
+                </div>
+                </div>
+            </div>
+            </article>
 
-            <!-- Footer -->
+            <article class="product-card card">
+            <div class="product-media">
+                <img src="https://darkorbitperu.com/wp-content/uploads/2023/01/9711050326046.jpg" alt="Producto 4">
+            </div>
+            <div class="product-body">
+                <h3 class="product-title">Nike Air Max</h3>
+                <div class="product-category">Categoría: Runnig</div>
+                <p class="product-desc">Descripción corta</p>
+                <div class="product-foot">
+                <strong class="price">S/ 450.00</strong>
+                <div class="product-actions">
+                    <button class="btn-view" disabled><i class="fa-solid fa-eye"></i> Ver</button>
+                    <button class="btn-add" disabled><i class="fa-solid fa-cart-plus"></i> Añadir</button>
+                </div>
+                </div>
+            </div>
+            </article>
+
+            <article class="product-card card">
+            <div class="product-media">
+                <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/d2a64cf9cd824e5d9fcc950b5eb0b2c8_9366/Zapatillas_Ultraboost_5_Azul_ID8817_HM1.jpg" alt="Producto 5">
+            </div>
+            <div class="product-body">
+                <h3 class="product-title">Adidas Ultraboost</h3>
+                <div class="product-category">Categoría: Urbanas</div>
+                <p class="product-desc">Descripción corta</p>
+                <div class="product-foot">
+                <strong class="price">S/ 499.00</strong>
+                <div class="product-actions">
+                    <button class="btn-view" disabled><i class="fa-solid fa-eye"></i> Ver</button>
+                    <button class="btn-add" disabled><i class="fa-solid fa-cart-plus"></i> Añadir</button>
+                </div>
+                </div>
+            </div>
+            </article>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div>
@@ -107,6 +168,5 @@
         <p class="copy">© 2025 ZapaStore | Todos los derechos reservados</p>
     </footer>
 
-
-    </body>
+</body>
 </html>
