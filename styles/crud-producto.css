@@ -1,126 +1,179 @@
+/* ====== Base ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    margin: 0;
-    color: #333;
+  font-family: "Poppins", sans-serif;
+  background: #f6f8fa;
+  color: #333;
+  display: flex;
+  min-height: 100vh;
 }
 
-/* Header */
+/* ====== Sidebar ====== */
+.sidebar {
+  width: 220px;
+  background: #2ecc71;
+  color: #fff;
+  padding: 25px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar h2 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.panel-text {
+  font-size: 12px;
+  color: #eafaf0;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+.sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav .activo {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ====== Main ====== */
+main {
+  flex: 1;
+  padding: 30px;
+}
+
+/* ====== Header ====== */
 header {
-    background: linear-gradient(90deg, #4CAF50, #2ecc71);
-    color: white;
-    text-align: center;
-    padding: 20px 0;
+  margin-bottom: 25px;
 }
 
-.container {
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
+header h1 {
+  color: #27ae60;
+  font-size: 24px;
 }
 
-/* Formulario */
-.formulario-producto {
-    background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    margin-bottom: 40px;
+/* ====== Sección principal (form + vista previa) ====== */
+.contenido {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
 }
 
-.formulario-producto h2 {
-    color: #2ecc71;
-    margin-bottom: 15px;
-    text-align: center;
+/* ====== Formulario ====== */
+.form-section {
+  background: #fff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
 }
 
-label {
-    display: block;
-    margin-top: 10px;
-    font-weight: bold;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
-input, select, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+.campo {
+  display: flex;
+  flex-direction: column;
 }
 
-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: #27ae60;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
+.campo label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #2c3e50;
 }
 
-button:hover {
-    background: #219150;
+.campo input,
+.campo select {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: 0.3s;
 }
 
-/* Tabla */
-.tabla-productos {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+.campo input:focus,
+.campo select:focus {
+  border-color: #2ecc71;
+  outline: none;
+  box-shadow: 0 0 4px rgba(46, 204, 113, 0.4);
 }
 
-.tabla-productos h2 {
-    color: #2ecc71;
-    text-align: center;
-    margin-bottom: 15px;
+/* ====== Botón guardar ====== */
+.guardar {
+  background: #2ecc71;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+.guardar:hover {
+  background: #27ae60;
 }
 
-th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
+/* ====== Vista previa ====== */
+.preview-section h2 {
+  color: #27ae60;
+  margin-bottom: 15px;
 }
 
-th {
-    background: #4CAF50;
-    color: white;
+.preview-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-tr:nth-child(even) {
-    background: #f2f2f2;
+.producto {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  overflow: hidden;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px;
 }
 
-/* Botones tabla */
-.editar {
-    background: #2ecc71;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 5px;
-    cursor: pointer;
+.producto img {
+  width: 120px;
+  height: 100px;
+  object-fit: contain;
+  background: #f9f9f9;
+  border-radius: 8px;
 }
 
-.eliminar {
-    background: #e74c3c;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    border-radius: 5px;
-    cursor: pointer;
+.producto .info {
+  flex: 1;
 }
 
-.editar:hover {
-    background: #27ae60;
+.producto h3 {
+  margin-bottom: 5px;
+  font-size: 16px;
 }
 
-.eliminar:hover {
-    background: #c0392b;
+.producto p {
+  margin: 2px 0;
+  font-size: 14px;
 }

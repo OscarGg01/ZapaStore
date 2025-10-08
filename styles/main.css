@@ -56,7 +56,9 @@ header nav a:hover {
   font-size: 18px;
   color: #444;
 }
-.hero button {
+.hero .btn-explorar,
+.hero button.btn-explorar {
+  display: inline-block;
   margin-top: 25px;
   padding: 14px 28px;
   background: #27ae60;
@@ -67,9 +69,20 @@ header nav a:hover {
   font-size: 16px;
   font-weight: bold;
   transition: all 0.3s ease;
+  text-decoration: none;      
+  line-height: 1; 
 }
-.hero button:hover {
+
+.hero .btn-explorar:hover,
+.hero button.btn-explorar:hover {
   background: #219150;
+  transform: translateY(-3px);
+}
+
+.hero .btn-explorar:focus,
+.hero button.btn-explorar:focus {
+  outline: 3px solid rgba(33,145,80,0.25);
+  outline-offset: 3px;
   transform: translateY(-3px);
 }
 
