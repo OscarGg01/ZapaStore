@@ -1245,3 +1245,81 @@ main header h1 {
   gap: 0.5rem;
   align-items: center;
 }
+
+/* ====== ESTILOS ESPECÍFICOS PARA LISTA DE USUARIOS CON FILTRO Y ROL ====== */
+
+/* Ajuste del contenedor de búsqueda para incluir el filtro */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4); /* Aumentamos el gap para separar el input del select */
+  margin-bottom: var(--space-6);
+}
+
+/* Estilo para el campo de selección (filtro de rol) */
+.select-filter {
+  flex: none; /* No permite que el select ocupe todo el espacio */
+  width: 200px; /* Ancho fijo para el filtro de rol */
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--subtle-light);
+  background-color: white;
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.input-search:focus,
+.select-filter:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 1px var(--primary-bg-dark);
+  outline: none;
+}
+
+/* Estilo para el chip de Rol en la tabla */
+.chip-rol {
+  padding: var(--space-1) var(--space-3);
+  border-radius: 999px; /* Totalmente redondeado */
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+/* Colores específicos para el rol de Administrador */
+.chip-rol.admin {
+  background-color: var(--primary-bg); /* Fondo más claro (verde claro) */
+  color: var(--primary-color); /* Texto color principal (verde oscuro) */
+  border: 1px solid var(--primary-color);
+}
+
+/* Colores específicos para el rol de Cliente */
+.chip-rol.cliente {
+  background-color: #f0f4f8; /* Fondo azul/gris claro */
+  color: #4a5568; /* Texto gris oscuro */
+  border: 1px solid #d2e3f3;
+}
+
+/* Responsividad para la barra de búsqueda y filtro */
+@media (max-width: 768px) {
+  .search-bar {
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+    gap: var(--space-2);
+  }
+
+  .input-search {
+    flex-basis: 100%; /* El input de búsqueda ocupa todo el ancho */
+    order: 1;
+  }
+
+  .select-filter {
+    width: calc(100% - 48px - var(--space-2)); /* Ancho restante para el select */
+    flex: 1;
+    order: 2;
+  }
+
+  .search-button {
+    flex: none;
+    order: 3;
+  }
+}

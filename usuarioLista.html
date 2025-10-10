@@ -24,6 +24,16 @@
         <a href="productoLista.html" class="nav-item"><span class="material-symbols-outlined">store</span>Productos</a>
         <a href="usuarioLista.html" class="nav-item is-active"><span class="material-symbols-outlined">group</span>Usuarios</a>
       </nav>
+
+      <div class="sidebar-profile">
+        <div class="profile-info">
+          <div class="profile-avatar" style='background-image: url("img/user.png");'></div>
+          <div>
+            <p class="profile-name">Admin User</p>
+            <p class="profile-email">admin@zapastore.com</p>
+          </div>
+        </div>
+      </div>
     </aside>
 
     <!-- Panel principal -->
@@ -44,9 +54,14 @@
           </button>
         </div>
 
-        <!-- Buscador -->
+        <!-- Buscador con filtro de rol -->
         <div class="search-bar">
-          <input type="text" placeholder="Buscar usuario..." class="input-search">
+          <input type="text" placeholder="Buscar por nombre o correo..." class="input-search">
+          <select class="select-filter" id="filtro-rol">
+            <option value="">Todos los Roles</option>
+            <option value="admin">Administrador</option>
+            <option value="cliente">Cliente</option>
+          </select>
           <button class="icon-button search-button"><span class="material-symbols-outlined">search</span></button>
         </div>
 
@@ -59,25 +74,50 @@
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Teléfono</th>
+                <th>Rol</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><img src="https://i.pravatar.cc/120?img=12" class="tabla-img" alt="Usuario 1"></td>
-                <td>Andre Gimena</td>
-                <td>andre.gimena@example.com</td>
-                <td>+51 987 654 321</td>
+                <td><img src="https://i.pravatar.cc/120?img=6" class="tabla-img" alt="Usuario 1"></td>
+                <td>Sofia Herrera</td>
+                <td>sofia.herrera@zapastore.com</td>
+                <td>+51 998 123 456</td>
+                <td><span class="chip-rol admin">Administrador</span></td>
                 <td>
                   <button class="icon-button edit" onclick="window.location.href='usuarioEditar.html'"><span class="material-symbols-outlined">edit</span></button>
                   <button class="icon-button delete"><span class="material-symbols-outlined">delete</span></button>
                 </td>
               </tr>
               <tr>
-                <td><img src="https://i.pravatar.cc/120?img=15" class="tabla-img" alt="Usuario 2"></td>
-                <td>Marcelo Hade</td>
-                <td>marcelo.hade@example.com</td>
-                <td>+51 912 345 678</td>
+                <td><img src="https://i.pravatar.cc/120?img=33" class="tabla-img" alt="Usuario 2"></td>
+                <td>Carlos Mendoza</td>
+                <td>carlos.mendoza@example.com</td>
+                <td>+51 945 678 901</td>
+                <td><span class="chip-rol cliente">Cliente</span></td>
+                <td>
+                  <button class="icon-button edit" onclick="window.location.href='usuarioEditar.html'"><span class="material-symbols-outlined">edit</span></button>
+                  <button class="icon-button delete"><span class="material-symbols-outlined">delete</span></button>
+                </td>
+              </tr>
+              <tr>
+                <td><img src="https://i.pravatar.cc/120?img=50" class="tabla-img" alt="Usuario 3"></td>
+                <td>Laura Quispe</td>
+                <td>laura.quispe@test.net</td>
+                <td>+51 932 109 876</td>
+                <td><span class="chip-rol cliente">Cliente</span></td>
+                <td>
+                  <button class="icon-button edit" onclick="window.location.href='usuarioEditar.html'"><span class="material-symbols-outlined">edit</span></button>
+                  <button class="icon-button delete"><span class="material-symbols-outlined">delete</span></button>
+                </td>
+              </tr>
+              <tr>
+                <td><img src="https://i.pravatar.cc/120?img=25" class="tabla-img" alt="Usuario 4"></td>
+                <td>Jorge Linares</td>
+                <td>jorge.linares@zapastore.com</td>
+                <td>+51 965 432 109</td>
+                <td><span class="chip-rol admin">Administrador</span></td>
                 <td>
                   <button class="icon-button edit" onclick="window.location.href='usuarioEditar.html'"><span class="material-symbols-outlined">edit</span></button>
                   <button class="icon-button delete"><span class="material-symbols-outlined">delete</span></button>
