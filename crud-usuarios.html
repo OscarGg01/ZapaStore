@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD Usuarios - ZapaStore</title>
+  <link rel="stylesheet" href="styles/crud-usuarios.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>ZapaStore</h2>
+    <p class="panel-text">Admin Panel</p>
+    <nav>
+      <a href="metricas.html">📊 Métricas</a>
+      <a href="crud-producto.html">🛍️ CRUD Productos</a>
+      <a href="crud-usuarios.html" class="activo">👤 CRUD Usuarios</a>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main>
+    <header>
+      <h1>Usuarios Registrados</h1>
+    </header>
+
+    <section class="preview-section">
+      <h2>Lista de usuarios</h2>
+
+      <!-- Buscador -->
+      <div class="campo" style="margin-bottom: 15px; max-width: 300px;">
+        <label for="buscar">Buscar usuario:</label>
+        <input type="text" id="buscar" placeholder="Buscar por nombre, correo o código...">
+      </div>
+
+      <!-- Lista de usuarios -->
+      <div class="preview-cards" id="lista-usuarios">
+
+        <!-- Usuario 1 -->
+        <div class="producto">
+          <img src="https://i.pravatar.cc/120?img=12" alt="Foto de usuario">
+          <div class="info">
+            <h3>Usuario001 - Andre Gimena</h3>
+            <p>📧 andre.gimena@example.com</p>
+            <p>📞 +51 987 654 321</p>
+          </div>
+        </div>
+
+        <!-- Usuario 2 -->
+        <div class="producto">
+          <img src="https://i.pravatar.cc/120?img=15" alt="Foto de usuario">
+          <div class="info">
+            <h3>Usuario002 - Marcelo Hade</h3>
+            <p>📧 marcelo.hade@example.com</p>
+            <p>📞 +51 912 345 678</p>
+          </div>
+        </div>
+
+        <!-- Usuario 3 -->
+        <div class="producto">
+          <img src="https://i.pravatar.cc/120?img=18" alt="Foto de usuario">
+          <div class="info">
+            <h3>Usuario003 - Carlos Gómez</h3>
+            <p>📧 carlos.gomez@example.com</p>
+            <p>📞 +51 956 789 432</p>
+          </div>
+        </div>
+
+        <!-- Usuario 4 -->
+        <div class="producto">
+          <img src="https://i.pravatar.cc/120?img=21" alt="Foto de usuario">
+          <div class="info">
+            <h3>Usuario004 - Laura Torres</h3>
+            <p>📧 laura.torres@example.com</p>
+            <p>📞 +51 999 111 222</p>
+          </div>
+        </div>
+
+        <!-- Usuario 5 -->
+        <div class="producto">
+          <img src="https://i.pravatar.cc/120?img=24" alt="Foto de usuario">
+          <div class="info">
+            <h3>Usuario005 - Diego Ramírez</h3>
+            <p>📧 diego.ramirez@example.com</p>
+            <p>📞 +51 955 222 333</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+  
+</body>
+</html>
