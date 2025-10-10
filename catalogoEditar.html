@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZapaStore | Editar Catálogo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <link rel="stylesheet" href="Estilos/adminStyles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="img/logo.png" alt="Logo ZapaStore" class="logo-icon" height="48">
+        <h1 class="logo-title">ZapaStore Admin</h1>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="admin.html" class="nav-item">
+          <span class="material-symbols-outlined">dashboard</span>
+          Métricas
+        </a>
+        <a href="catalogoLista.html" class="nav-item is-active">
+          <span class="material-symbols-outlined">category</span>
+          Catálogos
+        </a>
+        <a href="productoLista.html" class="nav-item">
+          <span class="material-symbols-outlined">store</span>
+          Productos
+        </a>
+        <a href="usuarioLista.html" class="nav-item">
+          <span class="material-symbols-outlined">group</span>
+          Usuarios
+        </a>
+      </nav>
+      <div class="sidebar-profile">
+                <div class="profile-info">
+                    <div class="profile-avatar" style='background-image: url("img/user.png");'></div>
+                    <div>
+                        <p class="profile-name">Admin User</p>
+                        <p class="profile-email">admin@zapastore.com</p>
+                    </div>
+                </div>
+            </div>
+    </aside>
+
+    <!-- Panel Principal -->
+    <main class="main-panel">
+      <header class="main-header-admin">
+        <div class="header-actions">
+          <button class="icon-button"><span class="material-symbols-outlined">notifications</span></button>
+          <button class="icon-button"><span class="material-symbols-outlined">settings</span></button>
+          <div class="profile-avatar profile-avatar-small" style='background-image: url("img/user.png");'></div>
+        </div>
+      </header>
+
+      <div class="content-wrapper">
+        <div class="page-header">
+          <h2 class="page-title">Editar Catálogo</h2>
+          <button class="secondary-button-admin" onclick="window.location.href='catalogoLista.html'">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Volver a la lista
+          </button>
+        </div>
+
+        <!-- FORMULARIO -->
+        <section class="crud-area">
+          <form class="crud-form">
+
+            <div class="campo">
+              <label for="nombre">Nombre del catálogo</label>
+              <input type="text" id="nombre" value="Colección Otoño 2025" required>
+            </div>
+
+            <div class="campo">
+              <label for="descripcion">Descripción</label>
+              <textarea id="descripcion" rows="3">Catálogo con los modelos más recientes de temporada otoño.</textarea>
+            </div>
+
+            <!-- Estado -->
+            <div class="campo">
+              <label for="estado">Estado del catálogo</label>
+              <select id="estado">
+                <option value="activo" selected>Activo</option>
+                <option value="inactivo">Inactivo</option>
+              </select>
+            </div>
+
+            <!-- Selección de Categoría -->
+            <div class="campo categoria-select">
+              <label for="categoria">Categoría</label>
+              <div class="categoria-flex">
+                <select id="categoria" required>
+                  <option>Deportivas</option>
+                  <option selected>Urbanas</option>
+                  <option>Casuales</option>
+                </select>
+                <button type="button" class="secondary-button-admin small-btn">
+                  <span class="material-symbols-outlined">tune</span>
+                  Administrar categorías
+                </button>
+              </div>
+            </div>
+
+            <!-- Selección de modelos -->
+            <div class="campo">
+              <label>Modelos disponibles</label>
+              <div class="modelos-disponibles">
+                <div class="modelo-item">
+                  <span>Nike Air Max</span>
+                  <button type="button" class="icon-button add"><span class="material-symbols-outlined">add</span></button>
+                </div>
+                <div class="modelo-item">
+                  <span>Adidas Ultraboost</span>
+                  <button type="button" class="icon-button add"><span class="material-symbols-outlined">add</span></button>
+                </div>
+                <div class="modelo-item">
+                  <span>Puma RS-X</span>
+                  <button type="button" class="icon-button add"><span class="material-symbols-outlined">add</span></button>
+                </div>
+                <div class="modelo-item">
+                  <span>New Balance 574</span>
+                  <button type="button" class="icon-button add"><span class="material-symbols-outlined">add</span></button>
+                </div>
+              </div>
+
+              <div class="modelos-seleccionados">
+                <h4>Modelos agregados:</h4>
+                <div class="modelos-lista">
+                  <span class="modelo-chip">
+                    Adidas Ultraboost
+                    <button type="button" class="icon-button remove">
+                      <span class="material-symbols-outlined">close</span>
+                    </button>
+                  </span>
+                  <span class="modelo-chip">
+                    Puma RS-X
+                    <button type="button" class="icon-button remove">
+                      <span class="material-symbols-outlined">close</span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <button type="submit" class="primary-button-admin">
+              <span class="material-symbols-outlined">save</span>
+              Guardar Cambios
+            </button>
+
+          </form>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL (solo vista) -->
+  <div class="modal-categorias">
+    <div class="modal-content">
+      <h3>Administrar Categorías</h3>
+      <div class="campo">
+        <label>Nueva categoría</label>
+        <input type="text" placeholder="Ej. Outdoor">
+        <button class="primary-button-admin small-btn">Agregar</button>
+      </div>
+
+      <div class="lista-categorias">
+        <span class="categoria-chip">Deportivas <button class="icon-button remove"><span class="material-symbols-outlined">close</span></button></span>
+        <span class="categoria-chip">Urbanas <button class="icon-button remove"><span class="material-symbols-outlined">close</span></button></span>
+        <span class="categoria-chip">Casuales <button class="icon-button remove"><span class="material-symbols-outlined">close</span></button></span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

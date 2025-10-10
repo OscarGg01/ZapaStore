@@ -4,169 +4,207 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZapaStore | Catálogo</title>
-    <link rel="stylesheet" href="styles/catalogo.css">
+    <link rel="stylesheet" href="Estilos/index.css"> 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap">
 </head>
-<body>
-
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <img src="img/logo.png" alt="Logo ZapaStore">
-            <h1>ZapaStore</h1>
-        </div>
-        <nav>
-            <a href="main.html">Inicio</a>
-            <a href="catalogo.html">Catálogo</a>
-            <a href="publicidad.html">Ofertas</a>
-            <a href="login.html">Registro</a>
-            <a href="contact.html">Contacto</a>
-        </nav>
-    </header>
-
-    <main class="container">
-        <section class="catalog-toolbar">
-            <div>
-                <h1>Catálogo de Productos</h1>
-                <p class="muted">Explora nuestras categorías y encuentra lo que necesitas.</p>
-            </div>
-
-            <div class="toolbar-actions">
-                <div class="search">
-                    <input type="search" placeholder="Buscar producto..." disabled />
-                    <i class="fa fa-search"></i>
+<body class="light-mode">
+    <div class="page-container">
+        
+        <header class="main-header">
+            <div class="container header-inner">
+                <div class="header-left">
+                    <a class="logo" href="index.html">
+                        <img src="img/logo.png" alt="Logo ZapaStore" class="logo-image" height="24">
+                        <h1 class="logo-text">ZapaStore</h1>
+                    </a>
+                    <nav class="main-nav">
+                        <a href="index.html">Inicio</a>
+                        <a href="catalogo.html">Catálogo</a>
+                        <a href="ofertas.html">Ofertas</a>
+                        <a href="contact.html">Contacto</a>
+                    </nav>
                 </div>
-                <select disabled>
-                    <option>Categoría</option>
-                    <option>Sport</option>
-                </select>
-            </div>
-        </section>
-
-        <section class="product-grid">
-
-            <!-- EXISTENTES (mantener sin cambios) -->
-            <!-- Producto 1 -->
-            <article class="product-card card">
-            <div class="product-media">
-                <img src="img/product1.jpg" alt="Producto 1">
-            </div>
-            <div class="product-body">
-                <h3 class="product-title">Producto 1</h3>
-                <div class="product-category">Categoría: Running</div>
-                <p class="product-desc">Descripción corta</p>
-                <div class="product-foot">
-                <strong class="price">S/ 129.90</strong>
-                <div class="product-actions">
-                    <button class="btn-view" disabled><i class="fa-solid fa-eye"></i> Ver</button>
-                    <button class="btn-add" disabled><i class="fa-solid fa-cart-plus"></i> Añadir</button>
-                </div>
+                <div class="header-right">
+                    <a href="login.html">
+                        <button class="secondary-button">Iniciar Sesión</button>
+                    </a> 
+                    <div class="profile-pic" style='background-image: url("img/user.png");' aria-label="Perfil de Usuario"></div>
                 </div>
             </div>
-            </article>
+        </header>
+        <main class="container main-content-padding">
+            
+            <section class="catalog-toolbar">
+                <div>
+                    <h1 class="section-title">Catálogo de Productos</h1>
+                    <p class="section-subtitle">Explora nuestras categorías y encuentra lo que necesitas.</p>
+                </div>
 
-            <!-- Producto 2 -->
-            <article class="product-card card">
-                <div class="product-media">
-                    <img src="img/product2.jpg" alt="Producto 2">
+                <div class="toolbar-actions">
+                    <div class="search-box-catalogo">
+                        <input type="search" placeholder="Buscar..." class="search-input-catalogo" id="search-input" name="search-input" />
+                    </div>
+                    <select class="select-category" id="category-select" name="category-select">
+                        <option value="">Categoría</option>
+                        <option value="running">Running</option>
+                        <option value="casual">Casual</option>
+                        <option value="sport">Sport</option>
+                    </select>
+                </div>
+            </section>
+
+            <section class="product-grid">
+
+                <article class="product-card card">
+                <div class="product-media product-image-wrapper">
+                    <img alt="Producto 1" class="product-image" src="img/product1.jpg">
+                </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Producto 1</h3>
+                        <div class="product-category product-description">Categoría: Running</div>
+                        <p class="product-desc product-description">Descripción corta</p>
+                        <div class="product-foot-only-view">
+                            <div class="product-actions-view">
+                                <a href="producto.html">
+                                    <button class="primary-button-small">
+                                        <i class="fa-solid fa-eye"></i> Ver
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card card">
+                    <div class="product-media product-image-wrapper">
+                        <img alt="Producto 2" class="product-image" src="img/product2.jpg">
+                    </div>
+                    <div class="product-body">
+                        <h3 class="product-title">Producto 2</h3>
+                        <div class="product-category product-description">Categoría: Casual</div>
+                        <p class="product-desc product-description">Descripción corta</p>
+                        <div class="product-foot-only-view">
+                            <div class="product-actions-view">
+                                <a href="producto.html">
+                                    <button class="primary-button-small">
+                                        <i class="fa-solid fa-eye"></i> Ver
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card card">
+                <div class="product-media product-image-wrapper">
+                    <img alt="Producto 3" class="product-image" src="img/zapatilla-run.jpg">
                 </div>
                 <div class="product-body">
-                    <h3 class="product-title">Producto 2</h3>
-                    <div class="product-category">Categoría: Casual</div>
-                    <p class="product-desc">Descripción corta</p>
-                    <div class="product-foot">
-                        <strong class="price">S/ 59.00</strong>
-                        <div class="product-actions">
-                            <button class="btn-view" disabled><i class="fa-solid fa-eye"></i> Ver</button>
-                            <button class="btn-add" disabled><i class="fa-solid fa-cart-plus"></i> Añadir</button>
+                    <h3 class="product-title">Producto 3</h3>
+                    <div class="product-category product-description">Categoría: Lifestyle</div>
+                    <p class="product-desc product-description">Descripción corta</p>
+                    <div class="product-foot-only-view">
+                        <div class="product-actions-view">
+                            <a href="producto.html">
+                                <button class="primary-button-small">
+                                    <i class="fa-solid fa-eye"></i> Ver
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </article>
+                </article>
 
-            <!-- Producto 3 -->
-            <article class="product-card card">
-            <div class="product-media">
-                <img src="img/zapatilla-run.jpg" alt="Producto 3">
-            </div>
-            <div class="product-body">
-                <h3 class="product-title">Producto 3</h3>
-                <div class="product-category">Categoría: Lifestyle</div>
-                <p class="product-desc">Descripción corta</p>
-                <div class="product-foot">
-                <strong class="price">S/ 199.00</strong>
-                <div class="product-actions">
-                    <button class="btn-view" disabled><i class="fa-solid fa-eye"></i> Ver</button>
-                    <button class="btn-add" disabled><i class="fa-solid fa-cart-plus"></i> Añadir</button>
+                <article class="product-card card">
+                <div class="product-media product-image-wrapper">
+                    <img alt="Producto 4" class="product-image" src="https://darkorbitperu.com/wp-content/uploads/2023/01/9711050326046.jpg">
                 </div>
+                <div class="product-body">
+                    <h3 class="product-title">Nike Air Max</h3>
+                    <div class="product-category product-description">Categoría: Runnig</div>
+                    <p class="product-desc product-description">Descripción corta</p>
+                    <div class="product-foot-only-view">
+                        <div class="product-actions-view">
+                            <a href="producto.html">
+                                <button class="primary-button-small">
+                                    <i class="fa-solid fa-eye"></i> Ver
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </article>
+                </article>
 
-            <article class="product-card card">
-            <div class="product-media">
-                <img src="https://darkorbitperu.com/wp-content/uploads/2023/01/9711050326046.jpg" alt="Producto 4">
-            </div>
-            <div class="product-body">
-                <h3 class="product-title">Nike Air Max</h3>
-                <div class="product-category">Categoría: Runnig</div>
-                <p class="product-desc">Descripción corta</p>
-                <div class="product-foot">
-                <strong class="price">S/ 450.00</strong>
-                <div class="product-actions">
-                    <button class="btn-view" disabled><i class="fa-solid fa-eye"></i> Ver</button>
-                    <button class="btn-add" disabled><i class="fa-solid fa-cart-plus"></i> Añadir</button>
+                <article class="product-card card">
+                <div class="product-media product-image-wrapper">
+                    <img alt="Producto 5" class="product-image" src="https://assets.adidas.com/images/w_600,f_auto,q_auto/d2a64cf9cd824e5d9fcc950b5eb0b2c8_9366/Zapatillas_Ultraboost_5_Azul_ID8817_HM1.jpg">
                 </div>
+                <div class="product-body">
+                    <h3 class="product-title">Adidas Ultraboost</h3>
+                    <div class="product-category product-description">Categoría: Urbanas</div>
+                    <p class="product-desc product-description">Descripción corta</p>
+                    <div class="product-foot-only-view">
+                        <div class="product-actions-view">
+                            <a href="producto.html">
+                                <button class="primary-button-small">
+                                    <i class="fa-solid fa-eye"></i> Ver
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </article>
+                </article>
+            </section>
+        </main>
 
-            <article class="product-card card">
-            <div class="product-media">
-                <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/d2a64cf9cd824e5d9fcc950b5eb0b2c8_9366/Zapatillas_Ultraboost_5_Azul_ID8817_HM1.jpg" alt="Producto 5">
-            </div>
-            <div class="product-body">
-                <h3 class="product-title">Adidas Ultraboost</h3>
-                <div class="product-category">Categoría: Urbanas</div>
-                <p class="product-desc">Descripción corta</p>
-                <div class="product-foot">
-                <strong class="price">S/ 499.00</strong>
-                <div class="product-actions">
-                    <button class="btn-view" disabled><i class="fa-solid fa-eye"></i> Ver</button>
-                    <button class="btn-add" disabled><i class="fa-solid fa-cart-plus"></i> Añadir</button>
+        <footer class="main-footer">
+            <div class="container footer-inner">
+                <div class="footer-links-grid">
+                    <div>
+                        <h4 class="footer-heading">Tienda</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Nuevos Lanzamientos</a></li>
+                            <li><a href="#">Ofertas</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Nosotros</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Nuestra Historia</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Soporte</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Contáctanos</a></li>
+                            <li><a href="#">Preguntas Frecuentes</a></li>
+                            <li><a href="#">Envíos y Devoluciones</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Síguenos</h4>
+                        <div class="newsletter-signup">
+                            <p>Suscríbete para ofertas exclusivas en Perú</p>
+                            <form action="#" method="post">
+                                <input class="input-text" type="email" placeholder="Tu email" required>
+                                <button class="primary-button-small" type="submit">Suscribirse</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <p>© 2025 ZapaStore Perú. Todos los derechos reservados. Envíos gratuitos a todo el Perú.</p>
+                    </div>
+                    <div class="payment-badges">
+                            <img alt="Yape" src="img/yape-logo.png" width="50">
+                            <img alt="Plin" src="img/plin-logo.jpg" width="50">
+                    </div>
                 </div>
             </div>
-            </article>
-
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div>
-                <h3>ZapaStore</h3>
-                <p>Las mejores zapatillas online con recojo en tienda.</p>
-            </div>
-            <div>
-                <h3>Ayuda</h3>
-                <p>Preguntas frecuentes</p>
-                <p>Política de devoluciones</p>
-                <p>Soporte</p>
-            </div>
-            <div>
-                <h3>Contacto</h3>
-                <p>contacto@zapastore.com</p>
-                <p>Huancayo, Perú</p>
-            </div>
-            <div>
-                <h3>Síguenos</h3>
-                <p>Facebook | Instagram | TikTok</p>
-            </div>
+        </footer>
         </div>
-        <p class="copy">© 2025 ZapaStore | Todos los derechos reservados</p>
-    </footer>
-
 </body>
 </html>
