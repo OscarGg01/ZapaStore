@@ -392,13 +392,15 @@
 
 /* === NUEVOS ESTILOS para imágenes en lugar de gráficos === */
 .chart-example {
-    width: 100%;
-    height: auto;
-    max-height: 250px;
+    display: block;   
+    width: 100%;   
+    height: auto;  
+    max-height: none;   
+    object-fit: contain; 
     border-radius: var(--radius-lg);
-    object-fit: cover;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+
 
 /* Pie de panel */
 .panel-foot {
