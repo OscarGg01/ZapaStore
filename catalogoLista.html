@@ -37,14 +37,14 @@
         </a>
       </nav>
       <div class="sidebar-profile">
-                <div class="profile-info">
-                    <div class="profile-avatar" style='background-image: url("img/user.png");'></div>
-                    <div>
-                        <p class="profile-name">Admin User</p>
-                        <p class="profile-email">admin@zapastore.com</p>
-                    </div>
-                </div>
-            </div>
+        <div class="profile-info">
+          <div class="profile-avatar" style='background-image: url("img/user.png");'></div>
+          <div>
+            <p class="profile-name">Admin User</p>
+            <p class="profile-email">admin@zapastore.com</p>
+          </div>
+        </div>
+      </div>
     </aside>
 
     <!-- Panel Principal -->
@@ -66,24 +66,21 @@
           </button>
         </div>
 
-        <!-- FILTROS (restaurados) -->
+        <!-- FILTROS (actualizados a Estados) -->
         <div class="search-bar" style="justify-content: space-between; gap: 1rem; align-items: center;">
           <div class="filter-group" style="display:flex; gap:0.5rem; align-items:center; flex:1;">
-            <input type="text" placeholder="Buscar por nombre o modelo..." class="input-search" aria-label="Buscar catálogos">
+            <input type="text" placeholder="Buscar por nombre o descripción..." class="input-search" aria-label="Buscar catálogos">
             <button class="icon-button search-button" title="Buscar">
               <span class="material-symbols-outlined">search</span>
             </button>
           </div>
 
           <div class="filter-group" style="display:flex; gap:0.5rem; align-items:center;">
-            <label for="filtro-modelo" style="margin-right:6px;">Filtrar por modelo:</label>
-            <select id="filtro-modelo" class="input-select">
-              <option value="">Todos los modelos</option>
-              <option value="Nike Air Max">Nike Air Max</option>
-              <option value="Adidas Ultraboost">Adidas Ultraboost</option>
-              <option value="Puma RS-X">Puma RS-X</option>
-              <option value="Vans Old Skool">Vans Old Skool</option>
-              <option value="Reebok Classic">Reebok Classic</option>
+            <label for="filtro-estado" style="margin-right:6px;">Filtrar por estado:</label>
+            <select id="filtro-estado" class="input-select">
+              <option value="">Todos los estados</option>
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
             </select>
           </div>
         </div>
@@ -95,7 +92,6 @@
               <tr>
                 <th>Nombre del Catálogo</th>
                 <th>Descripción</th>
-                <th>Modelos incluidos</th>
                 <th>Estado</th>
                 <th>Acciones</th>
               </tr>
@@ -104,13 +100,6 @@
               <tr>
                 <td>Colección Invierno 2025</td>
                 <td>Zapatillas térmicas y resistentes al agua</td>
-                <td>
-                  <div class="modelos-lista">
-                    <span class="modelo-chip">Nike Air Max</span>
-                    <span class="modelo-chip">Adidas Ultraboost</span>
-                    <span class="modelo-chip">Puma RS-X</span>
-                  </div>
-                </td>
                 <td>
                   <label class="switch" title="Estado del catálogo">
                     <input type="checkbox" checked>
@@ -131,12 +120,6 @@
               <tr>
                 <td>Colección Verano 2025</td>
                 <td>Modelos ligeros y transpirables</td>
-                <td>
-                  <div class="modelos-lista">
-                    <span class="modelo-chip">Vans Old Skool</span>
-                    <span class="modelo-chip">Reebok Classic</span>
-                  </div>
-                </td>
                 <td>
                   <label class="switch" title="Estado del catálogo">
                     <input type="checkbox">

@@ -51,7 +51,7 @@
       <div class="content-wrapper">
         <div class="page-header">
           <h2 class="page-title">Administrar Categorías</h2>
-          <button class="secondary-button-admin" onclick="window.location.href='catalogoCrear.html'">
+          <button class="secondary-button-admin" onclick="window.location.href='catalogoLista.html'">
             <span class="material-symbols-outlined">arrow_back</span>
             Volver
           </button>
@@ -61,41 +61,95 @@
           <form class="crud-form">
 
             <!-- Crear nueva categoría -->
-            <div class="campo categoria-flex">
-              <input type="text" placeholder="Nueva categoría..." required>
+            <div class="campo categoria-flex" style="display:flex; gap:0.75rem; align-items:center;">
+              <input type="text" placeholder="Nueva categoría..." required class="input-text" style="flex:1;">
+              
+              <select class="input-select" style="max-width:150px;">
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+              </select>
+
               <button type="button" class="primary-button-admin small-btn">
                 <span class="material-symbols-outlined">add</span>
                 Agregar
               </button>
             </div>
 
-            <!-- Lista de categorías -->
-            <div class="categorias-lista">
-              <span class="categoria-chip">
-                Deportivas
-                <button type="button" class="icon-button remove">
-                  <span class="material-symbols-outlined">close</span>
-                </button>
-              </span>
-              <span class="categoria-chip">
-                Urbanas
-                <button type="button" class="icon-button remove">
-                  <span class="material-symbols-outlined">close</span>
-                </button>
-              </span>
-              <span class="categoria-chip">
-                Casuales
-                <button type="button" class="icon-button remove">
-                  <span class="material-symbols-outlined">close</span>
-                </button>
-              </span>
-              <span class="categoria-chip">
-                Outdoor
-                <button type="button" class="icon-button remove">
-                  <span class="material-symbols-outlined">close</span>
-                </button>
-              </span>
+            <!-- Lista de categorías existentes -->
+            <div class="categorias-lista" style="margin-top:1.5rem;">
+              <table class="crud-table">
+                <thead>
+                  <tr>
+                    <th>Nombre de la Categoría</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Deportivas</td>
+                    <td>
+                      <span class="material-symbols-outlined" style="color:green;">check_circle</span>
+                      <span class="estado-texto" style="color:green;">Activo</span>
+                    </td>
+                    <td>
+                      <button class="icon-button edit" title="Editar categoría" onclick="window.location.href='categoriaEditar.html'">
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Urbanas</td>
+                    <td>
+                      <span class="material-symbols-outlined" style="color:red;">cancel</span>
+                      <span class="estado-texto" style="color:red;">Inactivo</span>
+                    </td>
+                    <td>
+                      <button class="icon-button edit" title="Editar categoría" onclick="window.location.href='categoriaEditar.html'">
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Casuales</td>
+                    <td>
+                      <span class="material-symbols-outlined" style="color:green;">check_circle</span>
+                      <span class="estado-texto" style="color:green;">Activo</span>
+                    </td>
+                    <td>
+                      <button class="icon-button edit" title="Editar categoría" onclick="window.location.href='categoriaEditar.html'">
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Outdoor</td>
+                    <td>
+                      <span class="material-symbols-outlined" style="color:green;">check_circle</span>
+                      <span class="estado-texto" style="color:green;">Activo</span>
+                    </td>
+                    <td>
+                      <button class="icon-button edit" title="Editar categoría" onclick="window.location.href='categoriaEditar.html'">
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Infantil</td>
+                    <td>
+                      <span class="material-symbols-outlined" style="color:red;">cancel</span>
+                      <span class="estado-texto" style="color:red;">Inactivo</span>
+                    </td>
+                    <td>
+                      <button class="icon-button edit" title="Editar categoría" onclick="window.location.href='categoriaEditar.html'">
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+
           </form>
         </section>
       </div>

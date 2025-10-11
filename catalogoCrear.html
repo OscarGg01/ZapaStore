@@ -76,63 +76,20 @@
             </div>
 
             <div class="campo">
+
               <label for="descripcion">Descripción</label>
               <textarea id="descripcion" placeholder="Breve descripción del catálogo..." rows="3"></textarea>
             </div>
 
-            <!-- Selección de Categoría -->
-            <div class="campo categoria-select">
-              <label for="categoria">Categoría</label>
-              <div class="categoria-flex">
-                <select id="categoria" required>
-                  <option value="">Seleccionar...</option>
-                  <option>Deportivas</option>
-                  <option>Urbanas</option>
-                  <option>Casuales</option>
-                </select>
-                <button type="button" class="secondary-button-admin small-btn">
-                  <span class="material-symbols-outlined">tune</span>
-                  Administrar categorías
-                </button>
-              </div>
-            </div>
-
-            <!-- Selección de modelos -->
             <div class="campo">
-              <label>Modelos disponibles</label>
-              <div class="modelos-disponibles">
-                <div class="modelo-item">
-                  <span>Nike Air Max</span>
-                  <button type="button" class="icon-button add"><span class="material-symbols-outlined">add</span></button>
-                </div>
-                <div class="modelo-item">
-                  <span>Adidas Ultraboost</span>
-                  <button type="button" class="icon-button add"><span class="material-symbols-outlined">add</span></button>
-                </div>
-                <div class="modelo-item">
-                  <span>Puma RS-X</span>
-                  <button type="button" class="icon-button add"><span class="material-symbols-outlined">add</span></button>
-                </div>
-              </div>
-
-              <div class="modelos-seleccionados">
-                <h4>Modelos agregados:</h4>
-                <div class="modelos-lista">
-                  <span class="modelo-chip">
-                    Nike Air Max
-                    <button type="button" class="icon-button remove">
-                      <span class="material-symbols-outlined">close</span>
-                    </button>
-                  </span>
-                  <span class="modelo-chip">
-                    Puma RS-X
-                    <button type="button" class="icon-button remove">
-                      <span class="material-symbols-outlined">close</span>
-                    </button>
-                  </span>
-                </div>
-              </div>
+              <label for="estado">Estado</label>
+              <select id="estado" required>
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+              </select>
             </div>
+
+            
 
             <button type="submit" class="primary-button-admin">
               <span class="material-symbols-outlined">save</span>
