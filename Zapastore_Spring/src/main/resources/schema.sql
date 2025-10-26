@@ -47,7 +47,9 @@ CREATE TABLE Pedidos (
     CostoEnvio DECIMAL(10,2) DEFAULT 0.00,
     fecha DATE NOT NULL,
     estado VARCHAR(20) DEFAULT 'Pendiente',
-    CONSTRAINT fk_pedido_usuario FOREIGN KEY (IDCliente) REFERENCES Usuarios(IDUsuario) ON UPDATE CASCADE ON DELETE SET NULL
+    
+    -- ESTA ES LA ULTIMA LINEA ANTES DEL PARENTESIS DE CIERRE
+    CONSTRAINT fk_pedido_usuario FOREIGN KEY (IDCliente) REFERENCES Usuarios(IDUsuario) ON UPDATE CASCADE ON DELETE SET NULL 
 );
 
 -- 5. Tabla Pedido_Detalle
