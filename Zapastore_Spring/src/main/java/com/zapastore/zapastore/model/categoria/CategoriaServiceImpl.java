@@ -10,16 +10,18 @@ import java.util.Optional;
 
 /**
  * Implementación de la lógica de negocio para Categorías.
- * Provee métodos para el CRUD y maneja la desactivación como "Soft Delete".
  */
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
 
-    private final CategoriaRepository categoriaRepository;
+    // =========================================================
+    // CAMBIO CLAVE: Inyectamos CategoriaDAO
+    // =========================================================
+    private final CategoriaDAO categoriaDAO; 
 
     @Autowired
-    public CategoriaServiceImpl(CategoriaRepository categoriaRepository) {
-        this.categoriaRepository = categoriaRepository;
+    public CategoriaServiceImpl(CategoriaDAO categoriaDAO) {
+        this.categoriaDAO = categoriaDAO;
     }
 
     // =========================================================
@@ -28,12 +30,12 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public List<Categoria> findAll() {
-        return categoriaRepository.findAll();
+        return categoriaDAO.findAll(); // Usamos DAO
     }
 
     @Override
     public Optional<Categoria> findById(Integer id) {
-        return categoriaRepository.findById(id);
+        return categoriaDAO.findById(id); // Usamos DAO
     }
 
     // =========================================================
@@ -42,11 +44,10 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public Categoria save(Categoria categoria) {
-        // Asegurar que el estado inicial sea "Activo" si no se especifica
         if (categoria.getEstado() == null || categoria.getEstado().isEmpty()) {
             categoria.setEstado("Activo");
         }
-        return categoriaRepository.save(categoria);
+        return categoriaDAO.save(categoria); // Usamos DAO
     }
 
     // =========================================================
@@ -55,16 +56,15 @@ public class CategoriaServiceImpl implements CategoriaService {
     
     // Método para actualizar la categoría (usado por el PUT del Controller)
     public Categoria update(Integer id, Categoria categoriaDetails) {
-        return categoriaRepository.findById(id)
+        return categoriaDAO.findById(id) // Usamos DAO
             .map(categoriaExistente -> {
-                // Actualiza solo los campos que vienen en el body
                 if (categoriaDetails.getNombre() != null) {
                     categoriaExistente.setNombre(categoriaDetails.getNombre());
                 }
                 if (categoriaDetails.getEstado() != null) {
                     categoriaExistente.setEstado(categoriaDetails.getEstado());
                 }
-                return categoriaRepository.save(categoriaExistente);
+                return categoriaDAO.save(categoriaExistente); // Usamos DAO
             })
             .orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Categoría con ID " + id + " no encontrada"
@@ -75,20 +75,13 @@ public class CategoriaServiceImpl implements CategoriaService {
     // D (Soft Delete - Desactivación)
     // =========================================================
     
-    /**
-     * Reemplaza la eliminación física. Cambia el estado de la categoría a "Inactivo".
-     * @param id El ID de la categoría a desactivar.
-     */
     @Override
     public void deleteById(Integer id) {
-        categoriaRepository.findById(id)
+        categoriaDAO.findById(id) // Usamos DAO
             .ifPresentOrElse(categoria -> {
-                // Si la categoría existe, la marcamos como Inactiva
                 categoria.setEstado("Inactivo");
-                categoriaRepository.save(categoria);
-                // NOTA: Para realizar una eliminación física, se usaría: categoriaRepository.delete(categoria);
+                categoriaDAO.save(categoria); // Usamos DAO
             }, () -> {
-                // Si no existe, podemos lanzar una excepción (aunque para DELETE, 204 No Content es común)
                 throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "Categoría con ID " + id + " no encontrada para desactivar"
                 );

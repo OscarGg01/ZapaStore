@@ -12,11 +12,11 @@ INSERT INTO Categorias (nombre, estado) VALUES
 ('Skate','Activo');
 
 -- Insertar Productos (usando las IDs de Categorías: 1=Running, 2=Casual, 3=Skate)
-INSERT INTO Productos (nombre, categoria_ID, Precio, img_Url, descripcion, stock) VALUES
-('Zapa Air Zoom (R-1)', 1, 450.00, 'img/airzoom.jpg', 'Zapatillas ligeras para correr', 25),
-('Zapa Classic Street (C-2)', 2, 320.00, 'img/classicstreet.jpg', 'Estilo urbano y cómodo', 40),
-('Skate Pro X (S-3)', 3, 210.50, 'img/skateprox.jpg', 'Alto rendimiento para skate', 15),
-('Zapa Casual Deluxe (C-2)', 2, 180.00, 'img/casualdeluxe.jpg', 'Confort y estilo para el día a día', 60);
+INSERT INTO Productos (nombre, categoria_ID, Precio, img_Url, descripcion) VALUES
+('Zapa Air Zoom (R-1)', 1, 450.00, 'img/airzoom.jpg', 'Zapatillas ligeras para correr'),
+('Zapa Classic Street (C-2)', 2, 320.00, 'img/classicstreet.jpg', 'Estilo urbano y cómodo'),
+('Skate Pro X (S-3)', 3, 210.50, 'img/skateprox.jpg', 'Alto rendimiento para skate'),
+('Zapa Casual Deluxe (C-2)', 2, 180.00, 'img/casualdeluxe.jpg', 'Confort y estilo para el día a día');
 
 -- Insertar un Pedido de ejemplo (para U001)
 INSERT INTO Pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES

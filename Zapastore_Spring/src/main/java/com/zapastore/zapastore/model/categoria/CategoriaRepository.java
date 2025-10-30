@@ -4,9 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Interfaz para operaciones CRUD en la entidad Categoria.
+ * Implementación del acceso a datos. 
+ * Extiende JpaRepository para obtener la implementación automática 
+ * y extiende CategoriaDAO para cumplir el contrato.
  */
 @Repository
-public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
-    // Métodos CRUD básicos listos para usar
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer>, CategoriaDAO {
+    // No necesitamos código aquí. JpaRepository implementa automáticamente los métodos de CategoriaDAO
+    // (findAll, findById, save, deleteById).
 }
