@@ -53,8 +53,7 @@ public class ProductoServiceImpl implements ProductoService {
                 // Actualiza campos
                 if (productoDetails.getNombre() != null) productoExistente.setNombre(productoDetails.getNombre());
                 if (productoDetails.getDescripcion() != null) productoExistente.setDescripcion(productoDetails.getDescripcion());
-                if (productoDetails.getPrecio() != null) productoExistente.setPrecio(productoDetails.getPrecio());
-                // *** ELIMINADO: if (productoDetails.getStock() != null) productoExistente.setStock(productoDetails.getStock()); ***
+                if (productoDetails.getPrecio() != null) productoExistente.setPrecio(productoDetails.getPrecio()); // Usa BigDecimal
                 if (productoDetails.getCategoriaID() != null) productoExistente.setCategoriaID(productoDetails.getCategoriaID());
                 
                 return productoDAO.save(productoExistente); 

@@ -11,7 +11,7 @@ public interface CategoriaService {
 
     Categoria save(Categoria categoria);
     
-    // Método para la actualización completa (usado en el PUT)
+    // Método para la actualización completa (usado en el PUT del service)
     Categoria update(Integer id, Categoria categoriaDetails);
 
     // Este método ya no hace DELETE físico, sino una DESACTIVACIÓN (Soft Delete)

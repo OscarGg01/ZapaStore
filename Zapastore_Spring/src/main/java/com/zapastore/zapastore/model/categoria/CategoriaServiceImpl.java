@@ -44,6 +44,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public Categoria save(Categoria categoria) {
+        // Establecer 'Activo' por defecto si el estado no viene definido
         if (categoria.getEstado() == null || categoria.getEstado().isEmpty()) {
             categoria.setEstado("Activo");
         }
@@ -54,7 +55,8 @@ public class CategoriaServiceImpl implements CategoriaService {
     // U (Update)
     // =========================================================
     
-    // Método para actualizar la categoría (usado por el PUT del Controller)
+    // Método para actualizar la categoría (usado por el PUT del Controller REST)
+    @Override
     public Categoria update(Integer id, Categoria categoriaDetails) {
         return categoriaDAO.findById(id) // Usamos DAO
             .map(categoriaExistente -> {
@@ -79,6 +81,7 @@ public class CategoriaServiceImpl implements CategoriaService {
     public void deleteById(Integer id) {
         categoriaDAO.findById(id) // Usamos DAO
             .ifPresentOrElse(categoria -> {
+                // Realizar el Soft Delete
                 categoria.setEstado("Inactivo");
                 categoriaDAO.save(categoria); // Usamos DAO
             }, () -> {

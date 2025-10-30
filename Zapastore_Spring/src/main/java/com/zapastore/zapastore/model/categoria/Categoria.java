@@ -53,7 +53,13 @@ public class Categoria {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
+    
+    // 🚨 AJUSTE CLAVE: Permite a JSTL usar ${cat.activo}
+    public boolean isActivo() {
+        // Retorna true si el estado es "Activo" (ignorando mayúsculas/minúsculas)
+        return "Activo".equalsIgnoreCase(this.estado);
+    }
+    
     // Opcional: toString para debugging
     @Override
     public String toString() {

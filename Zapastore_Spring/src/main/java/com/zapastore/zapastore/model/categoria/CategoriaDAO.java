@@ -5,7 +5,6 @@ import java.util.Optional;
 
 /**
  * Interfaz Data Access Object (DAO) que define el contrato de acceso a datos para Categoria.
- * El Service inyectará esta interfaz.
  */
 public interface CategoriaDAO {
 
@@ -14,6 +13,6 @@ public interface CategoriaDAO {
     Optional<Categoria> findById(Integer id);
     Categoria save(Categoria categoria);
     
-    // Contrato para eliminación/desactivación
+    // Contrato para eliminación/desactivación (Soft Delete)
     void deleteById(Integer id); 
 }

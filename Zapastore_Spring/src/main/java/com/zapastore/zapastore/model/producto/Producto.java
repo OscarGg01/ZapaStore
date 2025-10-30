@@ -1,6 +1,7 @@
 package com.zapastore.zapastore.model.producto;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal; // IMPORTANTE: Para precisión del dinero
 
 @Entity
 @Table(name = "Productos") 
@@ -9,7 +10,7 @@ public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "producto_ID") 
-    private Integer id;
+    private Integer id; // Mantenemos Integer para el ID
 
     @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
@@ -18,7 +19,7 @@ public class Producto {
     private Integer categoriaID;
 
     @Column(name = "Precio")
-    private Double precio;
+    private BigDecimal precio; // CAMBIO CLAVE: Ahora es BigDecimal
 
     @Column(name = "img_Url")
     private String imagen_url;
@@ -26,12 +27,10 @@ public class Producto {
     @Column(name = "descripcion", length = 500)
     private String descripcion;
 
-    // *** ELIMINADO: private Integer stock; ***
-
     // Constructores
     public Producto() {}
 
-    public Producto(Integer id, String nombre, Integer categoriaID, Double precio,
+    public Producto(Integer id, String nombre, Integer categoriaID, BigDecimal precio, // Cambio aquí
                     String imagen_url, String descripcion) { 
         this.id = id;
         this.nombre = nombre;
@@ -66,11 +65,11 @@ public class Producto {
         this.categoriaID = categoriaID;
     }
 
-    public Double getPrecio() {
+    public BigDecimal getPrecio() { // Cambio aquí
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(BigDecimal precio) { // Cambio aquí
         this.precio = precio;
     }
 
@@ -89,6 +88,4 @@ public class Producto {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    // *** ELIMINADO: Getters y Setters para 'stock' ***
 }
