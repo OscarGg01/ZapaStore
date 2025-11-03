@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ZapaStore | Detalle de Producto</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="Estilos/index.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <div class="page-container">
+        
+        <header class="main-header">
+            <div class="container header-inner">
+                <div class="header-left">
+                    <a class="logo" href="main.html">
+                      <img src="img/logo.png" alt="Logo ZapaStore" class="logo-image" height="24">
+                      <h1 class="logo-text">ZapaStore</h1>
+                    </a>
+                    <nav class="main-nav">
+                        <a href="catalogo-postlogin.html">Catálogo</a>
+                        <a href="contact.html">Contacto</a>
+                        <a href="publicidad-ofertas.html">Ofertas</a>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <button class="secondary-button">Mi Cuenta</button> 
+                    
+                    <a href="carrito.html" class="cart-icon-link" aria-label="Ir al Carrito de Compras">
+                        <i class="fa-solid fa-cart-shopping cart-icon"></i>
+                    </a>
+
+                    <div class="profile-pic" style='background-image: url("img/user.png");' aria-label="Perfil de Usuario"></div>
+                </div>
+            </div>
+        </header>
+        <main class="main-content">
+            <section class="container section-padding">
+                
+                <a href="catalogo-postlogin.html" class="back-to-catalog-link">
+                    <i class="fa-solid fa-chevron-left"></i> Volver al Catálogo
+                </a>
+                
+                <div class="product-detail-layout" style="margin-top: var(--space-6);">
+                    
+                    <div class="product-image-container">
+                        <img src="img/zapatilla-dep.jpg" alt="Zapatilla Deportiva XA-200" class="detail-product-image">
+                    </div>
+
+                    <div class="product-info-container">
+                        <h1 class="product-detail-title">Zapatilla Deportiva Modelo XA-200</h1>
+                        <p class="product-detail-category">Categoría: Running Performance</p>
+                        
+                        <div class="product-price-section">
+                            <span class="product-detail-price">S/ 349.90</span>
+                            <span class="product-detail-stock">¡En stock!</span>
+                        </div>
+
+                        <p class="product-detail-description">
+                            Las XA-200 son la combinación perfecta de ligereza y amortiguación. Su tejido transpirable y su suela de alto agarre las hacen ideales tanto para el asfalto como para el gimnasio. Disponibles en tallas 37 a 45.
+                        </p>
+
+                        <div class="purchase-options">
+                            <div class="option-group">
+                                <label for="size-select">Talla:</label>
+                                <select id="size-select" class="detail-select">
+                                    <option>38</option><option>39</option><option>40</option><option>41</option><option>42</option>
+                                </select>
+                            </div>
+
+                            <div class="option-group">
+                                <label for="quantity-input">Cantidad:</label>
+                                <input type="number" id="quantity-input" class="detail-input-number" value="1" min="1" max="10">
+                            </div>
+                        </div>
+
+                        <button class="primary-button add-to-cart-button">
+                            <i class="fa-solid fa-cart-shopping"></i> Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        </div>
+</body>
+</html>

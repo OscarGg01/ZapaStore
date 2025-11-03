@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ZapaStore | Ofertas y Promociones</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="Estilos/index.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <div class="page-container">
+        
+        <header class="main-header">
+            <div class="container header-inner">
+                <div class="header-left">
+                    <a class="logo" href="index.html">
+                      <img src="img/logo.png" alt="Logo ZapaStore" class="logo-image" height="24">
+                      <h1 class="logo-text">ZapaStore</h1>
+                    </a>
+                    <nav class="main-nav">
+                        <a href="catalogo.html">Catálogo</a>
+                        <a href="contact.html">Contacto</a>
+                        <a href="publicidad-ofertas.html">Ofertas</a> </nav>
+                </div>
+                <div class="header-right">
+                    <a href="login.html">
+                        <button class="secondary-button">Iniciar Sesión</button>
+                    </a>
+                    
+                    <div class="profile-pic" style='background-image: url("img/user.png");' aria-label="Perfil de Usuario"></div>
+                </div>
+            </div>
+        </header>
+        <main class="main-content">
+            <section class="container section-padding">
+                
+                <article class="hero-ad-card card">
+                    <div class="hero-ad-content">
+                        <h1 class="hero-ad-title">Ofertas Imperdibles</h1>
+                        <p class="hero-ad-lead">Descuentos de temporada en productos seleccionados. ¡Válido hasta agotar stock!</p>
+                        
+                        <div class="cta-row" style="margin-top: var(--space-6);">
+                            <a href="catalogo.html?promo=true">
+                                <button class="primary-button"><i class="fa-solid fa-tags"></i> Ver Promociones</button>
+                            </a>
+                            <a href="contact.html">
+                                <button class="secondary-button" style="margin-left: var(--space-4);">Contáctanos</button>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-ad-media">
+                        <div class="promo-badge">-40%</div>
+                        <img src="img/ad-sample.jpg" alt="Promoción Principal" class="hero-ad-image" style="background-color: #eee;">
+                    </div>
+                </article>
+
+
+                <h2 class="section-title" style="text-align: center; margin-top: var(--space-12);">Otras Promociones</h2>
+                
+                <div class="ads-grid-container">
+                    
+                    <article class="small-ad-card card">
+                        <div class="card-image-wrapper">
+                            <img src="img/ad1.jpg" alt="Combo Especial" class="small-ad-image" style="object-fit: cover;">
+                        </div>
+                        <div class="card-body-content">
+                            <h3>Combo Especial</h3>
+                            <p>Producto A + Producto B a precio único. ¡Ahorra más!</p>
+                            <a href="#" class="color-primary-link">Ver más</a>
+                        </div>
+                    </article>
+
+                    <article class="small-ad-card card">
+                        <div class="card-body-content">
+                            <h3>Lanzamiento Ecológico</h3>
+                            <p>Nuevo producto sustentable. Diseño innovador y amigable con el planeta.</p>
+                            <a href="#" class="color-primary-link">Descúbrelo</a>
+                        </div>
+                        <div class="card-image-wrapper">
+                             <img src="img/ad2.jpg" alt="Lanzamiento" class="small-ad-image" style="object-fit: cover;">
+                        </div>
+                    </article>
+
+                    <article class="small-ad-card card">
+                        <div class="card-image-wrapper">
+                            <img src="img/ad3.jpg" alt="Envío Gratis" class="small-ad-image" style="object-fit: cover;">
+                        </div>
+                        <div class="card-body-content">
+                            <h3>Envío Gratis</h3>
+                            <p>¡No pagues más! En compras mayores a S/ 99 en todo el Perú.</p>
+                            <a href="#" class="color-primary-link">Comprar Ahora</a>
+                        </div>
+                    </article>
+
+                </div>
+
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <div class="container footer-inner">
+                <div class="footer-links-grid">
+                    <div>
+                        <h4 class="footer-heading">Tienda</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Nuevos Lanzamientos</a></li>
+                            <li><a href="#">Ofertas</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Nosotros</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Nuestra Historia</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Soporte</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Contáctanos</a></li>
+                            <li><a href="#">Preguntas Frecuentes</a></li>
+                            <li><a href="#">Envíos y Devoluciones</a></li>
+                            <li><a href="#">Métodos de Pago</a></li>
+                            <li><a href="#">Términos y Condiciones</a></li>
+                            <li><a href="#">Política de Privacidad</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Síguenos</h4>
+                        <div class="newsletter-signup">
+                            <p>Suscríbete para ofertas exclusivas en Perú</p>
+                            <form action="#" method="post">
+                                <input class="input-text" type="email" placeholder="Tu email" required>
+                                <button class="primary-button-small" type="submit">Suscribirse</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <p>© 2025 ZapaStore Perú. Todos los derechos reservados. Envíos gratuitos a todo el Perú.</p>
+                    </div>
+                    <div class="payment-badges">
+                        <img alt="Yape" src="img/yape-logo.png" width="50">
+                        <img alt="Plin" src="img/plin-logo.jpg" width="50">
+                    </div>
+                </div>
+            </div>
+        </footer>
+        </div>
+</body>
+</html>

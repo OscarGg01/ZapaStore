@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZapaStore | Administrar Categorías</title>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <link rel="stylesheet" href="Estilos/adminStyles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="img/logo.png" alt="Logo ZapaStore" class="logo-icon" height="48">
+        <h1 class="logo-title">ZapaStore Admin</h1>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="admin.html" class="nav-item">
+          <span class="material-symbols-outlined">dashboard</span>
+          Métricas
+        </a>
+        <a href="catalogoLista.html" class="nav-item is-active">
+          <span class="material-symbols-outlined">category</span>
+          Catálogos
+        </a>
+        <a href="productoLista.html" class="nav-item">
+          <span class="material-symbols-outlined">store</span>
+          Productos
+        </a>
+        <a href="usuarioLista.html" class="nav-item">
+          <span class="material-symbols-outlined">group</span>
+          Usuarios
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Panel Principal -->
+    <main class="main-panel">
+      <header class="main-header-admin">
+        <div class="header-actions">
+          <button class="icon-button"><span class="material-symbols-outlined">notifications</span></button>
+          <button class="icon-button"><span class="material-symbols-outlined">settings</span></button>
+          <div class="profile-avatar profile-avatar-small" style='background-image: url("img/user.png");'></div>
+        </div>
+      </header>
+
+      <div class="content-wrapper">
+        <div class="page-header">
+          <h2 class="page-title">Administrar Categorías</h2>
+          <button class="secondary-button-admin" onclick="window.location.href='catalogoLista.html'">
+            <span class="material-symbols-outlined">arrow_back</span>
+            Volver
+          </button>
+        </div>
+
+        <section class="crud-area">
+          <form class="crud-form">
+
+            <!-- Crear nueva categoría -->
+            <div class="campo categoria-flex" style="display:flex; gap:0.75rem; align-items:center;">
+              <input type="text" placeholder="Nueva categoría..." required class="input-text" style="flex:1;">
+              
+              <select class="input-select" style="max-width:150px;">
+                <option value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+              </select>
+
+              <button type="button" class="primary-button-admin small-btn">
+                <span class="material-symbols-outlined">add</span>
+                Agregar
+              </button>
+            </div>
+
+            <!-- Lista de categorías existentes -->
+            <div class="categorias-lista" style="margin-top:1.5rem;">
+              <table class="crud-table">
+                <thead>
+                  <tr>
+                    <th>Nombre de la Categoría</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Deportivas</td>
+                    <td>
+                      <span class="material-symbols-outlined" style="color:green;">check_circle</span>
+                      <span class="estado-texto" style="color:green;">Activo</span>
+                    </td>
+                    <td>
+                      <button class="icon-button edit" title="Editar categoría" onclick="window.location.href='categoriaEditar.html'">
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Urbanas</td>
+                    <td>
+                      <span class="material-symbols-outlined" style="color:red;">cancel</span>
+                      <span class="estado-texto" style="color:red;">Inactivo</span>
+                    </td>
+                    <td>
+                      <button class="icon-button edit" title="Editar categoría" onclick="window.location.href='categoriaEditar.html'">
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Casuales</td>
+                    <td>
+                      <span class="material-symbols-outlined" style="color:green;">check_circle</span>
+                      <span class="estado-texto" style="color:green;">Activo</span>
+                    </td>
+                    <td>
+                      <button class="icon-button edit" title="Editar categoría" onclick="window.location.href='categoriaEditar.html'">
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Outdoor</td>
+                    <td>
+                      <span class="material-symbols-outlined" style="color:green;">check_circle</span>
+                      <span class="estado-texto" style="color:green;">Activo</span>
+                    </td>
+                    <td>
+                      <button class="icon-button edit" title="Editar categoría" onclick="window.location.href='categoriaEditar.html'">
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Infantil</td>
+                    <td>
+                      <span class="material-symbols-outlined" style="color:red;">cancel</span>
+                      <span class="estado-texto" style="color:red;">Inactivo</span>
+                    </td>
+                    <td>
+                      <button class="icon-button edit" title="Editar categoría" onclick="window.location.href='categoriaEditar.html'">
+                        <span class="material-symbols-outlined">edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </form>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

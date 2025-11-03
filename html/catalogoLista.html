@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZapaStore | Lista de Catálogos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <link rel="stylesheet" href="Estilos/adminStyles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="img/logo.png" alt="Logo ZapaStore" class="logo-icon" height="48">
+        <h1 class="logo-title">ZapaStore Admin</h1>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="admin.html" class="nav-item">
+          <span class="material-symbols-outlined">dashboard</span>
+          Métricas
+        </a>
+        <a href="catalogoLista.html" class="nav-item is-active">
+          <span class="material-symbols-outlined">category</span>
+          Catálogos
+        </a>
+        <a href="productoLista.html" class="nav-item">
+          <span class="material-symbols-outlined">store</span>
+          Productos
+        </a>
+        <a href="usuarioLista.html" class="nav-item">
+          <span class="material-symbols-outlined">group</span>
+          Usuarios
+        </a>
+      </nav>
+      <div class="sidebar-profile">
+        <div class="profile-info">
+          <div class="profile-avatar" style='background-image: url("img/user.png");'></div>
+          <div>
+            <p class="profile-name">Admin User</p>
+            <p class="profile-email">admin@zapastore.com</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Panel Principal -->
+    <main class="main-panel">
+      <header class="main-header-admin">
+        <div class="header-actions">
+          <button class="icon-button"><span class="material-symbols-outlined">notifications</span></button>
+          <button class="icon-button"><span class="material-symbols-outlined">settings</span></button>
+          <div class="profile-avatar profile-avatar-small" style='background-image: url("img/user.png");'></div>
+        </div>
+      </header>
+
+      <div class="content-wrapper">
+        <div class="page-header">
+          <h2 class="page-title">Lista de Catálogos</h2>
+          <button class="primary-button-admin" onclick="window.location.href='catalogoCrear.html'">
+            <span class="material-symbols-outlined">add</span>
+            Nuevo Catálogo
+          </button>
+        </div>
+
+        <!-- FILTROS (actualizados a Estados) -->
+        <div class="search-bar" style="justify-content: space-between; gap: 1rem; align-items: center;">
+          <div class="filter-group" style="display:flex; gap:0.5rem; align-items:center; flex:1;">
+            <input type="text" placeholder="Buscar por nombre o descripción..." class="input-search" aria-label="Buscar catálogos">
+            <button class="icon-button search-button" title="Buscar">
+              <span class="material-symbols-outlined">search</span>
+            </button>
+          </div>
+
+          <div class="filter-group" style="display:flex; gap:0.5rem; align-items:center;">
+            <label for="filtro-estado" style="margin-right:6px;">Filtrar por estado:</label>
+            <select id="filtro-estado" class="input-select">
+              <option value="">Todos los estados</option>
+              <option value="activo">Activo</option>
+              <option value="inactivo">Inactivo</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Tabla de catálogos -->
+        <section class="crud-lista" style="margin-top:1rem;">
+          <table class="crud-table">
+            <thead>
+              <tr>
+                <th>Nombre del Catálogo</th>
+                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Colección Invierno 2025</td>
+                <td>Zapatillas térmicas y resistentes al agua</td>
+                <td>
+                  <label class="switch" title="Estado del catálogo">
+                    <input type="checkbox" checked>
+                    <span class="slider"></span>
+                  </label>
+                  <span class="estado-texto">Activo</span>
+                </td>
+                <td>
+                  <button class="icon-button edit" onclick="window.location.href='catalogoEditar.html'">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="icon-button delete">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td>Colección Verano 2025</td>
+                <td>Modelos ligeros y transpirables</td>
+                <td>
+                  <label class="switch" title="Estado del catálogo">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                  </label>
+                  <span class="estado-texto">Inactivo</span>
+                </td>
+                <td>
+                  <button class="icon-button edit" onclick="window.location.href='catalogoEditar.html'">
+                    <span class="material-symbols-outlined">edit</span>
+                  </button>
+                  <button class="icon-button delete">
+                    <span class="material-symbols-outlined">delete</span>
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Más filas según datos... -->
+
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

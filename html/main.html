@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ZapaStore</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="Estilos/index.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <div class="page-container">
+        
+        <header class="main-header">
+            <div class="container header-inner">
+                <div class="header-left">
+                    <a class="logo" href="main.html">
+                      <img src="img/logo.png" alt="Logo ZapaStore" class="logo-image" height="24">
+                      <h1 class="logo-text">ZapaStore</h1>
+                    </a>
+                    <nav class="main-nav">
+                        <a href="catalogo-postlogin.html">Catálogo</a>
+                        <a href="contact.html">Contacto</a>
+                        <a href="publicidad-ofertas.html">Ofertas</a>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <button class="secondary-button">Mi Cuenta</button> 
+                    
+                    <div class="profile-pic" style='background-image: url("img/user.png");' aria-label="Perfil de Usuario"></div>
+                </div>
+            </div>
+        </header>
+        <main class="main-content">
+            
+            <section class="container section-padding">
+                <div class="hero-banner" style='background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url("img/zapatilla-urb.jpg");'>
+                    <div class="hero-content">
+                        <h1 class="hero-title">Tu estilo comienza con un paso</h1>
+                        <p class="hero-subtitle">Descubre las últimas tendencias en zapatillas al mejor precio.</p>
+                        <a href="catalogo-postlogin.html" style="text-decoration: none;">
+                            <button class="primary-button">Explorar Catálogo</button>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="container section-padding-y">
+                <h2 class="section-title" style="text-align: center;">Compra por Categoría</h2>
+                <p class="section-subtitle" style="text-align: center;">Encuentra el par perfecto para cada ocasión.</p>
+
+                <div class="offer-grid" style="margin-top: var(--space-8);">
+                    
+                    <a href="catalogo.html?cat=running" class="offer-card">
+                        <img alt="Running" class="offer-image" src="img/zapatilla-run.jpg"/>
+                        <div class="offer-overlay">
+                            <h3 class="offer-title">Running</h3>
+                        </div>
+                    </a>
+                    
+                    <a href="catalogo.html?cat=urbanas" class="offer-card">
+                        <img alt="Urbanas" class="offer-image" src="img/zapatilla-urb.jpg"/>
+                        <div class="offer-overlay">
+                            <h3 class="offer-title">Urbanas</h3>
+                        </div>
+                    </a>
+                    
+                    <a href="catalogo.html?cat=deportivas" class="offer-card">
+                        <img alt="Deportivas" class="offer-image" src="img/zapatilla-dep.jpg"/>
+                        <div class="offer-overlay">
+                            <h3 class="offer-title">Deportivas</h3>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            
+            <section class="container section-padding-y">
+                <h2 class="section-title">Zapatillas en Tendencia</h2>
+                <div class="product-grid" style="grid-template-columns: repeat(4, 1fr);">
+                    
+                    <article class="product-card card">
+                        <div class="product-media product-image-wrapper">
+                            <img alt="Nike Air Max" class="product-image" src="img/zapatilla1.jpg">
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-title">Nike Air Max</h3>
+                            <div class="product-category product-description">S/ 450</div>
+                            <p class="product-desc product-description">Estilo y comodidad en un solo paso.</p>
+                            <div class="product-foot-only-view"> 
+                                <div class="product-actions-view">
+                                    <a href="producto.html">
+                                        <button class="primary-button-small"><i class="fa-solid fa-eye"></i> Ver</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="product-card card">
+                        <div class="product-media product-image-wrapper">
+                            <img alt="Adidas Ultraboost" class="product-image" src="img/zapatilla2.jpg">
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-title">Adidas Ultraboost</h3>
+                            <div class="product-category product-description">S/ 499</div>
+                            <p class="product-desc product-description">La máxima amortiguación para tus carreras.</p>
+                            <div class="product-foot-only-view"> 
+                                <div class="product-actions-view">
+                                    <a href="producto.html">
+                                        <button class="primary-button-small"><i class="fa-solid fa-eye"></i> Ver</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <article class="product-card card">
+                        <div class="product-media product-image-wrapper">
+                            <img alt="Puma RS-X" class="product-image" src="img/zapatilla3.jpg">
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-title">Puma RS-X</h3>
+                            <div class="product-category product-description">S/ 420</div>
+                            <p class="product-desc product-description">Diseño retrofuturista de alto impacto.</p>
+                            <div class="product-foot-only-view"> 
+                                <div class="product-actions-view">
+                                    <a href="producto.html">
+                                        <button class="primary-button-small"><i class="fa-solid fa-eye"></i> Ver</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card card">
+                        <div class="product-media product-image-wrapper">
+                            <img alt="Converse Chuck Taylor" class="product-image" src="img/zapatilla4.jpg">
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-title">Converse Chuck Taylor</h3>
+                            <div class="product-category product-description">S/ 280</div>
+                            <p class="product-desc product-description">Un clásico que nunca pasa de moda.</p>
+                            <div class="product-foot-only-view"> 
+                                <div class="product-actions-view">
+                                    <a href="producto.html">
+                                        <button class="primary-button-small"><i class="fa-solid fa-eye"></i> Ver</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    
+                </div>
+            </section>
+            
+        </main>
+
+        <footer class="main-footer">
+            <div class="container footer-inner">
+                <div class="footer-links-grid">
+                    <div>
+                        <h4 class="footer-heading">Tienda</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Nuevos Lanzamientos</a></li>
+                            <li><a href="#">Ofertas</a></li>    
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Nosotros</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Nuestra Historia</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Soporte</h4>
+                        <ul class="footer-list">
+                            <li><a href="#">Contáctanos</a></li>
+                            <li><a href="#">Preguntas Frecuentes</a></li>
+                            <li><a href="#">Envíos y Devoluciones</a></li>
+                            <li><a href="#">Métodos de Pago</a></li>
+                            <li><a href="#">Términos y Condiciones</a></li>
+                            <li><a href="#">Política de Privacidad</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="footer-heading">Síguenos</h4>
+                        <div class="newsletter-signup">
+                            <p>Suscríbete para ofertas exclusivas en Perú</p>
+                            <form action="#" method="post">
+                                <input class="input-text" type="email" placeholder="Tu email" required>
+                                <button class="primary-button-small" type="submit">Suscribirse</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <p>© 2025 ZapaStore Perú. Todos los derechos reservados. Envíos gratuitos a todo el Perú.</p>
+                    </div>
+                    <div class="payment-badges">
+                        <img alt="Yape" src="img/yape-logo.png" width="50">
+                        <img alt="Plin" src="img/plin-logo.jpg" width="50">
+                    </div>
+                </div>
+            </div>
+        </footer>
+        </div>
+</body>
+</html>

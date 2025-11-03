@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ZapaStore | Catálogo</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="Estilos/index.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <div class="page-container">
+        
+        <header class="main-header">
+            <div class="container header-inner">
+                <div class="header-left">
+                    <a class="logo" href="main.html">
+                      <img src="img/logo.png" alt="Logo ZapaStore" class="logo-image" height="24">
+                      <h1 class="logo-text">ZapaStore</h1>
+                    </a>
+                    <nav class="main-nav">
+                        <a href="catalogo-postlogin.html">Catálogo</a>
+                        <a href="contact.html">Contacto</a>
+                        <a href="ofertas.html">Ofertas</a>
+                    </nav>
+                </div>
+                <div class="header-right">
+                    <button class="secondary-button">Mi Cuenta</button> 
+                    
+                    <a href="carrito.html" class="cart-icon-link" aria-label="Ir al Carrito de Compras">
+                        <i class="fa-solid fa-cart-shopping cart-icon"></i>
+                    </a>
+
+                    <div class="profile-pic" style='background-image: url("img/user.png");' aria-label="Perfil de Usuario"></div>
+                </div>
+            </div>
+        </header>
+        <main class="main-content main-content-padding">
+            <section class="container">
+                <h2 class="section-title">Catálogo Completo</h2>
+                <p class="section-subtitle">Encuentra tu próximo par favorito y agrégalo directamente al carrito.</p>
+
+                <div class="catalog-toolbar">
+                    <div class="search-box-catalogo">
+                        <input type="text" placeholder="Buscar zapatillas..." class="search-input-catalogo">
+                    </div>
+                    <select class="select-category">
+                        <option>Todas las categorías</option>
+                        <option>Running</option>
+                        <option>Urbana</option>
+                        <option>Deportiva</option>
+                    </select>
+                </div>
+
+                <div class="product-grid">
+                    
+                    <article class="product-card card">
+                        <div class="product-media product-image-wrapper">
+                            <a href="producto-postlogin.html">
+                                <img alt="Zapatilla Running Max" class="product-image" src="img/zapatilla-run.jpg">
+                            </a>
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-title">Running Max</h3>
+                            <p class="product-category product-description" style="color: var(--color-primary); font-weight: 700;">S/ 380.00</p>
+                            <p class="product-desc product-description">Máximo rendimiento y amortiguación.</p>
+                            
+                            <div class="product-foot-only-view"> 
+                                <div class="product-actions-view">
+                                    <a href="producto-postlogin.html" class="product-detail-link">
+                                        <button class="primary-button-small" style="margin-right: var(--space-2);"><i class="fa-solid fa-eye"></i> Ver</button>
+                                    </a>
+                                    <button class="primary-button-small add-to-cart-btn" style="background-color: var(--color-primary);">
+                                        <i class="fa-solid fa-cart-plus"></i> Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="product-card card">
+                        <div class="product-media product-image-wrapper">
+                            <a href="producto-postlogin.html">
+                                <img alt="Zapatilla Urb. Classic" class="product-image" src="img/zapatilla-urb.jpg">
+                            </a>
+                        </div>
+                        <div class="product-body">
+                            <h3 class="product-title">Urb. Classic</h3>
+                            <p class="product-category product-description" style="color: var(--color-primary); font-weight: 700;">S/ 249.90</p>
+                            <p class="product-desc product-description">Estilo atemporal y versátil.</p>
+                            
+                            <div class="product-foot-only-view"> 
+                                <div class="product-actions-view">
+                                    <a href="producto-postlogin.html" class="product-detail-link">
+                                        <button class="primary-button-small" style="margin-right: var(--space-2);"><i class="fa-solid fa-eye"></i> Ver</button>
+                                    </a>
+                                    <button class="primary-button-small add-to-cart-btn" style="background-color: var(--color-primary);">
+                                        <i class="fa-solid fa-cart-plus"></i> Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    </div>
+            </section>
+        </main>
+
+        <footer class="main-footer">
+            <div class="container footer-inner">
+                <div class="footer-links-grid">
+                    <div><h4 class="footer-heading">Tienda</h4><ul class="footer-list"><li><a href="#">Nuevos Lanzamientos</a></li><li><a href="#">Ofertas</a></li></ul></div>
+                    <div><h4 class="footer-heading">Nosotros</h4><ul class="footer-list"><li><a href="#">Nuestra Historia</a></li></ul></div>
+                    <div><h4 class="footer-heading">Soporte</h4><ul class="footer-list"><li><a href="#">Contáctanos</a></li><li><a href="#">Preguntas Frecuentes</a></li><li><a href="#">Envíos y Devoluciones</a></li><li><a href="#">Métodos de Pago</a></li><li><a href="#">Términos y Condiciones</a></li><li><a href="#">Política de Privacidad</a></li></ul></div>
+                    <div>
+                        <h4 class="footer-heading">Síguenos</h4>
+                        <div class="newsletter-signup">
+                            <p>Suscríbete para ofertas exclusivas en Perú</p>
+                            <form action="#" method="post">
+                                <input class="input-text" type="email" placeholder="Tu email" required>
+                                <button class="primary-button-small" type="submit">Suscribirse</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <p>© 2025 ZapaStore Perú. Todos los derechos reservados. Envíos gratuitos a todo el Perú.</p>
+                    </div>
+                    <div class="payment-badges">
+                        <img alt="Yape" src="img/yape-logo.png" width="50">
+                        <img alt="Plin" src="img/plin-logo.jpg" width="50">
+                    </div>
+                </div>
+            </div>
+        </footer>
+        </div>
+</body>
+</html>

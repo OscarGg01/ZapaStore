@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZapaStore | Lista de Productos</title>
+
+    <!-- Iconos y fuentes -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+
+    <!-- Estilos principales -->
+    <link rel="stylesheet" href="Estilos/adminStyles.css">
+</head>
+<body class="admin-body">
+    <div class="admin-layout">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="img/logo.png" alt="Logo ZapaStore" class="logo-icon" height="48">
+                <h1 class="logo-title">ZapaStore Admin</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="admin.html" class="nav-item">
+                    <span class="material-symbols-outlined">dashboard</span>Métricas
+                </a>
+                <a href="catalogoLista.html" class="nav-item">
+                    <span class="material-symbols-outlined">shopping_bag</span>Catálogo
+                </a>
+                <a href="productoLista.html" class="nav-item is-active">
+                    <span class="material-symbols-outlined">store</span>Productos
+                </a>
+                <a href="usuarioCrear.html" class="nav-item">
+                    <span class="material-symbols-outlined">group</span>Usuarios
+                </a>
+            </nav>
+
+            <div class="sidebar-profile">
+                <div class="profile-info">
+                    <div class="profile-avatar" style='background-image: url("img/user.png");'></div>
+                    <div>
+                        <p class="profile-name">Admin User</p>
+                        <p class="profile-email">admin@zapastore.com</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Panel Principal -->
+        <main class="main-panel">
+
+            <!-- Header -->
+            <header class="main-header-admin">
+                <div class="header-actions">
+                    <button class="icon-button"><span class="material-symbols-outlined">notifications</span></button>
+                    <button class="icon-button"><span class="material-symbols-outlined">settings</span></button>
+                    <div class="profile-avatar profile-avatar-small" style='background-image: url("img/user.png");'></div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h2 class="page-title">Lista de Productos</h2>
+                    <button class="primary-button-admin" onclick="window.location.href='productoCrear.html'">
+                        <span class="material-symbols-outlined">add</span>Nuevo Producto
+                    </button>
+                </div>
+
+                <!-- Buscador -->
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar producto..." class="input-search">
+                    <button class="icon-button search-button">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                </div>
+
+                <!-- Tabla -->
+                <section class="crud-lista">
+                    <table class="crud-table">
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Precio (S/)</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><img src="https://darkorbitperu.com/wp-content/uploads/2023/01/9711050326046.jpg" alt="Nike Air Max" class="tabla-img"></td>
+                                <td>Nike Air Max</td>
+                                <td>Running</td>
+                                <td>450.00</td>
+                                <td>
+                                    <button class="icon-button edit" onclick="window.location.href='productoEditar.html'">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </button>
+                                    <button class="icon-button delete">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="img/zapatilla5.jpg" alt="Adidas Ultraboost" class="tabla-img"></td>
+                                <td>Adidas Ultraboost</td>
+                                <td>Urbanas</td>
+                                <td>499.00</td>
+                                <td>
+                                    <button class="icon-button edit" onclick="window.location.href='productoEditar.html'">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </button>
+                                    <button class="icon-button delete">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><img src="img/product1.jpg" alt="Puma RS-X" class="tabla-img"></td>
+                                <td>Puma RS-X</td>
+                                <td>Deportivas</td>
+                                <td>380.00</td>
+                                <td>
+                                    <button class="icon-button edit" onclick="window.location.href='productoEditar.html'">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </button>
+                                    <button class="icon-button delete">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

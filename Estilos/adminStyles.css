@@ -1,0 +1,1327 @@
+/* --- 1. Variables Globales y Reset --- */
+
+:root {
+    /* Colores del Admin (Base Verde/Oscuro) */
+    --primary-color: #11d452;
+    --primary-light: #22ed63;
+    --primary-bg: rgba(17, 212, 82, 0.2); /* primary/20 */
+    --primary-bg-dark: rgba(17, 212, 82, 0.3); /* primary/30 */
+
+    /* Modo Claro */
+    --background-light: #f6f8f6;
+    --foreground-light: #102216;
+    --subtle-light: #e8e8e8; /* Borde y fondo sutil */
+
+    /* Modo Oscuro */
+    --background-dark: #102216;
+    --foreground-dark: #f6f8f6;
+    --subtle-dark: #2a3c30; /* Borde y fondo sutil */
+
+    /* General */
+    --font-display: 'Be Vietnam Pro', sans-serif;
+    --font-size-sm: 0.875rem;
+    --radius-default: 0.25rem;
+    --radius-lg: 0.5rem;
+    --radius-xl: 0.75rem;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+}
+
+/* --- Base Body y Dark Mode --- */
+
+.admin-body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    color: var(--foreground-light);
+    background-color: var(--background-light);
+    transition: background-color 0.3s, color 0.3s;
+    height: 100vh;
+    overflow: hidden; /* Ocultar el scroll del body principal */
+}
+
+/* Simulación de Dark Mode (aplicar manualmente o con JS en un proyecto real) */
+.admin-body.dark-mode {
+    color: var(--foreground-dark);
+    background-color: var(--background-dark);
+}
+.admin-body.dark-mode :is(.sidebar, .main-panel, .main-header-admin, .search-input, .metric-panel, .input-control) {
+    border-color: var(--subtle-dark);
+}
+.admin-body.dark-mode .sidebar {
+    background-color: var(--background-dark);
+}
+.admin-body.dark-mode .search-input {
+    background-color: var(--subtle-dark);
+}
+.admin-body.dark-mode .nav-item:hover, .admin-body.dark-mode .icon-button:hover {
+    background-color: var(--primary-bg-dark);
+}
+.admin-body.dark-mode .panel-header {
+    background-color: var(--subtle-dark); /* Fondo de la cabecera del panel en oscuro */
+}
+
+
+/* --- 2. Layout Principal (Flex) --- */
+
+.admin-layout {
+    display: flex;
+    height: 100%;
+}
+
+/* --- 3. Sidebar (Aside) --- */
+
+.sidebar {
+    width: 256px; /* w-64 */
+    background-color: var(--background-light);
+    border-right: 1px solid var(--subtle-light);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-6);
+}
+
+.logo-icon {
+    width: 32px; /* w-8 */
+    height: 32px; /* h-8 */
+    color: var(--primary-color);
+}
+
+.logo-title {
+    font-size: 1.25rem; /* xl */
+    font-weight: 700;
+    margin: 0;
+}
+
+.sidebar-nav {
+    flex: 1;
+    padding: var(--space-2) var(--space-4);
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    margin-top: var(--space-1);
+    border-radius: var(--radius-lg);
+    color: var(--foreground-light);
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item:hover {
+    background-color: var(--primary-bg);
+}
+
+.nav-item.is-active {
+    background-color: var(--primary-bg);
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.nav-item .material-symbols-outlined {
+    font-size: 1.5rem;
+}
+
+/* Perfil en Sidebar */
+.sidebar-profile {
+    padding: var(--space-4);
+    border-top: 1px solid var(--subtle-light);
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.profile-avatar {
+    width: 40px; /* w-10 */
+    height: 40px; /* h-10 */
+    background-color: #ccc;
+    background-position: center;
+    background-size: cover;
+    border-radius: var(--radius-full);
+}
+
+.profile-name {
+    font-weight: 600;
+    margin: 0;
+}
+
+.profile-email {
+    font-size: var(--font-size-sm);
+    color: var(--foreground-light);
+    opacity: 0.7;
+    margin: 0;
+}
+
+/* --- 4. Main Panel --- */
+
+.main-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto; /* Permite scroll solo en el contenido principal */
+}
+
+/* Header Principal */
+.main-header-admin {
+    display: flex;
+    justify-content: flex-end; /* fuerza que los íconos y perfil se vayan a la derecha */
+    align-items: center;
+    background: var(--white);
+    padding: 0.8rem 1.6rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+    max-width: 448px; /* max-w-md */
+}
+
+.search-icon {
+    position: absolute;
+    left: var(--space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(var(--foreground-light), 0.5);
+}
+
+.search-input {
+    width: 100%;
+    padding: var(--space-2) var(--space-4) var(--space-2) 2.5rem; /* pl-10, pr-4, py-2 */
+    border-radius: var(--radius-lg);
+    background-color: var(--background-light);
+    border: 1px solid var(--subtle-light);
+    color: var(--foreground-light);
+    font-family: var(--font-display);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color), 0.2);
+    outline: none;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.icon-button {
+    padding: var(--space-2);
+    border-radius: var(--radius-full);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--foreground-light);
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.icon-button:hover {
+    background-color: var(--primary-bg);
+}
+
+.profile-avatar-small {
+    width: 40px;
+    height: 40px;
+}
+
+
+/* --- 5. Contenido de la Página (Dashboard) --- */
+
+.content-wrapper {
+    padding: var(--space-8);
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-8);
+}
+
+.page-title {
+    font-size: 1.875rem; /* 3xl */
+    font-weight: 700;
+    margin: 0;
+}
+
+.primary-button-admin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    font-weight: 600;
+    color: white;
+    border-radius: var(--radius-lg);
+    background-color: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.primary-button-admin:hover {
+    background-color: var(--primary-light);
+}
+
+
+/* --- 6. Estilos de Métricas (Paneles) --- */
+
+.metrics-area {
+    margin-top: var(--space-8);
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-8);
+}
+
+.metrics-grid .large-panel {
+    grid-column: span 2; /* Para que el panel de mes ocupe todo el ancho */
+}
+
+.metric-panel {
+    background-color: var(--background-light);
+    border: 1px solid var(--subtle-light);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-4) var(--space-6);
+    background-color: var(--subtle-light);
+    border-bottom: 1px solid var(--subtle-light);
+}
+
+.panel-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.panel-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.panel-controls label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.input-control {
+    padding: var(--space-1) var(--space-2);
+    border: 1px solid var(--subtle-light);
+    border-radius: var(--radius-default);
+    background-color: white;
+    font-family: var(--font-display);
+    color: var(--foreground-light);
+    appearance: none;
+}
+
+.input-control:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+/* Controles de Semana (tres selects) */
+.panel-subcontrols {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid var(--subtle-light);
+}
+
+.control-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.control-item label {
+    font-size: var(--font-size-sm);
+    color: var(--foreground-light);
+    opacity: 0.8;
+}
+
+.panel-body {
+    padding: var(--space-6);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-sub {
+    font-size: var(--font-size-sm);
+    color: var(--foreground-light);
+    opacity: 0.7;
+    margin-bottom: var(--space-4);
+}
+
+.chart-wrap {
+    overflow-x: auto;
+    flex-grow: 1;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* === NUEVOS ESTILOS para imágenes en lugar de gráficos === */
+.chart-example {
+    display: block;   
+    width: 100%;   
+    height: auto;  
+    max-height: none;   
+    object-fit: contain; 
+    border-radius: var(--radius-lg);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+
+/* Pie de panel */
+.panel-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--subtle-light);
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+}
+
+.metric-total {
+    display: flex;
+    flex-direction: column;
+}
+
+.metric-total span {
+    font-size: 1.1rem;
+    color: var(--foreground-light);
+}
+
+.total-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.panel-note {
+    font-size: 0.75rem;
+    color: var(--foreground-light);
+    opacity: 0.6;
+}
+
+
+/* --- Responsive (Ajuste para pantallas más pequeñas) --- */
+@media (max-width: 1024px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+    .metrics-grid .large-panel {
+        grid-column: span 1;
+    }
+    .sidebar {
+        width: 64px;
+    }
+    .sidebar-header .logo-title, .sidebar-profile, .sidebar-nav a span:not(.material-symbols-outlined) {
+        display: none;
+    }
+    .sidebar-header {
+        justify-content: center;
+    }
+    .sidebar-nav a {
+        justify-content: center;
+        padding: var(--space-2);
+        gap: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-header-admin {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: var(--space-4);
+    }
+    .search-box {
+        margin-bottom: var(--space-4);
+        max-width: 100%;
+    }
+    .header-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .primary-button-admin {
+        width: 100%;
+        margin-top: var(--space-4);
+    }
+}
+
+/* --- 7. Vista CRUD Producto (Crear Producto) --- */
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background-color: var(--background-light);
+    color: var(--foreground-light);
+}
+
+/* Header principal del CRUD */
+main header {
+    padding: var(--space-8);
+    border-bottom: 1px solid var(--subtle-light);
+    background-color: var(--background-light);
+}
+
+main header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--foreground-light);
+}
+
+/* Contenedor del contenido */
+.contenido {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    padding: var(--space-8);
+}
+
+/* --- Formulario --- */
+.form-section {
+    background-color: white;
+    border: 1px solid var(--subtle-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.campo label {
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    color: var(--foreground-light);
+}
+
+.campo input,
+.campo select {
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--subtle-light);
+    font-family: var(--font-display);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--primary-bg-dark);
+}
+
+/* Botón Guardar */
+.guardar {
+    margin-top: var(--space-4);
+    padding: var(--space-3) var(--space-6);
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+}
+
+.guardar:hover {
+    background-color: var(--primary-light);
+}
+
+/* --- Vista Previa de Productos --- */
+.preview-section {
+    background-color: white;
+    border: 1px solid var(--subtle-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.preview-section h2 {
+    margin-bottom: var(--space-6);
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.preview-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-6);
+}
+
+.producto {
+    background-color: var(--background-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--subtle-light);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.producto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.producto img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.producto .info {
+    padding: var(--space-4);
+}
+
+.producto .info h3 {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+.producto .info p {
+    margin: var(--space-1) 0;
+    font-size: var(--font-size-sm);
+    color: var(--foreground-light);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1024px) {
+    .contenido {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    main header {
+        padding: var(--space-4);
+    }
+    .form-section,
+    .preview-section {
+        padding: var(--space-4);
+    }
+}
+
+/* ==== ESTILOS PRODUCTO LISTA ==== */
+
+/* Barra de búsqueda */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+}
+
+.input-search {
+    flex: 1;
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--subtle-light);
+    background-color: white;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-search:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-bg-dark);
+    outline: none;
+}
+
+/* Tabla CRUD */
+.crud-lista {
+    background-color: white;
+    border: 1px solid var(--subtle-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.crud-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.crud-table th, .crud-table td {
+    text-align: left;
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--subtle-light);
+}
+
+.crud-table th {
+    background-color: var(--background-light);
+    color: var(--foreground-light);
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.crud-table tbody tr {
+    transition: background-color 0.2s, transform 0.15s;
+}
+
+.crud-table tbody tr:hover {
+    background-color: var(--primary-bg);
+    transform: scale(1.01);
+}
+
+/* Imagen tabla */
+.tabla-img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Botones acción */
+.icon-button.edit {
+    color: var(--primary-color);
+}
+
+.icon-button.delete {
+    color: #d63636;
+}
+
+.icon-button.edit:hover {
+    background-color: rgba(17, 212, 82, 0.15);
+}
+
+.icon-button.delete:hover {
+    background-color: rgba(214, 54, 54, 0.15);
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .crud-lista {
+        padding: var(--space-4);
+        overflow-x: auto;
+    }
+
+    .crud-table th, .crud-table td {
+        padding: var(--space-2) var(--space-3);
+        font-size: 0.9rem;
+    }
+
+    .tabla-img {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+/* ====== NUEVO PRODUCTO ====== */
+
+.crud-area {
+    background: var(--bg-secondary, #fff);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    margin-top: 1.5rem;
+}
+
+.crud-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+}
+
+.campo label {
+    font-weight: 600;
+    color: var(--text-color, #333);
+    margin-bottom: 0.5rem;
+}
+
+.campo input,
+.campo select {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #ccc;
+    border-radius: 0.75rem;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: #fff;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: var(--primary-color, #11d452);
+    box-shadow: 0 0 0 3px rgba(17, 212, 82, 0.2);
+    outline: none;
+}
+
+.campo-full {
+    grid-column: 1 / -1;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+.primary-button-admin span {
+    margin-right: 0.3rem;
+}
+
+/* ====== BOTÓN SECUNDARIO ADMIN ====== */
+.secondary-button-admin {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    color: var(--primary-color, #11d452);
+    border: 2px solid var(--primary-color, #11d452);
+    border-radius: 0.75rem;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+
+.secondary-button-admin span {
+    font-size: 1.2rem;
+}
+
+/* ====== BOTÓN SECUNDARIO ADMIN ====== */
+.secondary-button-admin {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    color: var(--primary-color, #11d452);
+    border: 2px solid var(--primary-color, #11d452);
+    border-radius: 0.75rem;
+    padding: 0.6rem 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.secondary-button-admin:hover {
+    background: var(--primary-color, #11d452);
+    color: #fff;
+}
+
+.secondary-button-admin span {
+    font-size: 1.2rem;
+}
+
+/* ====== FORMULARIO CRUD ====== */
+.crud-area {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    max-width: 700px;
+    margin: auto;
+}
+
+.crud-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.campo label {
+    font-weight: 600;
+    color: #333;
+}
+
+.campo input,
+.campo select {
+    padding: 0.7rem 1rem;
+    border: 1.5px solid #ccc;
+    border-radius: 0.6rem;
+    font-size: 0.95rem;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: var(--primary-color, #11d452);
+    box-shadow: 0 0 0 3px rgba(17, 212, 82, 0.15);
+    outline: none;
+}
+
+/* ====== BOTÓN PRINCIPAL ====== */
+.primary-button-admin {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--primary-color, #11d452);
+    color: #fff;
+    border: none;
+    border-radius: 0.75rem;
+    padding: 0.8rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.primary-button-admin:hover {
+    background: #0bb142;
+}
+
+/* ====== LISTA DE CATÁLOGOS ====== */
+.catalogo-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.catalogo-card {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.catalogo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+}
+
+.catalogo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.catalogo-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #222;
+}
+
+.catalogo-descripcion {
+  margin-top: 0.5rem;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.categorias-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.categoria-item {
+  background: #f3f4f6;
+  color: #333;
+  border-radius: 0.5rem;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.small-button.add-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: transparent;
+  border: 1.5px dashed var(--primary-color, #11d452);
+  color: var(--primary-color, #11d452);
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+}
+
+.small-button.add-category:hover {
+  background: var(--primary-color, #11d452);
+  color: #fff;
+}
+
+/* ===== Estilos para modelos dentro de los catálogos ===== */
+/* CHIPS DE MODELOS (si no los tienes) */
+.modelos-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.modelo-chip {
+  background-color: #e6f9ed;
+  color: #0a792f;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+/* TOGGLE (si no lo tienes) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 24px;
+  margin-right: 6px;
+}
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; inset: 0;
+  background-color: #ccc;
+  transition: 0.3s;
+  border-radius: 24px;
+}
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 18px; width: 18px;
+  left: 3px; bottom: 3px;
+  background: #fff; border-radius: 50%;
+  transition: 0.3s;
+}
+.switch input:checked + .slider { background-color: #11d452; }
+.switch input:checked + .slider::before { transform: translateX(22px); }
+
+.estado-texto { font-size: 0.9rem; color: #555; vertical-align: middle; }
+
+/* ====== MODELOS SELECCIONADOS ====== */
+.modelos-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.modelo-chip {
+  background: #f3f3f3;
+  border-radius: 999px;
+  padding: 0.4rem 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.modelo-chip .icon-button.remove {
+  background: transparent;
+  color: #888;
+  font-size: 1rem;
+  padding: 0;
+}
+
+/* ====== MODAL CATEGORÍAS ====== */
+.modal-categorias {
+  display: none; /* sin JS, queda oculta por defecto */
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 1rem;
+  width: 400px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.lista-categorias {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.categoria-chip {
+  background: #e6f9ed;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #0b7b39;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.modelo-item {
+  background-color: #f0f4f8;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid #d2e3f3;
+  transition: all 0.2s ease;
+}
+
+.modelo-item:hover {
+  background-color: #d9e8ff;
+  border-color: #b7d3f9;
+  cursor: default;
+}
+
+/* ===== MODELOS (ETIQUETAS) ===== */
+.modelo-selector {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.modelo-selector select {
+  flex: 1;
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+  padding: 0.6rem;
+  font-size: 0.95rem;
+  background-color: #f9fafb;
+  outline: none;
+}
+
+.add-model-button {
+  background-color: var(--primary-color, #11d452);
+  color: #fff;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s ease;
+}
+
+.add-model-button:hover {
+  background-color: #0ca746;
+}
+
+.modelos-agregados {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.modelo-item {
+  background-color: #e6f9ed;
+  color: #0a792f;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.modelo-item .material-symbols-outlined {
+  font-size: 16px;
+  cursor: pointer;
+  color: #0a792f;
+}
+
+/* ====== ESTADO DEL CATÁLOGO ====== */
+.campo select#estado {
+  border: 1.8px solid #ccc;
+  border-radius: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #333;
+  background: #fff;
+}
+
+/* ====== ADMINISTRAR CATEGORÍAS ====== */
+.categorias-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.categoria-chip {
+  background: #f0f0f0;
+  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.categoria-chip .remove {
+  background: transparent;
+  color: #888;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.categoria-chip .remove:hover {
+  color: #e74c3c;
+}
+
+.categoria-flex {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* ====== ESTILOS ESPECÍFICOS PARA LISTA DE USUARIOS CON FILTRO Y ROL ====== */
+
+/* Ajuste del contenedor de búsqueda para incluir el filtro */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4); /* Aumentamos el gap para separar el input del select */
+  margin-bottom: var(--space-6);
+}
+
+/* Estilo para el campo de selección (filtro de rol) */
+.select-filter {
+  flex: none; /* No permite que el select ocupe todo el espacio */
+  width: 200px; /* Ancho fijo para el filtro de rol */
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--subtle-light);
+  background-color: white;
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.input-search:focus,
+.select-filter:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 1px var(--primary-bg-dark);
+  outline: none;
+}
+
+/* Estilo para el chip de Rol en la tabla */
+.chip-rol {
+  padding: var(--space-1) var(--space-3);
+  border-radius: 999px; /* Totalmente redondeado */
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
+}
+
+/* Colores específicos para el rol de Administrador */
+.chip-rol.admin {
+  background-color: var(--primary-bg); /* Fondo más claro (verde claro) */
+  color: var(--primary-color); /* Texto color principal (verde oscuro) */
+  border: 1px solid var(--primary-color);
+}
+
+/* Colores específicos para el rol de Cliente */
+.chip-rol.cliente {
+  background-color: #f0f4f8; /* Fondo azul/gris claro */
+  color: #4a5568; /* Texto gris oscuro */
+  border: 1px solid #d2e3f3;
+}
+
+/* Responsividad para la barra de búsqueda y filtro */
+@media (max-width: 768px) {
+  .search-bar {
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+    gap: var(--space-2);
+  }
+
+  .input-search {
+    flex-basis: 100%; /* El input de búsqueda ocupa todo el ancho */
+    order: 1;
+  }
+
+  .select-filter {
+    width: calc(100% - 48px - var(--space-2)); /* Ancho restante para el select */
+    flex: 1;
+    order: 2;
+  }
+
+  .search-button {
+    flex: none;
+    order: 3;
+  }
+}

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZapaStore | Lista de Usuarios</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <link rel="stylesheet" href="Estilos/adminStyles.css">
+</head>
+<body class="admin-body">
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="img/logo.png" alt="Logo ZapaStore" class="logo-icon" height="48">
+        <h1 class="logo-title">ZapaStore Admin</h1>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="admin.html" class="nav-item"><span class="material-symbols-outlined">dashboard</span>Métricas</a>
+        <a href="catalogoLista.html" class="nav-item"><span class="material-symbols-outlined">shopping_bag</span>Catálogo</a>
+        <a href="productoLista.html" class="nav-item"><span class="material-symbols-outlined">store</span>Productos</a>
+        <a href="usuarioLista.html" class="nav-item is-active"><span class="material-symbols-outlined">group</span>Usuarios</a>
+      </nav>
+
+      <div class="sidebar-profile">
+        <div class="profile-info">
+          <div class="profile-avatar" style='background-image: url("img/user.png");'></div>
+          <div>
+            <p class="profile-name">Admin User</p>
+            <p class="profile-email">admin@zapastore.com</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Panel principal -->
+    <main class="main-panel">
+      <header class="main-header-admin">
+        <div class="header-actions">
+          <button class="icon-button"><span class="material-symbols-outlined">notifications</span></button>
+          <button class="icon-button"><span class="material-symbols-outlined">settings</span></button>
+          <div class="profile-avatar profile-avatar-small" style='background-image: url("img/user.png");'></div>
+        </div>
+      </header>
+
+      <div class="content-wrapper">
+        <div class="page-header">
+          <h2 class="page-title">Lista de Usuarios</h2>
+          <button class="primary-button-admin" onclick="window.location.href='usuarioCrear.html'">
+            <span class="material-symbols-outlined">add</span>Nuevo Usuario
+          </button>
+        </div>
+
+        <!-- Buscador con filtro de rol -->
+        <div class="search-bar">
+          <input type="text" placeholder="Buscar por nombre o correo..." class="input-search">
+          <select class="select-filter" id="filtro-rol">
+            <option value="">Todos los Roles</option>
+            <option value="admin">Administrador</option>
+            <option value="cliente">Cliente</option>
+          </select>
+          <button class="icon-button search-button"><span class="material-symbols-outlined">search</span></button>
+        </div>
+
+        <!-- Tabla -->
+        <section class="crud-lista">
+          <table class="crud-table">
+            <thead>
+              <tr>
+                <th>Foto</th>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><img src="https://i.pravatar.cc/120?img=6" class="tabla-img" alt="Usuario 1"></td>
+                <td>Sofia Herrera</td>
+                <td>sofia.herrera@zapastore.com</td>
+                <td>+51 998 123 456</td>
+                <td><span class="chip-rol admin">Administrador</span></td>
+                <td>
+                  <button class="icon-button edit" onclick="window.location.href='usuarioEditar.html'"><span class="material-symbols-outlined">edit</span></button>
+                  <button class="icon-button delete"><span class="material-symbols-outlined">delete</span></button>
+                </td>
+              </tr>
+              <tr>
+                <td><img src="https://i.pravatar.cc/120?img=33" class="tabla-img" alt="Usuario 2"></td>
+                <td>Carlos Mendoza</td>
+                <td>carlos.mendoza@example.com</td>
+                <td>+51 945 678 901</td>
+                <td><span class="chip-rol cliente">Cliente</span></td>
+                <td>
+                  <button class="icon-button edit" onclick="window.location.href='usuarioEditar.html'"><span class="material-symbols-outlined">edit</span></button>
+                  <button class="icon-button delete"><span class="material-symbols-outlined">delete</span></button>
+                </td>
+              </tr>
+              <tr>
+                <td><img src="https://i.pravatar.cc/120?img=50" class="tabla-img" alt="Usuario 3"></td>
+                <td>Laura Quispe</td>
+                <td>laura.quispe@test.net</td>
+                <td>+51 932 109 876</td>
+                <td><span class="chip-rol cliente">Cliente</span></td>
+                <td>
+                  <button class="icon-button edit" onclick="window.location.href='usuarioEditar.html'"><span class="material-symbols-outlined">edit</span></button>
+                  <button class="icon-button delete"><span class="material-symbols-outlined">delete</span></button>
+                </td>
+              </tr>
+              <tr>
+                <td><img src="https://i.pravatar.cc/120?img=25" class="tabla-img" alt="Usuario 4"></td>
+                <td>Jorge Linares</td>
+                <td>jorge.linares@zapastore.com</td>
+                <td>+51 965 432 109</td>
+                <td><span class="chip-rol admin">Administrador</span></td>
+                <td>
+                  <button class="icon-button edit" onclick="window.location.href='usuarioEditar.html'"><span class="material-symbols-outlined">edit</span></button>
+                  <button class="icon-button delete"><span class="material-symbols-outlined">delete</span></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

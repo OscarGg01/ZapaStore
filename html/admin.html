@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZapaStore | Panel Admin</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+    <link rel="stylesheet" href="Estilos/adminStyles.css">
+</head>
+<body class="admin-body">
+    <div class="admin-layout">
+        
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="img/logo.png" alt="Logo ZapaStore" class="logo-icon" height="48">
+                <h1 class="logo-title">ZapaStore Admin</h1>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="admin.html" class="nav-item is-active">
+                    <span class="material-symbols-outlined">dashboard</span>
+                    Metricas
+                </a>
+                <a href="catalogoLista.html" class="nav-item">
+                    <span class="material-symbols-outlined">shopping_bag</span>
+                    Catálogo
+                </a>
+                <a href="productoLista.html" class="nav-item">
+                    <span class="material-symbols-outlined">store</span>
+                    Productos
+                </a>
+                <a href="usuarioLista.html" class="nav-item">
+                    <span class="material-symbols-outlined">group</span>
+                    Usuarios
+                </a>                
+            </nav>
+            <div class="sidebar-profile">
+                <div class="profile-info">
+                    <div class="profile-avatar" style='background-image: url("img/user.png");'></div>
+                    <div>
+                        <p class="profile-name">Admin User</p>
+                        <p class="profile-email">admin@zapastore.com</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-panel">
+            <header class="main-header-admin">
+                <div class="header-actions">
+                    <button class="icon-button"><span class="material-symbols-outlined">notifications</span></button>
+                    <button class="icon-button"><span class="material-symbols-outlined">settings</span></button>
+                    <div class="profile-avatar profile-avatar-small" style='background-image: url("img/user.png");'></div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="page-header">
+                    <h2 class="page-title">Metricas</h2>
+                    <button class="primary-button-admin">
+                        <span class="material-symbols-outlined">add</span>
+                        Generar Reporte
+                    </button>
+                </div>
+                
+                <section class="metrics-area">
+                    <div class="metrics-grid">
+
+                        <!-- PANEL 1: Ventas por día -->
+                        <section class="metric-panel">
+                            <div class="panel-header">
+                                <h2>Ventas por día</h2>
+                                <div class="panel-controls">
+                                    <label for="select-day">Día:</label>
+                                    <input id="select-day" type="date" aria-label="Seleccionar día" value="2025-10-10" class="input-control">
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="panel-sub">Ejemplo de ventas hora a hora</div>
+                                <div class="chart-wrap">
+                                    <img src="img/ventasdia.jpg" alt="Ejemplo ventas por día" class="chart-example">
+                                </div>
+                                <div class="panel-foot">
+                                    <div class="metric-total">
+                                        <span>Total día</span>
+                                        <strong class="total-value">S/ 3,450</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- PANEL 2: Ventas 7 días -->
+                        <section class="metric-panel">
+                            <div class="panel-header">
+                                <h2>Ventas por semana</h2>
+                            </div>
+
+                            <div class="panel-subcontrols">
+                                <div class="control-item">
+                                    <label for="week-month">Mes</label>
+                                    <select id="week-month" class="input-control">
+                                        <option>Enero</option><option>Febrero</option><option>Marzo</option>
+                                        <option>Abril</option><option>Mayo</option><option selected>Junio</option>
+                                        <option>Julio</option><option>Agosto</option><option>Setiembre</option>
+                                        <option>Octubre</option><option>Noviembre</option><option>Diciembre</option>
+                                    </select>
+                                </div>
+
+                                <div class="control-item">
+                                    <label for="week-year">Año</label>
+                                    <select id="week-year" class="input-control">
+                                        <option>2023</option><option>2024</option><option selected>2025</option><option>2026</option>
+                                    </select>
+                                </div>
+
+                                <div class="control-item">
+                                    <label for="week-number">Semana</label>
+                                    <select id="week-number" class="input-control">
+                                        <option>Semana 1</option>
+                                        <option>Semana 2</option>
+                                        <option>Semana 3</option>
+                                        <option>Semana 4</option>
+                                        <option>Semana 5</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="panel-sub">Ventas de los últimos 7 días</div>
+                                <div class="chart-wrap">
+                                    <img src="img/ventassemana.jpg" alt="Ejemplo ventas por semana" class="chart-example">
+                                </div>
+                                <div class="panel-foot">
+                                    <div class="metric-total">
+                                        <span>Total semana</span>
+                                        <strong class="total-value">S/ 28,900</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- PANEL 3: Ventas por mes -->
+                        <section class="metric-panel large-panel">
+                            <div class="panel-header">
+                                <h2>Ventas por mes</h2>
+                                <div class="panel-controls">
+                                    <label for="select-month">Mes:</label>
+                                    <select id="select-month" class="input-control">
+                                        <option>Enero</option><option>Febrero</option><option>Marzo</option>
+                                        <option>Abril</option><option>Mayo</option><option selected>Junio</option>
+                                        <option>Julio</option><option>Agosto</option><option>Setiembre</option>
+                                        <option>Octubre</option><option>Noviembre</option><option>Diciembre</option>
+                                    </select>
+                                    <label for="select-year">Año:</label>
+                                    <select id="select-year" class="input-control">
+                                        <option>2023</option><option>2024</option><option selected>2025</option><option>2026</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="panel-body">
+                                <div class="panel-sub">Ejemplo de ventas semanales en el mes</div>
+                                <div class="chart-wrap">
+                                    <img src="img/ventasmes.jpg" alt="Ejemplo ventas por mes" class="chart-example">
+                                </div>
+                                <div class="panel-foot">
+                                    <div class="metric-total">
+                                        <span>Total mes</span>
+                                        <strong class="total-value">S/ 43,300</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
