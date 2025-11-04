@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -58,7 +59,7 @@
                                          Idealmente sería un <select> poblado por el backend. --%>
                                     <form:input path="categoriaID" type="number" id="categoriaID" required="true"/>
                                     
-                                    <a href="/admin/categorias/web" class="secondary-button-admin small-btn" style="display:inline-flex;align-items:center;text-decoration:none;">
+                                    <a href="/admin/categorias/lista" class="secondary-button-admin small-btn" style="display:inline-flex;align-items:center;text-decoration:none;">
                                         <span class="material-symbols-outlined">tune</span>
                                         Administrar categorías
                                     </a>

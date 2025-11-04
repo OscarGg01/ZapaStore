@@ -1,7 +1,5 @@
-package com.zapastore.zapastore.controller; 
+package com.zapastore.zapastore.model.producto; 
 
-import com.zapastore.zapastore.model.producto.Producto;
-import com.zapastore.zapastore.model.producto.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,11 +10,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller 
-@RequestMapping("/admin/productos/web") 
+@RequestMapping("/admin/productos") 
 public class AdminProductoWebController {
 
     private final ProductoService productoService;
 
+    
     @Autowired
     public AdminProductoWebController(ProductoService productoService) {
         this.productoService = productoService;
@@ -24,7 +23,7 @@ public class AdminProductoWebController {
 
     // 1. LISTAR PRODUCTOS (READ - Todos)
     // Devuelve el nombre de la vista: lista_productos (para lista_productos.jsp)
-    @GetMapping({"", "/"})
+    @GetMapping({"/lista"})
     public String listarProductos(Model model) {
         List<Producto> productos = productoService.findAll();
         model.addAttribute("productos", productos);
@@ -32,7 +31,7 @@ public class AdminProductoWebController {
     }
 
     // 2. FORMULARIO DE CREACIÓN
-    // Devuelve el nombre de la vista: form_producto (para form_producto.jsp)
+    // Devuelve el nombr", "/e de la vista: form_producto (para form_producto.jsp)
     @GetMapping("/new")
     public String mostrarFormularioCreacion(Model model) {
         model.addAttribute("producto", new Producto());

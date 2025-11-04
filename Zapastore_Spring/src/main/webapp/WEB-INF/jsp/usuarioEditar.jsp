@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,18 +21,10 @@
       </div>
 
       <nav class="sidebar-nav">
-        <a href="${pageContext.request.contextPath}/admin" class="nav-item">
-          <span class="material-symbols-outlined">dashboard</span>Métricas
-        </a>
-        <a href="${pageContext.request.contextPath}/catalogo/lista" class="nav-item">
-          <span class="material-symbols-outlined">shopping_bag</span>Catálogo
-        </a>
-        <a href="${pageContext.request.contextPath}/producto/lista" class="nav-item">
-          <span class="material-symbols-outlined">store</span>Productos
-        </a>
-        <a href="${pageContext.request.contextPath}/usuario/lista" class="nav-item is-active">
-          <span class="material-symbols-outlined">group</span>Usuarios
-        </a>
+        <a href="${pageContext.request.contextPath}/admin" class="nav-item"><span class="material-symbols-outlined">dashboard</span>Métricas</a>
+        <a href="${pageContext.request.contextPath}/admin/categorias/lista" class="nav-item"><span class="material-symbols-outlined">shopping_bag</span>Categorias</a>
+        <a href="${pageContext.request.contextPath}/admin/productos/lista" class="nav-item"><span class="material-symbols-outlined">store</span>Productos</a>
+        <a href="${pageContext.request.contextPath}/admin/usuarios/lista" class="nav-item is-active"><span class="material-symbols-outlined">group</span>Usuarios</a>
       </nav>
     </aside>
 

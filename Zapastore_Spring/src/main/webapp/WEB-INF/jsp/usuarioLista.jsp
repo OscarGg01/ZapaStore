@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -23,10 +24,10 @@
       </div>
 
       <nav class="sidebar-nav">
-        <a href="/admin" class="nav-item"><span class="material-symbols-outlined">dashboard</span>Métricas</a>
-        <a href="/catalogo/lista" class="nav-item"><span class="material-symbols-outlined">shopping_bag</span>Catálogo</a>
-        <a href="/producto/lista" class="nav-item"><span class="material-symbols-outlined">store</span>Productos</a>
-        <a href="/usuario/lista" class="nav-item is-active"><span class="material-symbols-outlined">group</span>Usuarios</a>
+        <a href="${pageContext.request.contextPath}/admin" class="nav-item"><span class="material-symbols-outlined">dashboard</span>Métricas</a>
+        <a href="${pageContext.request.contextPath}/admin/categorias/lista" class="nav-item"><span class="material-symbols-outlined">shopping_bag</span>Categorias</a>
+        <a href="${pageContext.request.contextPath}/admin/productos/lista" class="nav-item"><span class="material-symbols-outlined">store</span>Productos</a>
+        <a href="${pageContext.request.contextPath}/admin/usuarios/lista" class="nav-item is-active"><span class="material-symbols-outlined">group</span>Usuarios</a>
       </nav>
 
       <div class="sidebar-profile">

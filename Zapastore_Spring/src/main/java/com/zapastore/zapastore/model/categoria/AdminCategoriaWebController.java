@@ -1,7 +1,5 @@
-package com.zapastore.zapastore.controller;
+package com.zapastore.zapastore.model.categoria;
 
-import com.zapastore.zapastore.model.categoria.Categoria;
-import com.zapastore.zapastore.model.categoria.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

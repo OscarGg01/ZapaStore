@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/usuario")
+@RequestMapping("/admin/usuarios")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
