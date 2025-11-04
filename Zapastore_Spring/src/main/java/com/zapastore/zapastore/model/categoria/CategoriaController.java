@@ -16,12 +16,12 @@ import java.util.Optional;
  */
 @Controller
 @RequestMapping("/admin/categorias")
-public class AdminCategoriaWebController {
+public class CategoriaController {
 
     private final CategoriaService categoriaService;
 
     @Autowired
-    public AdminCategoriaWebController(CategoriaService categoriaService) {
+    public CategoriaController(CategoriaService categoriaService) {
         this.categoriaService = categoriaService;
     }
 

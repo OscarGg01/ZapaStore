@@ -11,13 +11,13 @@ import java.util.Optional;
 
 @Controller 
 @RequestMapping("/admin/productos") 
-public class AdminProductoWebController {
+public class ProductoController {
 
     private final ProductoService productoService;
 
     
     @Autowired
-    public AdminProductoWebController(ProductoService productoService) {
+    public ProductoController(ProductoService productoService) {
         this.productoService = productoService;
     }
 
