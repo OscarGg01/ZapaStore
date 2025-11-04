@@ -5,9 +5,13 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ZapaStore | Carrito de Compras</title>
+    
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap">
+    
+    <!-- ✅ Ajuste de ruta CSS -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/index.css">
+    
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body class="light-mode">
@@ -16,23 +20,24 @@
         <header class="main-header">
             <div class="container header-inner">
                 <div class="header-left">
-                    <a class="logo" href="main.html">
+                    <a class="logo" href="${pageContext.request.contextPath}/index.jsp">
                       <img src="${pageContext.request.contextPath}/img/logo.png" alt="Logo ZapaStore" class="logo-image" height="24">
                       <h1 class="logo-text">ZapaStore</h1>
                     </a>
-                    
                 </div>
+
                 <div class="header-right">
                     <button class="secondary-button">Mi Cuenta</button> 
                     
-                    <a href="carrito.html" class="cart-icon-link" aria-label="Carrito de Compras" style="color: var(--color-primary);">
+                    <a href="${pageContext.request.contextPath}/carrito" class="cart-icon-link" aria-label="Carrito de Compras" style="color: var(--color-primary);">
                         <i class="fa-solid fa-cart-shopping cart-icon"></i>
                     </a>
 
-                    <div class="profile-pic" style='background-image: url("img/user.png");' aria-label="Perfil de Usuario"></div>
+                    <div class="profile-pic" style='background-image: url("${pageContext.request.contextPath}/img/user.png");' aria-label="Perfil de Usuario"></div>
                 </div>
             </div>
         </header>
+
         <main class="main-content">
             <section class="container cart-layout section-padding">
                 
@@ -41,7 +46,7 @@
                 <div class="cart-content-grid">
                     
                     <div class="cart-product-list">
-                        
+                        <!-- 🔁 Ejemplo de datos estáticos (puedes reemplazar por JSTL si lo deseas más adelante) -->
                         <div class="cart-item">
                             <img src="${pageContext.request.contextPath}/img/zapatilla1.jpg" alt="Nike Air Max" class="cart-item-image">
                             
@@ -89,7 +94,6 @@
                                 <button class="delete-button" title="Eliminar Producto"><i class="fa-solid fa-trash"></i></button>
                             </div>
                         </div>
-
                     </div>
                     
                     <div class="cart-summary-box card">
@@ -113,7 +117,7 @@
                             <i class="fa-solid fa-lock"></i> Proceder al Pago
                         </button>
                         
-                        <a href="catalogo-postlogin.html" class="secondary-link">
+                        <a href="${pageContext.request.contextPath}/catalogoLista" class="secondary-link">
                             <i class="fa-solid fa-reply"></i> Seguir comprando
                         </a>
                     </div>
@@ -121,7 +125,6 @@
 
             </section>
         </main>
-        
-        </div>
+    </div>
 </body>
 </html>

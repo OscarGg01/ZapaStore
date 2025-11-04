@@ -3,53 +3,64 @@ package com.zapastore.zapastore.model.carrito;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Pedido_Detalle") // coincide con schema.sql/data.sql
+@Table(name = "pedido_detalle")
 public class DetallePedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer pedidodetalle_ID;
+    @Column(name = "pedidoDetalle_ID")
+    private Long id;
 
-    private Integer pedido_ID;
-    private Integer producto_ID;
-    private String nombre_producto;
-    private Double precio_unitario;
+    @Column(name = "pedido_ID")
+    private Long pedidoId;
+
+    @Column(name = "producto_ID")
+    private Long productoId;
+
+    @Column(name = "nombre_producto")
+    private String nombreProducto;
+
+    @Column(name = "precio_unitario")
+    private Double precioUnitario;
+
+    @Column(name = "cantidad")
     private Integer cantidad;
 
-    // En schema.sql el subtotal es columna generada; permitimos leerla
-    @Column(insertable = false, updatable = false)
+    @Column(name = "subtotal")
     private Double subtotal;
 
-    public DetallePedido() {}
+    // ====== MÉTODOS ======
 
-    // constructor útil en pruebas
-    public DetallePedido(Integer pedido_ID, Integer producto_ID, String nombre_producto,
-                         Double precio_unitario, Integer cantidad) {
-        this.pedido_ID = pedido_ID;
-        this.producto_ID = producto_ID;
-        this.nombre_producto = nombre_producto;
-        this.precio_unitario = precio_unitario;
-        this.cantidad = cantidad;
+    public void calcularSubtotal() {
+        if (precioUnitario != null && cantidad != null) {
+            this.subtotal = precioUnitario * cantidad;
+        }
     }
 
-    // getters y setters
-    public Integer getPedidodetalle_ID() { return pedidodetalle_ID; }
-    public void setPedidodetalle_ID(Integer pedidodetalle_ID) { this.pedidodetalle_ID = pedidodetalle_ID; }
+    // ====== GETTERS & SETTERS ======
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public Integer getPedido_ID() { return pedido_ID; }
-    public void setPedido_ID(Integer pedido_ID) { this.pedido_ID = pedido_ID; }
+    public Long getPedidoId() { return pedidoId; }
+    public void setPedidoId(Long pedidoId) { this.pedidoId = pedidoId; }
 
-    public Integer getProducto_ID() { return producto_ID; }
-    public void setProducto_ID(Integer producto_ID) { this.producto_ID = producto_ID; }
+    public Long getProductoId() { return productoId; }
+    public void setProductoId(Long productoId) { this.productoId = productoId; }
 
-    public String getNombre_producto() { return nombre_producto; }
-    public void setNombre_producto(String nombre_producto) { this.nombre_producto = nombre_producto; }
+    public String getNombreProducto() { return nombreProducto; }
+    public void setNombreProducto(String nombreProducto) { this.nombreProducto = nombreProducto; }
 
-    public Double getPrecio_unitario() { return precio_unitario; }
-    public void setPrecio_unitario(Double precio_unitario) { this.precio_unitario = precio_unitario; }
+    public Double getPrecioUnitario() { return precioUnitario; }
+    public void setPrecioUnitario(Double precioUnitario) {
+        this.precioUnitario = precioUnitario;
+        calcularSubtotal();
+    }
 
     public Integer getCantidad() { return cantidad; }
-    public void setCantidad(Integer cantidad) { this.cantidad = cantidad; }
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+        calcularSubtotal();
+    }
 
     public Double getSubtotal() { return subtotal; }
     public void setSubtotal(Double subtotal) { this.subtotal = subtotal; }
