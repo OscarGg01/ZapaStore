@@ -2,14 +2,17 @@ package com.zapastore.zapastore.model.carrito;
 
 import jakarta.persistence.*;
 
+// ...
 @Entity
 @Table(name = "pedido_detalle")
 public class DetallePedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pedidoDetalle_ID")
+    // ⚠️ CORRECCIÓN: Usar snake_case puro (pedido_detalle_id)
+    @Column(name = "pedido_detalle_ID") 
     private Long id;
+// ...
 
     @Column(name = "pedido_ID")
     private Long pedidoId;

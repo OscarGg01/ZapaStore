@@ -13,7 +13,7 @@
     <description>Proyecto ZapaStore con arquitectura hexagonal y MySQL</description>
     <packaging>jar</packaging>
 
-    <!-- 🔹 Esto soluciona tu error de versiones -->
+    <!--  Esto soluciona tu error de versiones -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>

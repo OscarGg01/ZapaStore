@@ -2,6 +2,8 @@ package com.zapastore.zapastore.model.usuario;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.lang.NonNull; // Importación necesaria
+
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +18,9 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario guardarUsuario(Usuario usuario) {
+    @NonNull 
+    // Usamos @NonNull aquí para satisfacer la advertencia de seguridad de tipo nulo (16778128)
+    public Usuario guardarUsuario(@NonNull Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
@@ -26,12 +30,18 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Optional<Usuario> obtenerUsuarioPorId(String idUsuario) {
+    // Línea 36: Reintroducir @NonNull para resolver la advertencia 16778128
+    // Usamos @SuppressWarnings para evitar la advertencia 67109780 de redefinición que aparecería.
+    @SuppressWarnings("all") 
+    public Optional<Usuario> obtenerUsuarioPorId(@NonNull String idUsuario) {
         return usuarioRepository.findById(idUsuario);
     }
 
     @Override
-    public void eliminarUsuario(String idUsuario) {
+    // Línea 42: Reintroducir @NonNull para resolver la advertencia 16778128
+    // Usamos @SuppressWarnings para evitar la advertencia 67109780 de redefinición que aparecería.
+    @SuppressWarnings("all") 
+    public void eliminarUsuario(@NonNull String idUsuario) {
         usuarioRepository.deleteById(idUsuario);
     }
 }

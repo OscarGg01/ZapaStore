@@ -2,6 +2,7 @@ package com.zapastore.zapastore.model.carrito;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.lang.NonNull; // Asegúrate de que esta importación esté presente
 
 import java.util.List;
 
@@ -12,17 +13,21 @@ public class DetallePedidoServiceImpl implements DetallePedidoService {
     private DetallePedidoRepository repository;
 
     @Override
-    public List<DetallePedido> listarPorPedido(Long pedidoId) {
+    // Línea 21 (Anteriormente línea 17): Añadir @NonNull al parámetro
+    public List<DetallePedido> listarPorPedido(@NonNull Long pedidoId) {
         return repository.findByPedidoId(pedidoId);
     }
 
     @Override
-    public DetallePedido guardar(DetallePedido detalle) {
-        return repository.save(detalle);
+    // Línea 28/29: Añadir @NonNull al retorno y al parámetro para resolver las advertencias 67109781 y 16778128
+    @NonNull 
+    public DetallePedido guardar(@NonNull DetallePedido detalle) {
+        return repository.save(detalle); 
     }
 
     @Override
-    public void eliminar(Long id) {
+    // Línea 33/34: Añadir @NonNull al parámetro para resolver las advertencias 67109781 y 16778128
+    public void eliminar(@NonNull Long id) {
         repository.deleteById(id);
     }
 }

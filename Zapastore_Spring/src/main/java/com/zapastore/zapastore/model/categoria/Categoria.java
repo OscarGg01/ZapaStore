@@ -5,7 +5,7 @@ import jakarta.persistence.*;
  * Mapea la tabla 'Categorias' de la base de datos.
  */
 @Entity
-@Table(name = "Categorias")
+@Table(name = "categorias")
 public class Categoria {
 
     @Id
