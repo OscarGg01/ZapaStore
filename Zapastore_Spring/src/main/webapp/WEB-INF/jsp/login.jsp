@@ -5,130 +5,68 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Iniciar Sesión | ZapaStore</title>
-    <style>
-        /* ====== RESET ====== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #2c3e50, #4ca1af);
-        }
-
-        .login-container {
-            background-color: #fff;
-            width: 360px;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        }
-
-        .login-container h2 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        label {
-            display: block;
-            color: #555;
-            margin-bottom: 0.4rem;
-            font-weight: 600;
-        }
-
-        input[type="text"],
-        input[type="password"] {
-            width: 100%;
-            padding: 0.6rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            outline: none;
-            transition: border 0.3s;
-        }
-
-        input[type="text"]:focus,
-        input[type="password"]:focus {
-            border-color: #4ca1af;
-        }
-
-        button {
-            width: 100%;
-            background-color: #4ca1af;
-            color: #fff;
-            border: none;
-            padding: 0.7rem;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background-color: #2c3e50;
-        }
-
-        .error {
-            margin-top: 1rem;
-            color: #e74c3c;
-            background-color: #fdecea;
-            border: 1px solid #f5c2c0;
-            padding: 0.5rem;
-            text-align: center;
-            border-radius: 5px;
-        }
-
-        .footer {
-            margin-top: 1.5rem;
-            text-align: center;
-            color: #777;
-            font-size: 0.85rem;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZapaStore | Iniciar Sesión</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
 </head>
-<body>
+<body class="light-mode">
 
-<div class="login-container">
-    <h2>Iniciar Sesión</h2>
+<div class="page-container">
 
-    <form action="${pageContext.request.contextPath}/login" method="post">
-        <div class="form-group">
-            <label for="correo">Correo electrónico:</label>
-            <input type="text" id="correo" name="correo" value="${usuario.correo}" required>
-        </div>
-
-        <div class="form-group">
-            <label for="contrasena">Contraseña:</label>
-            <input type="password" id="contrasena" name="contrasena" required>
-        </div>
-
-        <button type="submit">Ingresar</button>
-
-        <c:if test="${not empty error}">
-            <div class="error">${error}</div>
-        </c:if>
-        <c:if test="${param.logout != null}">
-            <div class="error" style="color:green; border-color:#b6e2b6; background:#eafbea;">
-                Sesión cerrada correctamente.
+    <!-- HEADER -->
+    <header class="main-header">
+        <div class="container header-inner">
+            <div class="header-left">
+                <a class="logo" href="${pageContext.request.contextPath}/index.jsp">
+                    <img src="${pageContext.request.contextPath}/img/logo.png" alt="Logo ZapaStore" class="logo-image" height="24">
+                    <h1 class="logo-text">ZapaStore</h1>
+                </a>
             </div>
-        </c:if>
-    </form>
+            <div class="header-right">
+                <!-- Opcional: carrito u otros enlaces -->
+            </div>
+        </div>
+    </header>
 
-    <div class="footer">
-        © 2025 ZapaStore - Sistema de Administración
-    </div>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <section class="container login-section">
+            <div class="login-form-container">
+                <h2 class="section-title login-title">Iniciar Sesión</h2>
+
+                <form action="${pageContext.request.contextPath}/login" method="post" class="login-form">
+                    <div class="form-group">
+                        <label for="correo" class="form-label">Correo electrónico</label>
+                        <input type="email" name="correo" id="correo" class="form-input" placeholder="ejemplo@correo.com" value="${usuario.correo}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contrasena" class="form-label">Contraseña</label>
+                        <input type="password" name="contrasena" id="contrasena" class="form-input" placeholder="********" required>
+                    </div>
+
+                    <button type="submit" class="primary-button login-button">Ingresar</button>
+
+                    <c:if test="${not empty error}">
+                        <div class="error">${error}</div>
+                    </c:if>
+                    <c:if test="${param.logout != null}">
+                        <div class="error" style="color:green; border-color:#b6e2b6; background:#eafbea;">
+                            Sesión cerrada correctamente.
+                        </div>
+                    </c:if>
+                </form>
+
+                <p class="signup-link">
+                    ¿No tienes cuenta? 
+                    <a href="${pageContext.request.contextPath}/registrar" class="color-primary-link">Regístrate</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
 </div>
 
 </body>

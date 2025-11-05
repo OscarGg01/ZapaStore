@@ -11,7 +11,6 @@ import java.util.Optional;
 
 /**
  * Controlador Web para la administración (CRUD) de Categorías.
- * Mapea las URLs que resuelven a vistas JSP.
  * URL Base: /admin/categorias
  */
 @Controller
@@ -25,11 +24,9 @@ public class CategoriaController {
         this.categoriaService = categoriaService;
     }
 
-    // =========================================================
+    // ===============================================
     // R (READ) - Listar categorías
-    // Mapeo: GET /admin/categorias/lista
-    // Vista: categoriaLista.jsp
-    // =========================================================
+    // ===============================================
     @GetMapping({"/lista", "/"})
     public String listarCategorias(Model model) {
         List<Categoria> categorias = categoriaService.findAll();
@@ -37,33 +34,24 @@ public class CategoriaController {
         return "categoriaLista";
     }
 
-    // =========================================================
-    // C (CREATE) - Guardar una nueva categoría (desde el formulario en lista)
-    // Mapeo: POST /admin/categorias/guardar
-    // Redirige a /admin/categorias/lista
-    // =========================================================
+    // ===============================================
+    // C (CREATE) - Guardar nueva categoría
+    // ===============================================
     @PostMapping("/guardar")
-    public String crearCategoria(@RequestParam("nombre") String nombre, 
-                                 @RequestParam(value = "activo", required = false) boolean activo, // Mapea el select Activo/Inactivo
+    public String crearCategoria(@RequestParam("nombre") String nombre,
+                                 @RequestParam("estado") String estado,
                                  RedirectAttributes redirectAttributes) {
-        
-        String estado = activo ? "Activo" : "Inactivo";
-        
-        // Crear nueva instancia (ID nulo, el service lo asigna)
+
         Categoria nuevaCategoria = new Categoria(nombre, estado);
         categoriaService.save(nuevaCategoria);
-        
+
         redirectAttributes.addFlashAttribute("mensaje", "Categoría '" + nombre + "' creada exitosamente.");
-        
         return "redirect:/admin/categorias/lista";
     }
 
-
-    // =========================================================
-    // U (UPDATE - Formulario) - Mostrar formulario de edición
-    // Mapeo: GET /admin/categorias/editar?id={id}
-    // Vista: categoriaEditar.jsp
-    // =========================================================
+    // ===============================================
+    // U (UPDATE - Formulario)
+    // ===============================================
     @GetMapping("/editar")
     public String mostrarFormularioEdicion(@RequestParam("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
         Optional<Categoria> categoriaOpt = categoriaService.findById(id);
@@ -72,49 +60,39 @@ public class CategoriaController {
             model.addAttribute("categoria", categoriaOpt.get());
             return "categoriaEditar";
         } else {
-            redirectAttributes.addFlashAttribute("mensaje", "Error: Categoría con ID " + id + " no encontrada para editar.");
+            redirectAttributes.addFlashAttribute("mensaje", "Categoría con ID " + id + " no encontrada.");
             return "redirect:/admin/categorias/lista";
         }
     }
-    
-    // =========================================================
-    // U (UPDATE - Acción) - Procesar la actualización
-    // Mapeo: POST /admin/categorias/actualizar
-    // Redirige a /admin/categorias/lista
-    // =========================================================
+
+    // ===============================================
+    // U (UPDATE - Acción)
+    // ===============================================
     @PostMapping("/actualizar")
-    public String actualizarCategoria(
-            @ModelAttribute Categoria categoria, // Recibe la entidad con ID, nombre y estado
-            RedirectAttributes redirectAttributes) {
-        
+    public String actualizarCategoria(@ModelAttribute Categoria categoria,
+                                      RedirectAttributes redirectAttributes) {
+
         if (categoria.getCategoriaId() == null) {
-            redirectAttributes.addFlashAttribute("mensaje", "Error: ID de categoría es nulo para actualizar.");
+            redirectAttributes.addFlashAttribute("mensaje", "ID de categoría es nulo.");
             return "redirect:/admin/categorias/lista";
         }
 
-        // Simplemente guardar, ya que el servicio maneja la actualización del estado y nombre
         categoriaService.save(categoria);
-
         redirectAttributes.addFlashAttribute("mensaje", "Categoría '" + categoria.getNombre() + "' actualizada exitosamente.");
-        
         return "redirect:/admin/categorias/lista";
     }
 
-    // =========================================================
-    // D (SOFT DELETE) - Desactivar una categoría
-    // Mapeo: GET /admin/categorias/eliminar?id={id}
-    // Redirige a /admin/categorias/lista
-    // =========================================================
+    // ===============================================
+    // D (SOFT DELETE) - Desactivar categoría
+    // ===============================================
     @GetMapping("/eliminar")
     public String desactivarCategoria(@RequestParam("id") Integer id, RedirectAttributes redirectAttributes) {
         try {
-            // El servicio realiza el Soft Delete (cambia el estado a 'Inactivo')
-            categoriaService.deleteById(id); 
+            categoriaService.deleteById(id);
             redirectAttributes.addFlashAttribute("mensaje", "Categoría ID " + id + " desactivada exitosamente.");
         } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("mensaje", "Error al desactivar la categoría ID " + id + ". Posiblemente no existe o tiene dependencias.");
+            redirectAttributes.addFlashAttribute("mensaje", "Error al desactivar la categoría ID " + id + ".");
         }
-        
         return "redirect:/admin/categorias/lista";
     }
 }

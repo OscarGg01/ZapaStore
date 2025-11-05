@@ -32,7 +32,7 @@ public class ProductoController {
 
     // 2. FORMULARIO DE CREACIÓN
     // Devuelve el nombr", "/e de la vista: form_producto (para form_producto.jsp)
-    @GetMapping("/new")
+    @GetMapping("/crear")
     public String mostrarFormularioCreacion(Model model) {
         model.addAttribute("producto", new Producto());
         return "form_producto"; // Nombre de tu JSP
@@ -40,7 +40,7 @@ public class ProductoController {
 
     // 3. FORMULARIO DE EDICIÓN
     // Devuelve el nombre de la vista: form_producto (para form_producto.jsp)
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editar/{id}")
     public String mostrarFormularioEdicion(@PathVariable Integer id, Model model, RedirectAttributes redirectAttributes) {
         Optional<Producto> productoOpt = productoService.findById(id);
         
@@ -62,7 +62,7 @@ public class ProductoController {
     }
     
     // 5. ELIMINAR
-    @GetMapping("/delete/{id}")
+    @GetMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
         try {
             productoService.deleteById(id);
@@ -70,6 +70,6 @@ public class ProductoController {
         } catch (Exception e) {
             redirectAttributes.addFlashAttribute("error", "Error al eliminar el producto.");
         }
-        return "redirect:/admin/productos/web";
+        return "redirect:/admin/productos/lista";
     }
 }

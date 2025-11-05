@@ -1,5 +1,7 @@
-<%@ taglib prefix="c" uri="jakarta.tags.core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<c:set var="page" value="categorias" />
 
 <!DOCTYPE html>
 <html lang="es">
@@ -10,139 +12,107 @@
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminStyles.css">
-    </head>
+</head>
+
 <body class="admin-body">
-    <%-- ... Layout (sidebar, header) ... --%>
-    <div class="admin-layout">
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <img src="${pageContext.request.contextPath}/img/logo.png" alt="Logo ZapaStore" class="logo-icon" height="48">
-                <h1 class="logo-title">ZapaStore Admin</h1>
+<div class="admin-layout">
+    <!-- Sidebar -->
+    <jsp:include page="/WEB-INF/jsp/fragments/sidebar.jsp"/>
+
+    <main class="main-panel">
+        <!-- Header -->
+        <jsp:include page="/WEB-INF/jsp/fragments/header.jsp"/>
+
+        <!-- Contenido -->
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h2 class="page-title">
+                    <span class="material-symbols-outlined icon-title">category</span>
+                    Administrar Categorías
+                </h2>
             </div>
-            <nav class="sidebar-nav">
-                <a href="${pageContext.request.contextPath}/admin/dashboard" class="nav-item">
-                    <span class="material-symbols-outlined">dashboard</span> Métricas
-                </a>
-                <a href="${pageContext.request.contextPath}/admin/categorias/lista" class="nav-item is-active">
-                    <span class="material-symbols-outlined">category</span> Catálogos
-                </a>
-                <a href="${pageContext.request.contextPath}/admin/productos/lista" class="nav-item">
-                    <span class="material-symbols-outlined">store</span> Productos
-                </a>
-                <a href="${pageContext.request.contextPath}/admin/usuarios/lista" class="nav-item">
-                    <span class="material-symbols-outlined">group</span> Usuarios
-                </a>
-            </nav>
-            <div class="sidebar-profile">
-                <div class="profile-info">
-                    <div class="profile-avatar" style='background-image: url("${pageContext.request.contextPath}/img/user.png");'></div>
-                    <div>
-                        <p class="profile-name">Admin User</p>
-                        <p class="profile-email">admin@zapastore.com</p>
-                    </div>
-                </div>
-            </div>
-        </aside>
 
-        <main class="main-panel">
-            <header class="main-header-admin">
-                <div class="header-actions">
-                    <button class="icon-button"><span class="material-symbols-outlined">notifications</span></button>
-                    <button class="icon-button"><span class="material-symbols-outlined">settings</span></button>
-                    <div class="profile-avatar profile-avatar-small" style='background-image: url("${pageContext.request.contextPath}/img/user.png");'></div>
-                </div>
-            </header>
+            <!-- Mensajes de éxito o error -->
+            <c:if test="${not empty mensaje}">
+                <div class="alert success">${mensaje}</div>
+            </c:if>
+            <c:if test="${not empty error}">
+                <div class="alert error">${error}</div>
+            </c:if>
 
-            <div class="content-wrapper">
-                <div class="page-header">
-                    <h2 class="page-title">Administrar Categorías</h2>
-                    <a href="${pageContext.request.contextPath}/admin/dashboard" class="secondary-button-admin">
-                        <span class="material-symbols-outlined">arrow_back</span>
-                        Volver
-                    </a>
-                </div>
-                
-                <%-- Mensaje de Éxito después de Guardar/Eliminar --%>
-                <c:if test="${not empty mensaje}">
-                    <div class="alert success" style="margin-bottom: 1rem; padding: 10px; border: 1px solid green; color: green; background-color: #e6ffe6; border-radius: 4px;">
-                        ${mensaje}
-                    </div>
-                </c:if>
+            <!-- Formulario de agregar categoría -->
+            <section class="crud-area">
+                <form class="crud-form" action="${pageContext.request.contextPath}/admin/categorias/guardar" method="POST">
+                    <div class="form-grid">
+                        <div class="campo">
+                            <label for="nombre">Nueva categoría</label>
+                            <input type="text" name="nombre" id="nombre" placeholder="Ej. Deportivos" required class="input-text">
+                        </div>
 
-                <section class="crud-area">
-                    
-                    <%-- FORMULARIO DE CREACIÓN --%>
-                    <form class="crud-form" action="${pageContext.request.contextPath}/admin/categorias/guardar" method="POST">
-                        <div class="campo categoria-flex" style="display:flex; gap:0.75rem; align-items:center;">
-                            <%-- Campo para el Nombre --%>
-                            <input type="text" placeholder="Nueva categoría..." required class="input-text" style="flex:1;" name="nombre">
-                            
-                            <%-- Campo para el Estado (activo es el nombre de la propiedad en el formulario) --%>
-                            <select class="input-select" style="max-width:150px;" name="activo">
+                        <div class="campo">
+                            <label for="activo">Estado</label>
+                            <select name="activo" id="activo" class="input-select">
                                 <option value="true">Activo</option>
                                 <option value="false">Inactivo</option>
                             </select>
+                        </div>
 
+                        <div class="campo form-actions">
                             <button type="submit" class="primary-button-admin small-btn">
-                                <span class="material-symbols-outlined">add</span>
-                                Agregar
+                                <span class="material-symbols-outlined">add</span> Agregar
                             </button>
                         </div>
-                    </form>
-
-                    <%-- TABLA DE LISTADO DINÁMICO --%>
-                    <div class="categorias-lista" style="margin-top:1.5rem;">
-                        <table class="crud-table">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Nombre de la Categoría</th>
-                                    <th>Estado</th>
-                                    <th>Acción</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="cat" items="${categorias}">
-                                    <tr>
-                                        <td>${cat.categoriaId}</td> 
-                                        <td>${cat.nombre}</td> 
-                                        <td>
-                                            <c:choose>
-                                                <c:when test="${cat.activo}">
-                                                    <span class="material-symbols-outlined" style="color:green;">check_circle</span>
-                                                    <span class="estado-texto" style="color:green;">Activo</span>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <span class="material-symbols-outlined" style="color:red;">cancel</span>
-                                                    <span class="estado-texto" style="color:red;">Inactivo</span>
-                                                </c:otherwise>
-                                            </c:choose>
-                                        </td>
-                                        <td>
-                                            <%-- Enlace a Editar --%>
-                                            <a href="${pageContext.request.contextPath}/admin/categorias/editar?id=${cat.categoriaId}" class="icon-button edit" title="Editar categoría">
-                                                <span class="material-symbols-outlined">edit</span>
-                                            </a>
-                                            <%-- Enlace a Eliminar (Soft Delete) --%>
-                                            <a href="${pageContext.request.contextPath}/admin/categorias/eliminar?id=${cat.categoriaId}" class="icon-button delete" title="Desactivar categoría" onclick="return confirm('¿Está seguro de que desea desactivar la categoría ${cat.nombre}?');">
-                                                <span class="material-symbols-outlined">delete</span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                                <c:if test="${empty categorias}">
-                                    <tr>
-                                        <td colspan="4" style="text-align: center; padding: 15px; color: #6c757d;">
-                                            No hay categorías para mostrar. Agregue una usando el formulario de arriba.
-                                        </td>
-                                    </tr>
-                                </c:if>
-                            </tbody>
-                        </table>
                     </div>
-                </section>
-            </div>
-        </main>
-    </div>
+                </form>
+
+                <!-- Tabla de categorías -->
+                <div class="crud-lista">
+                    <table class="crud-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre de la Categoría</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="cat" items="${categorias}">
+                            <tr>
+                                <td>${cat.categoriaId}</td>
+                                <td>${cat.nombre}</td>
+                                <td>
+                                    <span class="chip ${cat.activo ? 'chip-activo' : 'chip-inactivo'}">
+                                        ${cat.activo ? 'Activo' : 'Inactivo'}
+                                    </span>
+                                </td>
+                                <td class="actions-cell">
+                                    <a href="${pageContext.request.contextPath}/admin/categorias/editar?id=${cat.categoriaId}"
+                                       class="icon-button edit" title="Editar">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </a>
+                                    <a href="${pageContext.request.contextPath}/admin/categorias/eliminar?id=${cat.categoriaId}"
+                                       class="icon-button delete" title="Eliminar"
+                                       onclick="return confirm('¿Está seguro de desactivar la categoría ${cat.nombre}?');">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+
+                        <c:if test="${empty categorias}">
+                            <tr>
+                                <td colspan="4" class="tabla-vacia">
+                                    No hay categorías registradas aún.
+                                </td>
+                            </tr>
+                        </c:if>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
 </body>
 </html>

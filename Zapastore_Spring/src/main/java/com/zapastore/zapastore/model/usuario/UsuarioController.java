@@ -18,23 +18,6 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    // 🟢 Mostrar formulario para crear nuevo usuario
-    @GetMapping("/crear")
-    public String mostrarFormularioCrear(Model model) {
-        model.addAttribute("usuario", new Usuario());
-        return "usuarioCrear";
-    }
-
-    // 🟢 Guardar nuevo usuario
-    @PostMapping("/crear")
-    public String crearUsuario(@ModelAttribute("usuario") Usuario usuario,
-                               RedirectAttributes redirectAttributes) {
-        usuario.setIdUsuario("USR" + System.currentTimeMillis());
-        usuarioService.guardarUsuario(usuario);
-        redirectAttributes.addFlashAttribute("mensaje", "Usuario creado correctamente");
-        return "redirect:/usuario/lista";
-    }
-
     // 🟢 Mostrar lista de usuarios
     @GetMapping("/lista")
     public String listarUsuarios(Model model) {
@@ -43,38 +26,47 @@ public class UsuarioController {
         return "usuarioLista";
     }
 
-    // 🟢 Mostrar formulario de edición
-    @GetMapping("/editar/{idUsuario}")
-    public String mostrarFormularioEditar(@PathVariable("idUsuario") String idUsuario, Model model) {
-        Optional<Usuario> usuarioOpt = usuarioService.obtenerUsuarioPorId(idUsuario);
-        if (usuarioOpt.isPresent()) {
-            model.addAttribute("usuario", usuarioOpt.get());
-            return "usuarioEditar"; // JSP: usuarioEditar.jsp
+    // 🟢 Mostrar formulario (crear o editar)
+    @GetMapping({"/crear", "/editar/{idUsuario}"})
+    public String mostrarFormulario(@PathVariable(required = false) String idUsuario, Model model) {
+        if (idUsuario != null) {
+            Optional<Usuario> usuarioOpt = usuarioService.obtenerUsuarioPorId(idUsuario);
+            if (usuarioOpt.isPresent()) {
+                model.addAttribute("usuario", usuarioOpt.get());
+            } else {
+                return "redirect:/admin/usuarios/lista";
+            }
         } else {
-            return "redirect:/usuario/lista";
+            model.addAttribute("usuario", new Usuario());
         }
+        return "usuarioForm"; // 👉 JSP actualizado
     }
 
-    // 🟢 Actualizar usuario (FALTABA ESTE MÉTODO)
-    @PostMapping("/actualizar")
-    public String actualizarUsuario(@ModelAttribute("usuario") Usuario usuario,
-                                    RedirectAttributes redirectAttributes) {
-        // Verificar si el usuario existe
-        Optional<Usuario> usuarioExistente = usuarioService.obtenerUsuarioPorId(usuario.getIdUsuario());
+    // 🟢 Guardar o actualizar usuario (unificado)
+    @PostMapping("/guardar")
+    public String guardarUsuario(@ModelAttribute("usuario") Usuario usuario,
+                                 RedirectAttributes redirectAttributes) {
 
-        if (usuarioExistente.isPresent()) {
-            // Reutilizar la contraseña si no fue cambiada
-            if (usuario.getContrasena() == null || usuario.getContrasena().isEmpty()) {
-                usuario.setContrasena(usuarioExistente.get().getContrasena());
-            }
-
+        if (usuario.getIdUsuario() == null || usuario.getIdUsuario().isEmpty()) {
+            // Crear nuevo usuario
+            usuario.setIdUsuario("USR" + System.currentTimeMillis());
             usuarioService.guardarUsuario(usuario);
-            redirectAttributes.addFlashAttribute("mensaje", "Usuario actualizado correctamente");
+            redirectAttributes.addFlashAttribute("mensaje", "Usuario creado correctamente");
         } else {
-            redirectAttributes.addFlashAttribute("error", "El usuario no existe");
+            // Actualizar existente
+            Optional<Usuario> usuarioExistente = usuarioService.obtenerUsuarioPorId(usuario.getIdUsuario());
+            if (usuarioExistente.isPresent()) {
+                if (usuario.getContrasena() == null || usuario.getContrasena().isEmpty()) {
+                    usuario.setContrasena(usuarioExistente.get().getContrasena());
+                }
+                usuarioService.guardarUsuario(usuario);
+                redirectAttributes.addFlashAttribute("mensaje", "Usuario actualizado correctamente");
+            } else {
+                redirectAttributes.addFlashAttribute("error", "El usuario no existe");
+            }
         }
 
-        return "redirect:/usuario/lista";
+        return "redirect:/admin/usuarios/lista";
     }
 
     // 🟢 Eliminar usuario
@@ -83,6 +75,6 @@ public class UsuarioController {
                                   RedirectAttributes redirectAttributes) {
         usuarioService.eliminarUsuario(id);
         redirectAttributes.addFlashAttribute("mensaje", "Usuario eliminado correctamente.");
-        return "redirect:/usuario/lista";
+        return "redirect:/admin/usuarios/lista";
     }
 }

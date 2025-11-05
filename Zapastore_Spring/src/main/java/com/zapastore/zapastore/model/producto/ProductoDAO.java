@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ProductoDAO {
-    
+
     List<Producto> findAll();
     Optional<Producto> findById(Integer id);
     Optional<Producto> findByNombre(String nombre);
     Producto save(Producto producto);
-    void deleteById(Integer id); // Se mantiene la firma
+    void deleteById(Integer id);
+    List<Producto> findUltimoProductoPorCategoria(); // NUEVO
 }

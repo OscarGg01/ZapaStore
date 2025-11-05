@@ -1,32 +1,40 @@
-<%-- /WEB-INF/jsp/fragments/sidebar.jsp --%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <aside class="sidebar">
     <div class="sidebar-header">
-        <img src="img/logo.png" alt="Logo ZapaStore" class="logo-icon" height="48">
+        <img src="${pageContext.request.contextPath}/img/logo.png" alt="Logo ZapaStore" class="logo-icon">
         <h1 class="logo-title">ZapaStore Admin</h1>
     </div>
 
     <nav class="sidebar-nav">
-        <%-- Aquí puedes usar JSTL o lógica JSP para manejar la clase 'is-active' --%>
-        
-        <a href="admin.html" class="nav-item">
-            <span class="material-symbols-outlined">dashboard</span>Metricas
+        <a href="${pageContext.request.contextPath}/admin/dashboard"
+           class="nav-item ${fn:contains(pageContext.request.requestURI, '/admin/dashboard') ? 'is-active' : ''}">
+            <span class="material-symbols-outlined">bar_chart</span>Métricas
         </a>
-        <a href="catalogoLista.html" class="nav-item">
-            <span class="material-symbols-outlined">shopping_bag</span>Catalogo
+
+        <a href="${pageContext.request.contextPath}/admin/categorias/lista"
+           class="nav-item ${fn:contains(pageContext.request.requestURI, '/categorias') ? 'is-active' : ''}">
+            <span class="material-symbols-outlined">shopping_bag</span>Categorías
         </a>
-        <%-- **Nota:** La clase 'is-active' probablemente debe ser dinámica, pero la dejamos activa aquí como en tus ejemplos HTML. --%>
-        <a href="productoLista.html" class="nav-item is-active">
+
+        <a href="${pageContext.request.contextPath}/admin/productos/lista"
+           class="nav-item ${fn:contains(pageContext.request.requestURI, '/productos') ? 'is-active' : ''}">
             <span class="material-symbols-outlined">store</span>Productos
         </a>
-        <a href="usuarioCrear.html" class="nav-item">
+
+        <a href="${pageContext.request.contextPath}/admin/usuarios/lista"
+           class="nav-item ${fn:contains(pageContext.request.requestURI, '/usuarios') ? 'is-active' : ''}">
             <span class="material-symbols-outlined">group</span>Usuarios
         </a>
     </nav>
 
     <div class="sidebar-profile">
         <div class="profile-info">
-            <div class="profile-avatar" style='background-image: url("img/user.png");'></div>
+            <div class="profile-avatar"
+                 style='background-image: url("${pageContext.request.contextPath}/img/user.png");'>
+            </div>
             <div>
                 <p class="profile-name">Admin User</p>
                 <p class="profile-email">admin@zapastore.com</p>
