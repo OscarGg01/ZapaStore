@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="toolbar-actions">
-                        <form method="get" action="${pageContext.request.contextPath}/catalogo">
+                        <form method="get" action="${pageContext.request.contextPath}/cliente/catalogo">
                             <select class="select-category" name="categoriaId" onchange="this.form.submit()">
                                 <option value="">Todas las categorías</option>
                                 <c:forEach var="categoria" items="${categorias}">

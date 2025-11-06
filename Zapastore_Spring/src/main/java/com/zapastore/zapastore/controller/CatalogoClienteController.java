@@ -51,7 +51,7 @@ public class CatalogoClienteController {
         return "cliente/catalogocliente";
     }
 
-    @GetMapping("/producto/{id}")
+    @GetMapping("/cliente/producto/{id}")
     public String verProducto(@PathVariable Integer id, Model model) {
         // Buscar el producto por ID
         Producto producto = productoService.findById(id)
