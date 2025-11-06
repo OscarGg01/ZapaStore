@@ -12,4 +12,5 @@ public interface ProductoService {
     Producto update(Integer id, Producto productoDetails);
     void deleteById(Integer id);
     List<Producto> findUltimoProductoPorCategoria(); // NUEVO
+    List<Producto> findByCategoria(Integer categoriaId);
 }

@@ -4,10 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 import java.util.Optional;
 
+@PreAuthorize("hasRole('ADMIN')")
 @Controller
 @RequestMapping("/admin/usuarios")
 public class UsuarioController {
@@ -18,15 +20,13 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
-    // 🟢 Mostrar lista de usuarios
     @GetMapping("/lista")
     public String listarUsuarios(Model model) {
         List<Usuario> usuarios = usuarioService.obtenerTodosLosUsuarios();
         model.addAttribute("usuarios", usuarios);
-        return "usuarioLista";
+        return "admin/usuarioLista";
     }
 
-    // 🟢 Mostrar formulario (crear o editar)
     @GetMapping({"/crear", "/editar/{idUsuario}"})
     public String mostrarFormulario(@PathVariable(required = false) String idUsuario, Model model) {
         if (idUsuario != null) {
@@ -39,21 +39,18 @@ public class UsuarioController {
         } else {
             model.addAttribute("usuario", new Usuario());
         }
-        return "usuarioForm"; // 👉 JSP actualizado
+        return "admin/usuarioForm";
     }
 
-    // 🟢 Guardar o actualizar usuario (unificado)
     @PostMapping("/guardar")
     public String guardarUsuario(@ModelAttribute("usuario") Usuario usuario,
                                  RedirectAttributes redirectAttributes) {
 
         if (usuario.getIdUsuario() == null || usuario.getIdUsuario().isEmpty()) {
-            // Crear nuevo usuario
             usuario.setIdUsuario("USR" + System.currentTimeMillis());
             usuarioService.guardarUsuario(usuario);
             redirectAttributes.addFlashAttribute("mensaje", "Usuario creado correctamente");
         } else {
-            // Actualizar existente
             Optional<Usuario> usuarioExistente = usuarioService.obtenerUsuarioPorId(usuario.getIdUsuario());
             if (usuarioExistente.isPresent()) {
                 if (usuario.getContrasena() == null || usuario.getContrasena().isEmpty()) {
@@ -69,7 +66,6 @@ public class UsuarioController {
         return "redirect:/admin/usuarios/lista";
     }
 
-    // 🟢 Eliminar usuario
     @GetMapping("/eliminar/{id}")
     public String eliminarUsuario(@PathVariable("id") String id,
                                   RedirectAttributes redirectAttributes) {

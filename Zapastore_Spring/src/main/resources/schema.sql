@@ -35,8 +35,9 @@ CREATE TABLE productos (
     Precio DECIMAL(10,2) NOT NULL,
     img_Url TEXT,
     descripcion VARCHAR(255),
-    -- CORRECCIÓN: Referencia a 'categorias' en minúsculas
-    CONSTRAINT fk_producto_categoria FOREIGN KEY (categoria_ID) REFERENCES categorias(categoria_ID) ON UPDATE CASCADE ON DELETE SET NULL
+    CONSTRAINT fk_producto_categoria FOREIGN KEY (categoria_ID)
+        REFERENCES categorias(categoria_ID)
+        ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 -- 4. Tabla pedidos (Minúsculas)
@@ -47,9 +48,9 @@ CREATE TABLE pedidos (
     CostoEnvio DECIMAL(10,2) DEFAULT 0.00,
     fecha DATE NOT NULL,
     estado VARCHAR(20) DEFAULT 'Pendiente',
-    
-    -- CORRECCIÓN: Referencia a 'usuarios' en minúsculas
-    CONSTRAINT fk_pedido_usuario FOREIGN KEY (IDCliente) REFERENCES usuarios(IDUsuario) ON UPDATE CASCADE ON DELETE SET NULL 
+    CONSTRAINT fk_pedido_usuario FOREIGN KEY (IDCliente)
+        REFERENCES usuarios(IDUsuario)
+        ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 -- 5. Tabla pedido_detalle (Minúsculas)
@@ -60,11 +61,14 @@ CREATE TABLE pedido_detalle (
     nombre_producto VARCHAR(100),
     precio_unitario DECIMAL(10,2) NOT NULL,
     cantidad INT NOT NULL,
-    -- Columna calculada (Generated Column)
-    subtotal DECIMAL(10,2) GENERATED ALWAYS AS (precio_unitario * cantidad) STORED,
-    -- CORRECCIONES: Referencias a 'pedidos' y 'productos' en minúsculas
-    CONSTRAINT fk_detalle_pedido FOREIGN KEY (pedido_ID) REFERENCES pedidos(pedido_ID) ON UPDATE CASCADE ON DELETE CASCADE,
-    CONSTRAINT fk_detalle_producto FOREIGN KEY (producto_ID) REFERENCES productos(producto_ID) ON UPDATE CASCADE ON DELETE SET NULL
+    talla INT NOT NULL,  -- 👈 NUEVO CAMPO: talla seleccionada por cliente
+    subtotal DECIMAL(10,2) NOT NULL,
+    CONSTRAINT fk_detalle_pedido FOREIGN KEY (pedido_ID)
+        REFERENCES pedidos(pedido_ID)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT fk_detalle_producto FOREIGN KEY (producto_ID)
+        REFERENCES productos(producto_ID)
+        ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 -- Reactiva la verificación de claves foráneas

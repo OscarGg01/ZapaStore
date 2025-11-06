@@ -11,4 +11,5 @@ public interface ProductoDAO {
     Producto save(Producto producto);
     void deleteById(Integer id);
     List<Producto> findUltimoProductoPorCategoria(); // NUEVO
+    List<Producto> findByCategoria(Integer categoriaId);
 }

@@ -31,7 +31,7 @@ public class CategoriaController {
     public String listarCategorias(Model model) {
         List<Categoria> categorias = categoriaService.findAll();
         model.addAttribute("categorias", categorias);
-        return "categoriaLista";
+        return "admin/categoriaLista";
     }
 
     // ===============================================
@@ -58,7 +58,7 @@ public class CategoriaController {
 
         if (categoriaOpt.isPresent()) {
             model.addAttribute("categoria", categoriaOpt.get());
-            return "categoriaEditar";
+            return "admin/categoriaEditar";
         } else {
             redirectAttributes.addFlashAttribute("mensaje", "Categoría con ID " + id + " no encontrada.");
             return "redirect:/admin/categorias/lista";

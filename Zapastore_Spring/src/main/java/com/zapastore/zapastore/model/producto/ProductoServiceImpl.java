@@ -63,4 +63,9 @@ public class ProductoServiceImpl implements ProductoService {
     public List<Producto> findUltimoProductoPorCategoria() {
         return productoDAO.findUltimoProductoPorCategoria();
     }
+
+    @Override
+    public List<Producto> findByCategoria(Integer categoriaId) {
+        return productoDAO.findByCategoria(categoriaId);
+    }
 }

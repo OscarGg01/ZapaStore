@@ -4,23 +4,33 @@
 <header class="main-header">
     <div class="container header-inner">
         <div class="header-left">
-            <a class="logo" href="home.jsp">
+            <a class="logo" href="${pageContext.request.contextPath}/cliente/home">
                 <img src="${pageContext.request.contextPath}/img/logo.png" alt="Logo ZapaStore" class="logo-image" height="24">
                 <h1 class="logo-text">ZapaStore</h1>
             </a>
             <nav class="main-nav">
-                <a href="catalogo.jsp">Catálogo</a>
-                <a href="contact.jsp">Contacto</a>
-                <a href="publicidad-ofertas.jsp">Ofertas</a>
+                <a href="${pageContext.request.contextPath}/cliente/catalogo">Catálogo</a>
+                <a href="${pageContext.request.contextPath}/cliente/contacto">Contacto</a>
+                <a href="${pageContext.request.contextPath}/cliente/ofertas">Ofertas</a>
             </nav>
         </div>
-        <div class="header-right">
-            <a href="login">
-                <button class="secondary-button">Iniciar Sesión</button>
-            </a>                    
-            <a href="main.jsp">
-                <div class="profile-pic" style='background-image: url("${pageContext.request.contextPath}/img/user.png");' aria-label="Perfil de Usuario"></div>
+        <div class="header-right"> 
+
+            <a href="${pageContext.request.contextPath}/carrito" class="cart-icon-link" aria-label="Carrito de Compras" style="color: var(--color-primary);">
+                <i class="fa-solid fa-cart-shopping cart-icon"></i>
             </a>
+
+            <!-- Avatar y Logout -->
+            <div class="profile-actions">
+                <div class="profile-pic" style='background-image: url("${pageContext.request.contextPath}/img/user.png");' aria-label="Perfil de Usuario"></div>
+                
+                <div class="header-actions">
+                    <a href="${pageContext.request.contextPath}/logout"
+                       class="icon-button" title="Cerrar sesión">
+                        <span class="material-symbols-outlined">logout</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </header>

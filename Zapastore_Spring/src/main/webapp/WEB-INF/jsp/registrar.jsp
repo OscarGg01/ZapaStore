@@ -15,7 +15,7 @@
     <header class="main-header">
         <div class="header-inner">
             <div class="header-left">
-                <a class="logo" href="/">
+                <a class="logo" href="home">
                     <img src="/img/logo.png" alt="Logo ZapaStore" class="logo-image" height="24">
                     <h1 class="logo-text">ZapaStore</h1>
                 </a>

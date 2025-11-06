@@ -2,6 +2,7 @@ package com.zapastore.zapastore.model.producto;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "productos")
@@ -27,17 +28,12 @@ public class Producto {
     @Column(name = "descripcion", length = 500)
     private String descripcion;
 
-    // ===== NUEVO =====
+    // ----- Transitorios para vista -----
     @Transient
     private String categoriaNombre;
 
-    public String getCategoriaNombre() {
-        return categoriaNombre;
-    }
-
-    public void setCategoriaNombre(String categoriaNombre) {
-        this.categoriaNombre = categoriaNombre;
-    }
+    @Transient
+    private List<Integer> tallas;
 
     // --- Constructores ---
     public Producto() {}
@@ -69,4 +65,10 @@ public class Producto {
 
     public String getDescripcion() { return descripcion; }
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+
+    public String getCategoriaNombre() { return categoriaNombre; }
+    public void setCategoriaNombre(String categoriaNombre) { this.categoriaNombre = categoriaNombre; }
+
+    public List<Integer> getTallas() { return tallas; }
+    public void setTallas(List<Integer> tallas) { this.tallas = tallas; }
 }

@@ -14,7 +14,7 @@
 <body class="light-mode">
     <div class="page-container">
 
-        <%@ include file="../fragments/clienteheader.jsp" %>
+        <%@ include file="../fragments/userheader.jsp" %>
 
         <main class="main-content">
             <!-- HERO -->
@@ -38,7 +38,7 @@
                                 <img alt="${producto.nombre}" class="product-image"
                                      src="${pageContext.request.contextPath}/${producto.imagen_url}"/>
                             </div>
-                            <p class="product-category">Estilo &lt;${producto.categoriaNombre}&gt;</p>
+                            <p class="product-category">Estilo {producto.categoriaNombre}</p>
                             <h3 class="product-title">Producto: ${producto.nombre}</h3>
                             <p class="product-price">Precio: S/. ${producto.precio}</p>
                             <button class="primary-button">Comprar</button>

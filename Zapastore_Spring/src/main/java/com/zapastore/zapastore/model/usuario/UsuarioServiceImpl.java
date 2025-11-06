@@ -18,8 +18,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    @NonNull 
-    // Usamos @NonNull aquí para satisfacer la advertencia de seguridad de tipo nulo (16778128)
+    @NonNull
     public Usuario guardarUsuario(@NonNull Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
@@ -30,18 +29,19 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    // Línea 36: Reintroducir @NonNull para resolver la advertencia 16778128
-    // Usamos @SuppressWarnings para evitar la advertencia 67109780 de redefinición que aparecería.
-    @SuppressWarnings("all") 
+    @SuppressWarnings("all")
     public Optional<Usuario> obtenerUsuarioPorId(@NonNull String idUsuario) {
         return usuarioRepository.findById(idUsuario);
     }
 
     @Override
-    // Línea 42: Reintroducir @NonNull para resolver la advertencia 16778128
-    // Usamos @SuppressWarnings para evitar la advertencia 67109780 de redefinición que aparecería.
-    @SuppressWarnings("all") 
+    @SuppressWarnings("all")
     public void eliminarUsuario(@NonNull String idUsuario) {
         usuarioRepository.deleteById(idUsuario);
+    }
+
+    @Override
+    public Optional<Usuario> findByCorreo(String correo) {
+        return usuarioRepository.findByCorreo(correo);
     }
 }

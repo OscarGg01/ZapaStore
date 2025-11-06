@@ -11,18 +11,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-public class HomeController {
+public class ClienteController {
 
     private final ProductoService productoService;
     private final CategoriaService categoriaService;
 
     @Autowired
-    public HomeController(ProductoService productoService, CategoriaService categoriaService) {
+    public ClienteController(ProductoService productoService, CategoriaService categoriaService) {
         this.productoService = productoService;
         this.categoriaService = categoriaService;
     }
 
-    @GetMapping({"/","/home"})
+    @GetMapping("/cliente/home")
     public String home(Model model) {
 
         List<Producto> productosPorCategoria = productoService.findUltimoProductoPorCategoria();
@@ -34,17 +34,16 @@ public class HomeController {
 
         model.addAttribute("productosDestacados", productosPorCategoria);
 
-        return "user/home";
+        return "cliente/homecliente"; // Reutilizamos tu home.jsp existente
     }
 
-    @GetMapping("/contacto")
+    @GetMapping("/cliente/contacto")
     public String contacto() {
-        return "user/contacto"; // Spring buscará WEB-INF/jsp/cliente_interfaz/contacto.jsp
+        return "cliente/contactocliente"; // Spring buscará WEB-INF/jsp/cliente_interfaz/contacto.jsp
     }
 
-    @GetMapping("/ofertas")
+    @GetMapping("/cliente/ofertas")
     public String ofertas() {
-        return "user/ofertas";
+        return "cliente/ofertascliente";
     }
-
 }
