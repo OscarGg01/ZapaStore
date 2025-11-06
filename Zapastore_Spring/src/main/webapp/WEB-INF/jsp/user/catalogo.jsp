@@ -56,8 +56,7 @@
                                 <div class="product-description">Estilo: ${producto.categoriaNombre}</div>
                                 <p class="product-description">${producto.descripcion}</p>
                                 <p class="product-price">Precio: S/. ${producto.precio}</p>
-                                <a href="${pageContext.request.contextPath}/producto/${producto.id}" class="product-button">
-                                    <i class="fa-solid fa-eye"></i> Ver
+                                <button type="button" class="primary-button" onclick="window.location.href='${pageContext.request.contextPath}/login'">Comprar</button>
                                 </a>
                             </div>
                         </article>

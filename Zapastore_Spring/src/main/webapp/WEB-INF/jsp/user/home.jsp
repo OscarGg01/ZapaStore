@@ -23,7 +23,7 @@
                     <div class="hero-content">
                         <h1 class="hero-title">Camina con Estilo</h1>
                         <p class="hero-subtitle">Descubre las últimas tendencias en zapatillas y lanzamientos exclusivos.</p>
-                        <button class="primary-button">Comprar ahora</button>
+                        <button type="button" class="primary-button" onclick="window.location.href='${pageContext.request.contextPath}/login'">Comprar ahora</button>
                     </div>
                 </div>
             </section>
@@ -38,10 +38,8 @@
                                 <img alt="${producto.nombre}" class="product-image"
                                      src="${pageContext.request.contextPath}/${producto.imagen_url}"/>
                             </div>
-                            <p class="product-category">Estilo {producto.categoriaNombre}</p>
+                            <p class="product-category">Estilo ${producto.categoriaNombre}</p>
                             <h3 class="product-title">Producto: ${producto.nombre}</h3>
-                            <p class="product-price">Precio: S/. ${producto.precio}</p>
-                            <button class="primary-button">Comprar</button>
                         </div>
                     </c:forEach>
                 </div>

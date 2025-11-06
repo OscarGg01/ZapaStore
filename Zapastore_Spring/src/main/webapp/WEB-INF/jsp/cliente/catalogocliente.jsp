@@ -51,20 +51,22 @@
                 <!-- Grid de productos -->
                 <section class="product-grid">
                     <c:forEach var="producto" items="${productos}">
-                        <article class="product-card">
-                            <div class="product-image-wrapper">
-                                <img alt="${producto.nombre}" class="product-image" src="${pageContext.request.contextPath}/${producto.imagen_url}">
-                            </div>
-                            <div class="product-body">
-                                <h3 class="product-title">Producto: ${producto.nombre}</h3>
-                                <div class="product-description">Estilo: ${producto.categoriaNombre}</div>
-                                <p class="product-description">${producto.descripcion}</p>
-                                <p class="product-price">Precio: S/. ${producto.precio}</p>
-                                <a href="${pageContext.request.contextPath}/producto/${producto.id}" class="product-button">
-                                    <i class="fa-solid fa-eye"></i> Ver
-                                </a>
-                            </div>
-                        </article>
+                        <a href="${pageContext.request.contextPath}/cliente/producto/${producto.id}"
+                           class="product-card-link"
+                           aria-label="Ver producto: ${producto.nombre}"
+                           style="text-decoration:none;color:inherit;display:block;">
+                            <article class="product-card">
+                                <div class="product-image-wrapper">
+                                    <img alt="${producto.nombre}" class="product-image" src="${pageContext.request.contextPath}/${producto.imagen_url}">
+                                </div>
+                                <div class="product-body">
+                                    <h3 class="product-title">Producto: ${producto.nombre}</h3>
+                                    <div class="product-description">Estilo: ${producto.categoriaNombre}</div>
+                                    <p class="product-description">${producto.descripcion}</p>
+                                    <p class="product-price">Precio: S/. ${producto.precio}</p>
+                                </div>
+                            </article>
+                        </a>
                     </c:forEach>
                 </section>
 

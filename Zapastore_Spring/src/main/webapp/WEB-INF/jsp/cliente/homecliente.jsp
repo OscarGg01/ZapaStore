@@ -29,7 +29,6 @@
                     <div class="hero-content">
                         <h1 class="hero-title">Camina con Estilo</h1>
                         <p class="hero-subtitle">Descubre las últimas tendencias en zapatillas y lanzamientos exclusivos.</p>
-                        <button class="primary-button">Comprar ahora</button>
                     </div>
                 </div>
             </section>
@@ -39,16 +38,21 @@
                 <h2 class="section-title">Nuevos Lanzamientos</h2>
                 <div class="product-grid">
                     <c:forEach var="producto" items="${productosDestacados}">
-                        <div class="product-card">
-                            <div class="product-image-wrapper">
-                                <img alt="${producto.nombre}" class="product-image"
-                                     src="${pageContext.request.contextPath}/${producto.imagen_url}"/>
+                        <a href="${pageContext.request.contextPath}/cliente/producto/${producto.id}"
+                           class="product-card-link"
+                           aria-label="Ver producto: ${producto.nombre}"
+                           style="text-decoration:none;color:inherit;display:block;">
+                            <div class="product-card">
+                                <div class="product-image-wrapper">
+                                    <img alt="${producto.nombre}" class="product-image"
+                                         src="${pageContext.request.contextPath}/${producto.imagen_url}"/>
+                                </div>
+                                <p class="product-category">Estilo ${producto.categoriaNombre}</p>
+                                <h3 class="product-title">Producto: ${producto.nombre}</h3>
+                                <p class="product-detail-description">${producto.descripcion}</p>
+                                <!-- El botón Comprar se remueve aquí para evitar anidar elementos clicables; la tarjeta completa es el enlace -->
                             </div>
-                            <p class="product-category">Estilo {producto.categoriaNombre}</p>
-                            <h3 class="product-title">Producto: ${producto.nombre}</h3>
-                            <p class="product-price">Precio: S/. ${producto.precio}</p>
-                            <button class="primary-button">Comprar</button>
-                        </div>
+                        </a>
                     </c:forEach>
                 </div>
             </section>

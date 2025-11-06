@@ -18,18 +18,44 @@ INSERT INTO categorias (nombre, estado) VALUES
 ('Fitness','Activo');
 
 -- ===============================
--- Insertar Productos
+-- Insertar Productos (Adaptado a VARCHAR(255) y sin detalle_producto)
 -- ===============================
 INSERT INTO productos (nombre, categoria_ID, Precio, img_Url, descripcion) VALUES
-('Zapa Air Zoom (R-1)', 1, 450.00, 'img/zapatilla1.jpg', 'Zapatillas ligeras para correr'),
-('Zapa Speed Max (R-2)', 1, 480.00, 'img/zapatilla2.jpg', 'Velocidad y amortiguación superior'),
-('Zapa Classic Street (C-2)', 2, 320.00, 'img/zapatilla3.jpg', 'Estilo urbano y cómodo'),
-('Zapa Casual Deluxe (C-2)', 2, 180.00, 'img/zapatilla4.jpg', 'Confort y estilo para el día a día'),
-('Skate Pro X (S-3)', 3, 210.50, 'img/zapatilla5.jpg', 'Alto rendimiento para skate'),
-('Skate Street Runner (S-3)', 3, 230.00, 'img/zapatilla6.jpg', 'Agilidad y durabilidad en cada salto'),
-('Hoop Master (B-4)', 4, 500.00, 'img/zapatilla-urb.jpg', 'Dominio total en la cancha'),
-('Trail Explorer (T-5)', 5, 350.00, 'img/zapatilla-run.jpg', 'Para correr en montaña y senderos'),
-('Gym Pro Fit (F-6)', 6, 200.00, 'img/zapatilla-dep.jpg', 'Entrenamiento cómodo y seguro');
+('Nike Air Zoom Pegasus', 
+ 1, 450.00, 'img/zapatilla1.jpg', 
+ 'Ligeras, media distancia. Fabricante: Nike Tech | Material: Malla Flyknit/TPU | Drop: 8mm. Veloz y transpirable.'),
+
+('Adidas Adizero Boston', 
+ 1, 480.00, 'img/zapatilla2.jpg', 
+ 'Velocidad y amortiguación superior. Fabricante: Adidas Performance | Suela: Lightstrike Pro | Uso: Competición en asfalto.'),
+
+('Converse Chuck 70 Classic', 
+ 2, 320.00, 'img/zapatilla3.jpg', 
+ 'Estilo urbano, cómodo. Fabricante: Converse Originals | Material: Lona premium/cuero sintético | Suela: Goma vulcanizada.'),
+
+('Puma Suede Mayze', 
+ 2, 180.00, 'img/zapatilla4.jpg', 
+ 'Confort diario. Fabricante: Puma Lifestyle | Material: Gamuza sintética suave | Estilo: Plataforma Low-top clásico.'),
+
+('Vans Sk8-Hi Pro X', 
+ 3, 210.50, 'img/zapatilla5.jpg', 
+ 'Alto rendimiento para skate. Fabricante: Vans Off The Wall | Material: Piel de ante doble costura | Tecnología: Plantilla PopCush absorbente de impactos.'),
+
+('DC Shoes Pure Street', 
+ 3, 230.00, 'img/zapatilla6.jpg', 
+ 'Agilidad y durabilidad. Fabricante: DC Shoes | Material: Textil ripstop | Suela: Diseño "Pill Pattern" para máximo agarre.'),
+
+('Jordan Air XXVI', 
+ 4, 500.00, 'img/zapatilla-urb.jpg', 
+ 'Dominio total en la cancha. Fabricante: Jordan Brand | Material: Sintético, soporte tobillo alto | Tecnología: Unidad de aire Max-Volume en talón.'),
+
+('Salomon Speedcross 6', 
+ 5, 350.00, 'img/zapatilla-run.jpg', 
+ 'Correr en montaña y senderos. Fabricante: Salomon Outdoors | Material: Malla impermeable Gore-Tex | Suela: Tacos Contagrip ultra-resistente.'),
+
+('Reebok Nano X4', 
+ 6, 200.00, 'img/zapatilla-dep.jpg', 
+ 'Entrenamiento cómodo y seguro. Fabricante: Reebok Training | Material: Tejido Flexweave sin costuras | Diseño: Lateral estable para HIIT.');
 
 -- ===============================
 -- Insertar Pedidos de ejemplo
@@ -41,8 +67,8 @@ INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
 -- Detalle del Pedido (pedido_ID=1)
 INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) 
 VALUES 
-(1, 1, 'Zapa Air Zoom (R-1)', 450.00, 1, 35, 450.00),
-(1, 4, 'Zapa Casual Deluxe (C-2)', 180.00, 2, 35, 360.00);
+(1, 1, 'Nike Air Zoom Pegasus', 450.00, 1, 39, 450.00),
+(1, 4, 'Puma Suede Mayze', 180.00, 2, 42, 360.00);
 
 -- Pedido de U003
 INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
@@ -51,4 +77,4 @@ INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
 -- Detalle del Pedido (pedido_ID=2)
 INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) 
 VALUES
-(2, 2, 'Zapa Speed Max (R-2)', 480.00, 1, 35, 480.00);
+(2, 2, 'Adidas Adizero Boston', 480.00, 1, 40, 480.00);
