@@ -10,26 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ZapaStore | Lista de Productos</title>
 
-    <!-- Fuentes e íconos -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
     
-    <!-- Estilos principales -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminStyles.css">
 </head>
 
 <body class="admin-body">
 <div class="admin-layout">
-    <!-- Sidebar fijo -->
     <jsp:include page="/WEB-INF/jsp/fragments/sidebar.jsp" />
 
-    <!-- Panel principal -->
     <main class="main-panel">
-        <!-- Header fijo -->
         <jsp:include page="/WEB-INF/jsp/fragments/header.jsp" />
 
-        <!-- Contenido -->
         <div class="content-wrapper">
             <div class="page-header">
                 <h2 class="page-title">
@@ -42,7 +36,6 @@
                 </a>
             </div>
 
-            <!-- Mensajes de éxito o error -->
             <c:if test="${not empty mensaje}">
                 <div class="alert success">
                     <span class="material-symbols-outlined">check_circle</span>
@@ -56,22 +49,27 @@
                 </div>
             </c:if>
 
-            <!-- Barra de búsqueda -->
-            <div class="search-bar">
-                <input type="text" placeholder="Buscar producto..." class="input-search">
-                <button class="icon-button search-button">
+            <%-- Formulario de Búsqueda --%>
+            <form action="${pageContext.request.contextPath}/admin/productos/lista" method="GET" class="search-bar">
+                <input type="text" name="q" placeholder="Buscar producto por nombre..." class="input-search"
+                         value="${currentQuery != null ? currentQuery : ''}">
+                <button type="submit" class="icon-button search-button">
                     <span class="material-symbols-outlined">search</span>
                 </button>
-            </div>
+                <c:if test="${not empty currentQuery}">
+                    <a href="${pageContext.request.contextPath}/admin/productos/lista" class="icon-button clear-search" title="Limpiar Búsqueda">
+                        <span class="material-symbols-outlined">close</span>
+                    </a>
+                </c:if>
+            </form>
 
-            <!-- Tabla de productos -->
             <section class="crud-lista">
                 <table class="crud-table">
                     <thead>
                         <tr>
                             <th>Imagen</th>
                             <th>Nombre</th>
-                            <th>Categoría (ID)</th>
+                            <th>Categoría</th>
                             <th>Precio (S/)</th>
                             <th>Acciones</th>
                         </tr>
@@ -79,9 +77,22 @@
                     <tbody>
                         <c:forEach var="producto" items="${productos}">
                             <tr>
-                                <td><img src="${producto.imagen_url}" alt="${producto.nombre}" class="tabla-img"></td>
+                                <%-- Uso de pageContext.request.contextPath para la ruta de la imagen --%>
+                                <td><img src="${pageContext.request.contextPath}/${producto.imagen_url}" alt="${producto.nombre}" class="tabla-img"></td>
                                 <td>${producto.nombre}</td>
-                                <td>${producto.categoriaID}</td>
+                                
+                                <%-- Usando el campo transitorio categoriaNombre (Corrección anterior) --%>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${not empty producto.categoriaNombre}"> 
+                                            ${producto.categoriaNombre}
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="text-danger">ID: ${producto.categoriaID}</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                
                                 <td>${producto.precio}</td>
                                 <td class="actions-cell">
                                     <a href="${pageContext.request.contextPath}/admin/productos/editar/${producto.id}" 
@@ -99,9 +110,17 @@
                     </tbody>
                 </table>
 
-                <!-- Mensaje si no hay productos -->
                 <c:if test="${empty productos}">
-                    <p class="no-data-msg">No hay productos registrados en la base de datos.</p>
+                    <p class="no-data-msg">
+                        <c:choose>
+                            <c:when test="${not empty currentQuery}">
+                                No se encontraron productos para la búsqueda "${currentQuery}".
+                            </c:when>
+                            <c:otherwise>
+                                No hay productos registrados en la base de datos.
+                            </c:otherwise>
+                        </c:choose>
+                    </p>
                 </c:if>
             </section>
         </div>

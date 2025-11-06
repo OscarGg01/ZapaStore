@@ -87,7 +87,7 @@ public class SecurityConfig {
                     .orElse("");
 
             if (role.equals("ROLE_ADMIN")) {
-                response.sendRedirect(request.getContextPath() + "/admin/usuarios/lista");
+                response.sendRedirect(request.getContextPath() + "/admin/metricas");
             } else if (role.equals("ROLE_CLIENTE")) {
                 response.sendRedirect(request.getContextPath() + "/cliente/home");
             } else {

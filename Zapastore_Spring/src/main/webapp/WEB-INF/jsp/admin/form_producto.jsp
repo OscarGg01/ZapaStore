@@ -19,14 +19,11 @@
 <body class="admin-body">
 <div class="admin-layout">
 
-    <!-- Sidebar -->
     <jsp:include page="/WEB-INF/jsp/fragments/sidebar.jsp"/>
 
     <main class="main-panel">
-        <!-- Header -->
         <jsp:include page="/WEB-INF/jsp/fragments/header.jsp"/>
 
-        <!-- Contenido -->
         <div class="content-wrapper">
             <div class="page-header">
                 <h2 class="page-title">
@@ -39,7 +36,6 @@
                 </a>
             </div>
 
-            <!-- Formulario -->
             <section class="crud-area">
                 <form:form class="crud-form" method="POST"
                            action="${pageContext.request.contextPath}/admin/productos/guardar"
@@ -55,10 +51,17 @@
                             <form:input path="nombre" id="nombre" placeholder="Ej. Nike Air Zoom" required="true"/>
                         </div>
 
+                        <%-- INICIO DEL CAMBIO: SELECCIÓN DE CATEGORÍA --%>
                         <div class="campo categoria-select">
-                            <label for="categoriaID">Categoría ID</label>
+                            <label for="categoriaID">Categoría</label>
                             <div class="categoria-flex">
-                                <form:input path="categoriaID" type="number" id="categoriaID" required="true"/>
+                                <form:select path="categoriaID" id="categoriaID" required="true" class="select-control">
+                                    <form:option value="" label="Seleccione una Categoría"/>
+                                    <c:forEach var="cat" items="${categorias}">
+                                        <%-- CORREGIDO: Usamos ${cat.categoriaId} en lugar de ${cat.id} --%>
+                                        <form:option value="${cat.categoriaId}" label="${cat.nombre}"/> 
+                                    </c:forEach>
+                                </form:select>
                                 <a href="${pageContext.request.contextPath}/admin/categorias/lista"
                                    class="secondary-button-admin small-btn">
                                     <span class="material-symbols-outlined">tune</span>
@@ -66,6 +69,7 @@
                                 </a>
                             </div>
                         </div>
+                        <%-- FIN DEL CAMBIO --%>
 
                         <div class="campo">
                             <label for="precio">Precio (S/)</label>

@@ -271,6 +271,7 @@
     color: var(--primary-color);
     border: 2px solid var(--primary-color);
     padding: 0.6rem 1rem;
+    text-decoration: none; /* Asegura que no tenga subrayado */
 }
 .secondary-button-admin:hover {
     background: var(--primary-color);
@@ -311,6 +312,16 @@
     background-color: var(--primary-bg);
 }
 
+/* 🖼️ CORRECCIÓN DE IMAGEN: TAMAÑO DE LAS MINIATURAS EN LA TABLA */
+.tabla-img {
+    width: 60px; /* Ancho fijo */
+    height: 60px; /* Alto fijo */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    border-radius: var(--radius-default); /* Bordes ligeramente redondeados */
+    border: 1px solid var(--subtle-light);
+    display: block; /* Para centrar o alinear mejor si es necesario */
+}
+
 /* --- Formulario CRUD --- */
 .crud-area {
     background: #fff;
@@ -347,6 +358,17 @@
     border: 1px solid var(--subtle-light);
     font-family: var(--font-display);
     transition: all 0.2s;
+    width: 100%; /* Asegura que llenen su contenedor */
+    box-sizing: border-box; /* Incluye padding y border en el ancho */
+}
+
+.campo select {
+    appearance: none; /* Elimina estilos nativos en algunos navegadores */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23102216' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.5rem;
+    padding-right: 2.5rem; /* Espacio para el icono de flecha */
 }
 
 .campo input:focus,
@@ -356,6 +378,37 @@
     outline: none;
     box-shadow: 0 0 0 1px var(--primary-bg-dark);
 }
+
+/* --- Barra de Búsqueda --- */
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+    padding: var(--space-2);
+    border: 1px solid var(--subtle-light);
+    border-radius: var(--radius-lg);
+    background-color: #fff;
+    max-width: 400px;
+}
+
+.input-search {
+    flex: 1;
+    border: none;
+    padding: var(--space-2) var(--space-3);
+    font-size: 1rem;
+    border-radius: var(--radius-default);
+}
+
+.input-search:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.search-button, .clear-search {
+    flex-shrink: 0;
+}
+
 
 /* --- Dark Mode --- */
 .admin-body.dark-mode .sidebar {
@@ -369,15 +422,55 @@
     border-color: var(--subtle-dark);
 }
 
+.admin-body.dark-mode .nav-item,
+.admin-body.dark-mode .logo-title,
+.admin-body.dark-mode .page-title,
+.admin-body.dark-mode .crud-table th,
+.admin-body.dark-mode .icon-button {
+    color: var(--foreground-dark);
+}
+
+.admin-body.dark-mode .crud-table td {
+    color: var(--foreground-dark);
+}
+
+.admin-body.dark-mode .crud-table th,
+.admin-body.dark-mode .main-header-admin {
+    background-color: var(--background-dark);
+    border-color: var(--subtle-dark);
+}
+
+.admin-body.dark-mode .crud-table tbody tr {
+    border-color: var(--subtle-dark);
+}
+
 .admin-body.dark-mode .nav-item:hover,
 .admin-body.dark-mode .nav-item.is-active {
     background-color: var(--primary-bg-dark);
 }
 
+.admin-body.dark-mode .nav-item .material-symbols-outlined,
+.admin-body.dark-mode .icon-button {
+    color: var(--foreground-dark);
+}
+
+.admin-body.dark-mode .search-bar {
+    background-color: var(--subtle-dark);
+    border-color: var(--subtle-dark);
+}
+.admin-body.dark-mode .input-search {
+    background-color: var(--subtle-dark);
+    color: var(--foreground-dark);
+}
+
+
 /* --- Responsive --- */
 @media (max-width: 1024px) {
     .sidebar {
         width: 64px;
+    }
+    .main-panel {
+        margin-left: 64px;
     }
     .sidebar-header .logo-title,
     .sidebar-nav a span:not(.material-symbols-outlined) {
@@ -385,5 +478,111 @@
     }
     .sidebar-header {
         justify-content: center;
+        padding: var(--space-4);
     }
+    .sidebar-profile {
+        display: none; /* Ocultar perfil en móvil/tablet */
+    }
+    .nav-item {
+        justify-content: center;
+        padding: var(--space-2) 0;
+    }
+}
+
+/* ==================================== */
+/* 📈 Sección de Métricas (Dashboard) */
+/* ==================================== */
+.metrics-area {
+    margin-top: var(--space-6);
+}
+
+.metrics-grid {
+    display: grid;
+    /* Diseño: Dos columnas de tamaño igual, pero la columna del panel grande ocupa 2 en total */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: var(--space-8);
+}
+
+.metric-panel {
+    background-color: var(--white-color);
+    border: 1px solid var(--subtle-light);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    display: flex;
+    flex-direction: column;
+}
+
+.metric-panel.large-panel {
+    grid-column: 1 / -1; /* Ocupa las dos columnas */
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-4);
+}
+
+.panel-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--foreground-light);
+}
+
+.panel-controls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.panel-sub, .panel-foot {
+    font-size: var(--font-size-sm);
+    color: var(--foreground-light);
+    opacity: 0.8;
+}
+
+/* Contenedor del Gráfico (Canvas) */
+.chart-wrap {
+    flex-grow: 1; /* Permite que el gráfico crezca en el espacio disponible */
+    min-height: 250px; /* Altura mínima para gráficos pequeños */
+    position: relative;
+    padding: var(--space-4) 0;
+}
+
+.metric-panel.large-panel .chart-wrap {
+    min-height: 350px; /* Mayor altura para el gráfico mensual */
+}
+
+/* Estilo para los totales */
+.panel-foot {
+    margin-top: var(--space-4);
+    border-top: 1px solid var(--subtle-light);
+    padding-top: var(--space-4);
+}
+
+.metric-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.total-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+
+/* Dark Mode para Métricas */
+.admin-body.dark-mode .metric-panel {
+    background-color: var(--background-dark);
+    border-color: var(--subtle-dark);
+}
+
+.admin-body.dark-mode .panel-foot {
+    border-color: var(--subtle-dark);
 }

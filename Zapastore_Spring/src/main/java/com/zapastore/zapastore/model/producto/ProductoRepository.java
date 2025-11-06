@@ -10,8 +10,11 @@ import java.util.List;
 @Repository
 public interface ProductoRepository extends JpaRepository<Producto, Integer>, ProductoDAO {
 
+    // 🔍 MÉTODO AGREGADO PARA LA BÚSQUEDA
+    List<Producto> findByNombreContainingIgnoreCase(String nombre); 
+    
     @Query("SELECT p FROM Producto p WHERE p.id IN " +
-           "(SELECT MAX(p2.id) FROM Producto p2 GROUP BY p2.categoriaID)")
+            "(SELECT MAX(p2.id) FROM Producto p2 GROUP BY p2.categoriaID)")
     List<Producto> findUltimoProductoPorCategoria();
 
     @Query("SELECT p FROM Producto p WHERE p.categoriaID = :categoriaId")
