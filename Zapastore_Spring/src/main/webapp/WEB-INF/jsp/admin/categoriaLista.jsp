@@ -51,7 +51,7 @@
 
                         <div class="campo">
                             <label for="activo">Estado</label>
-                            <select name="activo" id="activo" class="input-select">
+                            <select name="estado" id="activo" class="input-select">
                                 <option value="true">Activo</option>
                                 <option value="false">Inactivo</option>
                             </select>

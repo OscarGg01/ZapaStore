@@ -33,6 +33,7 @@ CREATE TABLE productos (
     Precio DECIMAL(10,2) NOT NULL,
     img_Url TEXT,
     descripcion VARCHAR(500),
+    estado VARCHAR(20) DEFAULT 'Activo',
     CONSTRAINT fk_producto_categoria FOREIGN KEY (categoria_ID)
         REFERENCES categorias(categoria_ID)
         ON UPDATE CASCADE ON DELETE SET NULL

@@ -109,11 +109,15 @@ public class ProductoController {
 
     @GetMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable Integer id, RedirectAttributes redirectAttributes) {
-        try {
-            productoService.deleteById(id);
-            redirectAttributes.addFlashAttribute("mensaje", "Producto eliminado con éxito!");
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "Error al eliminar el producto.");
+        Optional<Producto> productoOpt = productoService.findById(id);
+        if (productoOpt.isPresent()) {
+            Producto producto = productoOpt.get();
+            // Soft delete: solo cambiar estado
+            producto.setEstado("Inactivo");
+            productoService.save(producto);
+            redirectAttributes.addFlashAttribute("mensaje", "Producto desactivado con éxito!");
+        } else {
+            redirectAttributes.addFlashAttribute("error", "Producto no encontrado.");
         }
         return "redirect:/admin/productos/lista";
     }

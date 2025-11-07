@@ -28,6 +28,9 @@ public class Producto {
     @Column(name = "descripcion", length = 500)
     private String descripcion;
 
+    @Column(name = "estado", length = 20)
+    private String estado = "Activo"; // Por defecto 'Activo'
+
     // ----- Transitorios para vista -----
     @Transient
     private String categoriaNombre;
@@ -38,13 +41,15 @@ public class Producto {
     // --- Constructores ---
     public Producto() {}
 
-    public Producto(Integer id, String nombre, Integer categoriaID, BigDecimal precio, String imagen_url, String descripcion) {
+    public Producto(Integer id, String nombre, Integer categoriaID, BigDecimal precio,
+                    String imagen_url, String descripcion, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.categoriaID = categoriaID;
         this.precio = precio;
         this.imagen_url = imagen_url;
         this.descripcion = descripcion;
+        this.estado = estado != null ? estado : "Activo";
     }
 
     // --- Getters y Setters ---
@@ -65,6 +70,9 @@ public class Producto {
 
     public String getDescripcion() { return descripcion; }
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 
     public String getCategoriaNombre() { return categoriaNombre; }
     public void setCategoriaNombre(String categoriaNombre) { this.categoriaNombre = categoriaNombre; }
