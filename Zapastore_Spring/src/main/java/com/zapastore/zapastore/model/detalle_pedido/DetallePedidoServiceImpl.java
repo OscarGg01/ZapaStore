@@ -23,8 +23,11 @@ public class DetallePedidoServiceImpl implements DetallePedidoService {
 
     @Override
     public List<DetallePedido> listarPorPedido(Integer pedidoId) {
-        Pedido pedido = pedidoService.findById(pedidoId).orElseThrow();
-        return detallePedidoRepository.findByPedido(pedido);
+        Optional<Pedido> pedidoOpt = pedidoService.findById(pedidoId);
+        if (pedidoOpt.isEmpty()) {
+            return List.of(); // Si no existe el pedido, devuelve lista vacía
+        }
+        return detallePedidoRepository.findByPedido(pedidoOpt.get());
     }
 
     @Override

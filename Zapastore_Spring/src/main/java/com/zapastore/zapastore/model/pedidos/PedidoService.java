@@ -9,4 +9,7 @@ public interface PedidoService {
     List<Pedido> findByCliente(Usuario cliente);
     Optional<Pedido> findById(Integer id);
     void deleteById(Integer id);
+
+    // Nuevo método para pedidos pendientes
+    List<Pedido> findByClienteAndEstado(Usuario cliente, String estado);
 }

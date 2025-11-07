@@ -21,7 +21,7 @@ import java.util.List;
 
 @PreAuthorize("hasRole('CLIENTE')")
 @Controller
-@RequestMapping("/carrito")
+@RequestMapping("cliente/carrito")
 public class DetallePedidoController {
 
     private final DetallePedidoService detallePedidoService;
@@ -42,30 +42,30 @@ public class DetallePedidoController {
 
     @GetMapping
     public String verCarrito(Model model, Authentication authentication) {
-        // Obtener el usuario logeado
         Usuario cliente = usuarioService.findByCorreo(authentication.getName())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-        // Buscar pedidos pendientes del usuario
-        List<Pedido> pedidosUsuario = pedidoService.findByCliente(cliente);
-        Pedido pedido;
-        if (pedidosUsuario.isEmpty()) {
-            pedido = new Pedido();
-            pedido.setCliente(cliente); // Se usa String en vez de Usuario
-            pedido.setTotalPagar(BigDecimal.ZERO);
-            pedido.setCostoEnvio(BigDecimal.ZERO);
-            pedido.setFecha(LocalDateTime.now());
-            pedido.setEstado("Pendiente");
-            pedido = pedidoService.save(pedido);
-        } else {
-            pedido = pedidosUsuario.get(0);
+        // Solo buscar pedidos pendientes
+        List<Pedido> pedidosPendientes = pedidoService.findByClienteAndEstado(cliente, "Pendiente");
+
+        Pedido pedido = null;
+        if (!pedidosPendientes.isEmpty()) {
+            pedido = pedidosPendientes.get(0);
         }
 
-        List<DetallePedido> carrito = detallePedidoService.listarPorPedido(pedido.getId());
-        int totalItems = carrito.stream().mapToInt(DetallePedido::getCantidad).sum();
-        BigDecimal totalPagar = carrito.stream()
-                .map(DetallePedido::getSubtotal)
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        List<DetallePedido> carrito;
+        int totalItems = 0;
+        BigDecimal totalPagar = BigDecimal.ZERO;
+
+        if (pedido != null) {
+            carrito = detallePedidoService.listarPorPedido(pedido.getId());
+            totalItems = carrito.stream().mapToInt(DetallePedido::getCantidad).sum();
+            totalPagar = carrito.stream()
+                    .map(DetallePedido::getSubtotal)
+                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+        } else {
+            carrito = List.of(); // Carrito vacío
+        }
 
         model.addAttribute("carrito", carrito);
         model.addAttribute("totalItems", totalItems);
@@ -87,18 +87,19 @@ public class DetallePedidoController {
         Producto producto = productoService.findById(productoId)
                 .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
-        List<Pedido> pedidosUsuario = pedidoService.findByCliente(cliente);
+        // Buscar pedido pendiente
+        List<Pedido> pedidosPendientes = pedidoService.findByClienteAndEstado(cliente, "Pendiente");
         Pedido pedido;
-        if (pedidosUsuario.isEmpty()) {
+        if (pedidosPendientes.isEmpty()) {
             pedido = new Pedido();
-            pedido.setCliente(cliente);; // Se usa String en vez de Usuario
+            pedido.setCliente(cliente);
             pedido.setTotalPagar(BigDecimal.ZERO);
             pedido.setCostoEnvio(BigDecimal.ZERO);
             pedido.setFecha(LocalDateTime.now());
             pedido.setEstado("Pendiente");
             pedido = pedidoService.save(pedido);
         } else {
-            pedido = pedidosUsuario.get(0);
+            pedido = pedidosPendientes.get(0);
         }
 
         DetallePedido detalle = new DetallePedido();
@@ -113,7 +114,7 @@ public class DetallePedidoController {
         detallePedidoService.save(detalle);
 
         redirectAttributes.addFlashAttribute("mensaje", "Producto agregado al carrito");
-        return "redirect:/carrito";
+        return "redirect:cliente/carrito";
     }
 
     @PostMapping("/actualizar")
@@ -132,7 +133,7 @@ public class DetallePedidoController {
         detallePedidoService.save(detalle);
 
         redirectAttributes.addFlashAttribute("mensaje", "Carrito actualizado");
-        return "redirect:/carrito";
+        return "redirect:cliente/carrito";
     }
 
     @PostMapping("/eliminar")
@@ -140,6 +141,6 @@ public class DetallePedidoController {
                                      RedirectAttributes redirectAttributes) {
         detallePedidoService.deleteById(detalleId);
         redirectAttributes.addFlashAttribute("mensaje", "Producto eliminado del carrito");
-        return "redirect:/carrito";
+        return "redirect:cliente/carrito";
     }
 }

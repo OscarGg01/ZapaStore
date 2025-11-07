@@ -21,4 +21,7 @@ public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
     // Ventas por rango de fechas
     @Query("SELECT p FROM Pedido p WHERE p.fecha BETWEEN :inicio AND :fin")
     List<Pedido> findByFechaBetween(LocalDateTime inicio, LocalDateTime fin);
+
+    // Nuevo método para obtener pedidos pendientes
+    List<Pedido> findByClienteAndEstado(Usuario cliente, String estado);
 }

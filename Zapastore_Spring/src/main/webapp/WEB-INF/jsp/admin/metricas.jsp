@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="page" value="metricas" />
+<c:set var="meses" value="${['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Setiembre','Octubre','Noviembre','Diciembre']}" />
 
 <!DOCTYPE html>
 <html lang="es">
@@ -44,12 +45,15 @@
                         <div class="panel-header">
                             <h2>Ventas por Día</h2>
                             <form action="/admin/metricas" method="get" class="panel-controls">
-                                <input type="date" name="dia" value="${diaSeleccionado}" />
+                                <label for="dia">Selecciona un día:</label>
+                                <input type="date" id="dia" name="dia" value="${diaSeleccionado}" />
                                 <input type="hidden" name="semana" value="${fechaSemana}" />
                                 <input type="hidden" name="mesInicio" value="${mesInicio}" />
                                 <input type="hidden" name="mesFin" value="${mesFin}" />
                                 <input type="hidden" name="anio" value="${anio}" />
-                                <button type="submit" class="secondary-button-admin">Filtrar</button>
+                                <button type="submit" id="filtroDiaBtn" class="icon-button" title="Filtrar">
+                                    <span class="material-symbols-outlined">search</span>
+                                </button>
                             </form>
                         </div>
                         <div class="chart-wrap">
@@ -72,12 +76,15 @@
                         <div class="panel-header">
                             <h2>Ventas por Semana</h2>
                             <form action="/admin/metricas" method="get" class="panel-controls">
-                                <input type="date" name="semana" value="${fechaSemana}" />
+                                <label for="semana">Selecciona un día para ver la semana (muestra los 7 días anteriores hasta ese día):</label>
+                                <input type="date" id="semana" name="semana" value="${fechaSemana}" />
                                 <input type="hidden" name="dia" value="${diaSeleccionado}" />
                                 <input type="hidden" name="mesInicio" value="${mesInicio}" />
                                 <input type="hidden" name="mesFin" value="${mesFin}" />
                                 <input type="hidden" name="anio" value="${anio}" />
-                                <button type="submit" class="secondary-button-admin">Filtrar</button>
+                                <button type="submit" id="filtroDiaBtn" class="icon-button" title="Filtrar">
+                                    <span class="material-symbols-outlined">search</span>
+                                </button>
                             </form>
                         </div>
                         <div class="chart-wrap">
@@ -100,12 +107,26 @@
                         <div class="panel-header">
                             <h2>Ventas por Mes</h2>
                             <form action="/admin/metricas" method="get" class="panel-controls">
-                                <input type="number" name="mesInicio" min="1" max="12" value="${mesInicio}" placeholder="Mes inicio" />
-                                <input type="number" name="mesFin" min="1" max="12" value="${mesFin}" placeholder="Mes fin" />
+                                <label>Desde:</label>
+                                <select name="mesInicio">
+                                    <c:forEach var="m" items="${meses}" varStatus="status">
+                                        <option value="${status.index + 1}" <c:if test="${mesInicio == status.index + 1}">selected</c:if>>${m}</option>
+                                    </c:forEach>
+                                </select>
+
+                                <label>Hasta:</label>
+                                <select name="mesFin">
+                                    <c:forEach var="m" items="${meses}" varStatus="status">
+                                        <option value="${status.index + 1}" <c:if test="${mesFin == status.index + 1}">selected</c:if>>${m}</option>
+                                    </c:forEach>
+                                </select>
+
                                 <input type="number" name="anio" value="${anio}" placeholder="Año" />
                                 <input type="hidden" name="dia" value="${diaSeleccionado}" />
                                 <input type="hidden" name="semana" value="${fechaSemana}" />
-                                <button type="submit" class="secondary-button-admin">Filtrar</button>
+                                <button type="submit" id="filtroDiaBtn" class="icon-button" title="Filtrar">
+                                    <span class="material-symbols-outlined">search</span>
+                                </button>
                             </form>
                         </div>
                         <div class="chart-wrap">

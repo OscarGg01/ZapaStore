@@ -81,7 +81,7 @@
                         <span class="total-label">Total a Pagar</span>
                         <span class="total-value">S/ ${totalPagar}</span>
                     </div>
-                    <form action="${pageContext.request.contextPath}/checkout" method="get">
+                    <form action="${pageContext.request.contextPath}/checkout" method="post">
                         <button class="primary-button checkout-button">
                             <i class="fa-solid fa-lock"></i> Proceder al Pago
                         </button>

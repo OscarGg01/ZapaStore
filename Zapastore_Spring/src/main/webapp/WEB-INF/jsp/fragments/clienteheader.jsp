@@ -16,20 +16,18 @@
         </div>
         <div class="header-right"> 
 
-            <a href="${pageContext.request.contextPath}/carrito" class="cart-icon-link" aria-label="Carrito de Compras" style="color: var(--color-primary);">
+            <a href="${pageContext.request.contextPath}/cliente/carrito" class="cart-icon-link" aria-label="Carrito de Compras" style="color: var(--color-primary);">
                 <i class="fa-solid fa-cart-shopping cart-icon"></i>
             </a>
 
             <!-- Avatar y Logout -->
-            <div class="profile-actions">
-                <div class="profile-pic" style='background-image: url("${pageContext.request.contextPath}/img/user.png");' aria-label="Perfil de Usuario"></div>
-                
-                <div class="header-actions">
-                    <a href="${pageContext.request.contextPath}/logout"
-                       class="icon-button" title="Cerrar sesión">
-                        <span class="material-symbols-outlined">logout</span>
-                    </a>
-                </div>
+            <div class="header-actions">
+                <a href="${pageContext.request.contextPath}/cliente/perfil" class="icon-button" title="Perfil de Usuario">
+                    <span class="material-symbols-outlined">person</span>
+                </a>
+                <a href="${pageContext.request.contextPath}/logout" class="icon-button" title="Cerrar sesión">
+                    <span class="material-symbols-outlined">logout</span>
+                </a>
             </div>
         </div>
     </div>

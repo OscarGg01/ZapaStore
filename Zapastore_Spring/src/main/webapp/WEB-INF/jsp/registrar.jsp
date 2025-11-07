@@ -30,44 +30,56 @@
                 <div class="register-box form-box">
                     <h2 class="section-title login-title">Crear Cuenta</h2>
 
-                    <form:form action="/register" method="post" modelAttribute="usuario" class="login-form">
+                    <form:form action="${pageContext.request.contextPath}/registrar" 
+                            method="post" 
+                            modelAttribute="usuario" 
+                            class="login-form">
 
+                        <!-- Mostrar errores -->
                         <c:if test="${not empty error}">
                             <div class="error">${error}</div>
                         </c:if>
 
+                        <!-- Nombre completo -->
                         <div class="form-group">
                             <form:label path="nombre" class="form-label">Nombre completo</form:label>
                             <form:input path="nombre" class="form-input" placeholder="Nombre y Apellido"/>
                         </div>
 
+                        <!-- Correo electrónico -->
                         <div class="form-group">
                             <form:label path="correo" class="form-label">Correo electrónico</form:label>
                             <form:input path="correo" class="form-input" placeholder="ejemplo@correo.com"/>
                         </div>
 
+                        <!-- Teléfono -->
                         <div class="form-group">
                             <form:label path="telefono" class="form-label">Teléfono</form:label>
                             <form:input path="telefono" class="form-input" placeholder="+51 9XX-XXX-XXX"/>
                         </div>
 
+                        <!-- Contraseña -->
                         <div class="form-group">
                             <form:label path="contrasena" class="form-label">Contraseña</form:label>
                             <form:password path="contrasena" class="form-input" placeholder="********"/>
                         </div>
 
+                        <!-- Confirmar contraseña -->
                         <div class="form-group">
                             <label for="confirm-password" class="form-label">Confirmar Contraseña</label>
                             <input type="password" name="confirm-password" id="confirm-password" class="form-input" placeholder="********">
                         </div>
 
+                        <!-- Botón -->
                         <button type="submit" class="login-button">Registrarse</button>
 
+                        <!-- Link a login -->
                         <p class="signup-link">
                             ¿Ya tienes cuenta?
-                            <a href="/login" class="color-primary-link">Inicia Sesión</a>
+                            <a href="${pageContext.request.contextPath}/login" class="color-primary-link">Inicia Sesión</a>
                         </p>
                     </form:form>
+
                 </div>
 
                 <div class="register-box benefit-box">

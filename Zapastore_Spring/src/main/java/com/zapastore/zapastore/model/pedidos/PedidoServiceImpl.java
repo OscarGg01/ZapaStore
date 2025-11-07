@@ -3,8 +3,8 @@ package com.zapastore.zapastore.model.pedidos;
 import com.zapastore.zapastore.model.usuario.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.server.ResponseStatusException;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,11 +33,21 @@ public class PedidoServiceImpl implements PedidoService {
         return pedidoRepository.findById(id);
     }
 
-    @Override
+   /*  @Override
     public void deleteById(Integer id) {
         Pedido pedido = pedidoRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
                         "Pedido con ID " + id + " no encontrado"));
         pedidoRepository.deleteById(pedido.getId());
+    }*/
+    public void deleteById(Integer id) {
+        pedidoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Pedido> findByClienteAndEstado(Usuario cliente, String estado) {
+        return pedidoRepository.findByClienteAndEstado(cliente, estado);
     }
 }
+
+
