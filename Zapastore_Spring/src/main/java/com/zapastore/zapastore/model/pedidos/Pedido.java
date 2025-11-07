@@ -3,7 +3,7 @@ package com.zapastore.zapastore.model.pedidos;
 import com.zapastore.zapastore.model.usuario.Usuario;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "pedidos")
@@ -24,9 +24,8 @@ public class Pedido {
     @Column(name = "CostoEnvio", nullable = false)
     private BigDecimal costoEnvio;
 
-    @Temporal(TemporalType.DATE)
     @Column(name = "fecha", nullable = false)
-    private Date fecha;
+    private LocalDateTime fecha;
 
     @Column(name = "estado")
     private String estado;
@@ -44,8 +43,8 @@ public class Pedido {
     public BigDecimal getCostoEnvio() { return costoEnvio; }
     public void setCostoEnvio(BigDecimal costoEnvio) { this.costoEnvio = costoEnvio; }
 
-    public Date getFecha() { return fecha; }
-    public void setFecha(Date fecha) { this.fecha = fecha; }
+    public LocalDateTime getFecha() { return fecha; }
+    public void setFecha(LocalDateTime fecha) { this.fecha = fecha; }
 
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }

@@ -9,7 +9,7 @@
     </div>
 
     <nav class="sidebar-nav">
-        <a href="${pageContext.request.contextPath}/admin/dashboard"
+        <a href="${pageContext.request.contextPath}/admin/metricas"
            class="nav-item ${fn:contains(pageContext.request.requestURI, '/admin/dashboard') ? 'is-active' : ''}">
             <span class="material-symbols-outlined">bar_chart</span>Métricas
         </a>

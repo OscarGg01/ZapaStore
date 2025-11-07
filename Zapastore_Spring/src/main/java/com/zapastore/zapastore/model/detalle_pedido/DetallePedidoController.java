@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @PreAuthorize("hasRole('CLIENTE')")
@@ -53,7 +54,7 @@ public class DetallePedidoController {
             pedido.setCliente(cliente); // Se usa String en vez de Usuario
             pedido.setTotalPagar(BigDecimal.ZERO);
             pedido.setCostoEnvio(BigDecimal.ZERO);
-            pedido.setFecha(new java.util.Date());
+            pedido.setFecha(LocalDateTime.now());
             pedido.setEstado("Pendiente");
             pedido = pedidoService.save(pedido);
         } else {
@@ -93,7 +94,7 @@ public class DetallePedidoController {
             pedido.setCliente(cliente);; // Se usa String en vez de Usuario
             pedido.setTotalPagar(BigDecimal.ZERO);
             pedido.setCostoEnvio(BigDecimal.ZERO);
-            pedido.setFecha(new java.util.Date());
+            pedido.setFecha(LocalDateTime.now());
             pedido.setEstado("Pendiente");
             pedido = pedidoService.save(pedido);
         } else {

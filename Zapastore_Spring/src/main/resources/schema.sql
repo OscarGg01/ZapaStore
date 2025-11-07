@@ -1,16 +1,14 @@
--- src/main/resources/schema.sql (MySQL DDL)
-
 -- Desactiva la verificación de claves foráneas temporalmente
 SET FOREIGN_KEY_CHECKS = 0;
 
--- Borrar tablas si existen (usando minúsculas)
+-- Borrar tablas si existen
 DROP TABLE IF EXISTS pedido_detalle;
 DROP TABLE IF EXISTS pedidos;
 DROP TABLE IF EXISTS productos;
 DROP TABLE IF EXISTS categorias;
 DROP TABLE IF EXISTS usuarios;
 
--- 1. Tabla usuarios (Minúsculas)
+-- 1. Tabla usuarios
 CREATE TABLE usuarios (
     IDUsuario VARCHAR(30) PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
@@ -20,14 +18,14 @@ CREATE TABLE usuarios (
     Rol VARCHAR(20) NOT NULL
 );
 
--- 2. Tabla categorias (Minúsculas)
+-- 2. Tabla categorias
 CREATE TABLE categorias (
     categoria_ID INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
     estado VARCHAR(20) DEFAULT 'Activo'
 );
 
--- 3. Tabla productos (Minúsculas)
+-- 3. Tabla productos
 CREATE TABLE productos (
     producto_ID INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -40,20 +38,20 @@ CREATE TABLE productos (
         ON UPDATE CASCADE ON DELETE SET NULL
 );
 
--- 4. Tabla pedidos (Minúsculas)
+-- 4. Tabla pedidos
 CREATE TABLE pedidos (
     pedido_ID INT AUTO_INCREMENT PRIMARY KEY,
     IDCliente VARCHAR(30),
     total_pagar DECIMAL(10,2) NOT NULL,
     CostoEnvio DECIMAL(10,2) DEFAULT 0.00,
-    fecha DATE NOT NULL,
+    fecha DATETIME NOT NULL,
     estado VARCHAR(20) DEFAULT 'Pendiente',
     CONSTRAINT fk_pedido_usuario FOREIGN KEY (IDCliente)
         REFERENCES usuarios(IDUsuario)
         ON UPDATE CASCADE ON DELETE SET NULL
 );
 
--- 5. Tabla pedido_detalle (Minúsculas)
+-- 5. Tabla pedido_detalle
 CREATE TABLE pedido_detalle (
     pedidodetalle_ID INT AUTO_INCREMENT PRIMARY KEY,
     pedido_ID INT,
@@ -61,7 +59,7 @@ CREATE TABLE pedido_detalle (
     nombre_producto VARCHAR(100),
     precio_unitario DECIMAL(10,2) NOT NULL,
     cantidad INT NOT NULL,
-    talla INT NOT NULL,  -- 👈 NUEVO CAMPO: talla seleccionada por cliente
+    talla INT NOT NULL,
     subtotal DECIMAL(10,2) NOT NULL,
     CONSTRAINT fk_detalle_pedido FOREIGN KEY (pedido_ID)
         REFERENCES pedidos(pedido_ID)

@@ -1,14 +1,14 @@
--- ===============================
--- Insertar Usuarios
--- ===============================
+-- -----------------------------------------------------
+-- INSERTAR USUARIOS
+-- -----------------------------------------------------
 INSERT INTO usuarios (IDUsuario, nombre, correo, contrasena, telefono, Rol) VALUES
 ('U001','Carlos Cliente','carlos@mail.com','1234','987654321','CLIENTE'),
 ('U002','Admin ZapaStore','admin@mail.com','admin123','999888777','ADMIN'),
 ('U003','Ana Perez','ana@mail.com','ana2025','912345678','CLIENTE');
 
--- ===============================
--- Insertar Categorías
--- ===============================
+-- -----------------------------------------------------
+-- INSERTAR CATEGORÍAS
+-- -----------------------------------------------------
 INSERT INTO categorias (nombre, estado) VALUES
 ('Running','Activo'),
 ('Casual','Activo'),
@@ -17,64 +17,122 @@ INSERT INTO categorias (nombre, estado) VALUES
 ('Trail','Activo'),
 ('Fitness','Activo');
 
--- ===============================
--- Insertar Productos (Adaptado a VARCHAR(255) y sin detalle_producto)
--- ===============================
+-- -----------------------------------------------------
+-- INSERTAR PRODUCTOS
+-- -----------------------------------------------------
 INSERT INTO productos (nombre, categoria_ID, Precio, img_Url, descripcion) VALUES
-('Nike Air Zoom Pegasus', 
- 1, 450.00, 'img/zapatilla1.jpg', 
- 'Ligeras, media distancia. Fabricante: Nike Tech | Material: Malla Flyknit/TPU | Drop: 8mm. Veloz y transpirable.'),
+('Nike Air Zoom Pegasus', 1, 450.00, 'img/zapatilla1.jpg', 'Ligeras, media distancia.'),
+('Adidas Adizero Boston', 1, 480.00, 'img/zapatilla2.jpg', 'Velocidad y amortiguación superior.'),
+('Converse Chuck 70 Classic', 2, 320.00, 'img/zapatilla3.jpg', 'Estilo urbano, cómodo.'),
+('Puma Suede Mayze', 2, 180.00, 'img/zapatilla4.jpg', 'Confort diario.'),
+('Vans Sk8-Hi Pro X', 3, 210.50, 'img/zapatilla5.jpg', 'Alto rendimiento para skate.'),
+('DC Shoes Pure Street', 3, 230.00, 'img/zapatilla6.jpg', 'Agilidad y durabilidad.'),
+('Jordan Air XXVI', 4, 500.00, 'img/zapatilla-urb.jpg', 'Dominio total en la cancha.'),
+('Salomon Speedcross 6', 5, 350.00, 'img/zapatilla-run.jpg', 'Correr en montaña y senderos.'),
+('Reebok Nano X4', 6, 200.00, 'img/zapatilla-dep.jpg', 'Entrenamiento cómodo y seguro.');
 
-('Adidas Adizero Boston', 
- 1, 480.00, 'img/zapatilla2.jpg', 
- 'Velocidad y amortiguación superior. Fabricante: Adidas Performance | Suela: Lightstrike Pro | Uso: Competición en asfalto.'),
+-- -----------------------------------------------------
+-- INSERTAR PEDIDOS Y DETALLES (SEGURO CON LAST_INSERT_ID)
+-- -----------------------------------------------------
 
-('Converse Chuck 70 Classic', 
- 2, 320.00, 'img/zapatilla3.jpg', 
- 'Estilo urbano, cómodo. Fabricante: Converse Originals | Material: Lona premium/cuero sintético | Suela: Goma vulcanizada.'),
-
-('Puma Suede Mayze', 
- 2, 180.00, 'img/zapatilla4.jpg', 
- 'Confort diario. Fabricante: Puma Lifestyle | Material: Gamuza sintética suave | Estilo: Plataforma Low-top clásico.'),
-
-('Vans Sk8-Hi Pro X', 
- 3, 210.50, 'img/zapatilla5.jpg', 
- 'Alto rendimiento para skate. Fabricante: Vans Off The Wall | Material: Piel de ante doble costura | Tecnología: Plantilla PopCush absorbente de impactos.'),
-
-('DC Shoes Pure Street', 
- 3, 230.00, 'img/zapatilla6.jpg', 
- 'Agilidad y durabilidad. Fabricante: DC Shoes | Material: Textil ripstop | Suela: Diseño "Pill Pattern" para máximo agarre.'),
-
-('Jordan Air XXVI', 
- 4, 500.00, 'img/zapatilla-urb.jpg', 
- 'Dominio total en la cancha. Fabricante: Jordan Brand | Material: Sintético, soporte tobillo alto | Tecnología: Unidad de aire Max-Volume en talón.'),
-
-('Salomon Speedcross 6', 
- 5, 350.00, 'img/zapatilla-run.jpg', 
- 'Correr en montaña y senderos. Fabricante: Salomon Outdoors | Material: Malla impermeable Gore-Tex | Suela: Tacos Contagrip ultra-resistente.'),
-
-('Reebok Nano X4', 
- 6, 200.00, 'img/zapatilla-dep.jpg', 
- 'Entrenamiento cómodo y seguro. Fabricante: Reebok Training | Material: Tejido Flexweave sin costuras | Diseño: Lateral estable para HIIT.');
-
--- ===============================
--- Insertar Pedidos de ejemplo
--- ===============================
--- Pedido de U001
+-- Pedido 1: U001
 INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
-('U001', 770.00, 10.00, CURDATE(), 'Completado');
+('U001', 770.00, 10.00, '2025-11-07 09:30:00', 'Completado');
+SET @pedidoID1 = LAST_INSERT_ID();
 
--- Detalle del Pedido (pedido_ID=1)
-INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) 
-VALUES 
-(1, 1, 'Nike Air Zoom Pegasus', 450.00, 1, 39, 450.00),
-(1, 4, 'Puma Suede Mayze', 180.00, 2, 42, 360.00);
+INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) VALUES
+(@pedidoID1, 1, 'Nike Air Zoom Pegasus', 450.00, 1, 39, 450.00),
+(@pedidoID1, 4, 'Puma Suede Mayze', 180.00, 2, 42, 360.00);
 
--- Pedido de U003
+-- Pedido 2: U003 (Pendiente, no afecta métricas)
 INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
-('U003', 480.00, 10.00, CURDATE(), 'Pendiente');
+('U003', 480.00, 10.00, '2025-11-07 15:45:00', 'Pendiente');
+SET @pedidoID2 = LAST_INSERT_ID();
 
--- Detalle del Pedido (pedido_ID=2)
-INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) 
-VALUES
-(2, 2, 'Adidas Adizero Boston', 480.00, 1, 40, 480.00);
+INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) VALUES
+(@pedidoID2, 2, 'Adidas Adizero Boston', 480.00, 1, 40, 480.00);
+
+-- Pedido 3: U001
+INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
+('U001', 930.00, 15.00, '2025-11-08 10:15:00', 'Completado');
+SET @pedidoID3 = LAST_INSERT_ID();
+
+INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) VALUES
+(@pedidoID3, 1, 'Nike Air Zoom Pegasus', 450.00, 1, 39, 450.00),
+(@pedidoID3, 5, 'Vans Sk8-Hi Pro X', 210.50, 2, 42, 421.00),
+(@pedidoID3, 4, 'Puma Suede Mayze', 180.00, 1, 40, 180.00);
+
+-- Pedido 4: U003
+INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
+('U003', 680.00, 10.00, '2025-11-08 14:50:00', 'Completado');
+SET @pedidoID4 = LAST_INSERT_ID();
+
+INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) VALUES
+(@pedidoID4, 2, 'Adidas Adizero Boston', 480.00, 1, 40, 480.00),
+(@pedidoID4, 6, 'DC Shoes Pure Street', 200.00, 1, 41, 200.00);
+
+-- Pedido 5: U001
+INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
+('U001', 350.00, 5.00, '2025-11-09 11:20:00', 'Completado');
+SET @pedidoID5 = LAST_INSERT_ID();
+
+INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) VALUES
+(@pedidoID5, 9, 'Reebok Nano X4', 200.00, 1, 38, 200.00),
+(@pedidoID5, 8, 'Salomon Speedcross 6', 150.00, 1, 40, 150.00);
+
+-- Pedido 6: U003
+INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
+('U003', 500.00, 10.00, '2025-11-09 16:10:00', 'Completado');
+SET @pedidoID6 = LAST_INSERT_ID();
+
+INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) VALUES
+(@pedidoID6, 7, 'Jordan Air XXVI', 500.00, 1, 42, 500.00);
+
+-- -----------------------------------------------------
+-- PEDIDOS EN OCTUBRE
+-- -----------------------------------------------------
+INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
+('U001', 600.00, 10.00, '2025-10-20 10:00:00', 'Completado');
+SET @pedidoID7 = LAST_INSERT_ID();
+
+INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) VALUES
+(@pedidoID7, 1, 'Nike Air Zoom Pegasus', 450.00, 1, 39, 450.00),
+(@pedidoID7, 4, 'Puma Suede Mayze', 150.00, 1, 42, 150.00);
+
+-- -----------------------------------------------------
+-- PEDIDOS EN DICIEMBRE
+-- -----------------------------------------------------
+INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
+('U003', 720.00, 12.00, '2025-12-05 14:30:00', 'Completado');
+SET @pedidoID8 = LAST_INSERT_ID();
+
+INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) VALUES
+(@pedidoID8, 2, 'Adidas Adizero Boston', 480.00, 1, 40, 480.00),
+(@pedidoID8, 5, 'Vans Sk8-Hi Pro X', 120.00, 2, 42, 240.00);
+
+-- -----------------------------------------------------
+-- PEDIDOS EN ENERO 2026
+-- -----------------------------------------------------
+INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
+('U001', 800.00, 15.00, '2026-01-10 09:45:00', 'Completado');
+SET @pedidoID9 = LAST_INSERT_ID();
+
+INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) VALUES
+(@pedidoID9, 3, 'Converse Chuck 70 Classic', 320.00, 1, 41, 320.00),
+(@pedidoID9, 7, 'Jordan Air XXVI', 480.00, 1, 42, 480.00);
+
+INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
+('U001', 650.00, 10.00, NOW(), 'Completado');
+SET @pedidoID10 = LAST_INSERT_ID();
+
+INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) VALUES
+(@pedidoID10, 1, 'Nike Air Zoom Pegasus', 450.00, 1, 39, 450.00),
+(@pedidoID10, 6, 'DC Shoes Pure Street', 200.00, 1, 41, 200.00);
+
+INSERT INTO pedidos (IDCliente, total_pagar, CostoEnvio, fecha, estado) VALUES
+('U001', 670.00, 10.00, CONCAT(CURDATE(), ' 17:00:00'), 'Completado');
+SET @pedidoID12 = LAST_INSERT_ID();
+
+INSERT INTO pedido_detalle (pedido_ID, producto_ID, nombre_producto, precio_unitario, cantidad, talla, subtotal) VALUES
+(@pedidoID12, 1, 'Nike Air Zoom Pegasus', 450.00, 1, 39, 450.00),
+(@pedidoID12, 6, 'DC Shoes Pure Street', 210.00, 1, 41, 210.00);

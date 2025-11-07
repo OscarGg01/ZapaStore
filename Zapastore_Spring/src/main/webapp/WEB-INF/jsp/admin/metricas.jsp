@@ -1,281 +1,162 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-
+<c:set var="page" value="metricas" />
 
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ZapaStore | Panel Admin - Métricas</title>
-
-
-
-    <%-- Recursos Estáticos y Tipografía --%>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
+    <title>ZapaStore | Métricas de Ventas</title>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminStyles.css">
-
-
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body class="admin-body">
-
 <div class="admin-layout">
-
-
-
-    <!-- Sidebar -->
-
     <jsp:include page="/WEB-INF/jsp/fragments/sidebar.jsp"/>
-
-
-
     <main class="main-panel">
-
-        <!-- Header -->
-
         <jsp:include page="/WEB-INF/jsp/fragments/header.jsp"/>
 
-
-
         <div class="content-wrapper">
-
             <div class="page-header">
-
                 <h2 class="page-title">
-
-                    <span class="material-symbols-outlined icon-title">bar_chart</span>
-
+                    <span class="material-symbols-outlined icon-title">analytics</span>
                     Métricas de Ventas
-
                 </h2>
-
-                <button class="primary-button-admin">
-
-                    <span class="material-symbols-outlined">add</span>
-
-                    Generar Reporte
-
-                </button>
-
             </div>
 
-
+            <c:if test="${not empty mensaje}">
+                <div class="alert success">${mensaje}</div>
+            </c:if>
+            <c:if test="${not empty error}">
+                <div class="alert error">${error}</div>
+            </c:if>
 
             <section class="metrics-area">
-
                 <div class="metrics-grid">
 
-
-
-                    <%-- PANEL 1: Ventas por día --%>
-
-                    <section class="metric-panel">
-
+                    <!-- Panel Día -->
+                    <div class="metric-panel">
                         <div class="panel-header">
-
-                            <h2>Ventas por día</h2>
-
-                            <div class="panel-controls">
-
-                                <label for="select-day">Día:</label>
-
-                                <input id="select-day" type="date" aria-label="Seleccionar día" value="2025-10-10" class="input-control">
-
-                            </div>
-
+                            <h2>Ventas por Día</h2>
+                            <form action="/admin/metricas" method="get" class="panel-controls">
+                                <input type="date" name="dia" value="${diaSeleccionado}" />
+                                <input type="hidden" name="semana" value="${fechaSemana}" />
+                                <input type="hidden" name="mesInicio" value="${mesInicio}" />
+                                <input type="hidden" name="mesFin" value="${mesFin}" />
+                                <input type="hidden" name="anio" value="${anio}" />
+                                <button type="submit" class="secondary-button-admin">Filtrar</button>
+                            </form>
                         </div>
-
-
-
-                        <div class="panel-body">
-
-                            <div class="panel-sub">Ejemplo de ventas hora a hora</div>
-
-                            <div class="chart-wrap">
-
-                                <img src="${pageContext.request.contextPath}/img/ventasdia.jpg" alt="Ejemplo ventas por día" class="chart-example">
-
-                            </div>
-
-                            <div class="panel-foot">
-
-                                <div class="metric-total">
-
-                                    <span>Total día</span>
-
-                                    <strong class="total-value">S/ 3,450</strong>
-
-                                </div>
-
-                            </div>
-
+                        <div class="chart-wrap">
+                            <canvas id="graficoDia"></canvas>
                         </div>
+                        <div class="panel-foot">
+                            <div class="metric-total">
+                                <span>Total día</span>
+                                <span class="total-value">S/ <c:out value="${totalDia != null ? totalDia : 0}" /></span>
+                            </div>
+                            <div class="metric-total">
+                                <span>Pedidos</span>
+                                <span class="total-value"><c:out value="${pedidosDia != null ? pedidosDia : 0}" /></span>
+                            </div>
+                        </div>
+                    </div>
 
-                    </section>
-
-
-
-                    <%-- PANEL 2: Ventas 7 días --%>
-
-                    <section class="metric-panel">
-
+                    <!-- Panel Semana -->
+                    <div class="metric-panel">
                         <div class="panel-header">
-
-                            <h2>Ventas por semana</h2>
-
+                            <h2>Ventas por Semana</h2>
+                            <form action="/admin/metricas" method="get" class="panel-controls">
+                                <input type="date" name="semana" value="${fechaSemana}" />
+                                <input type="hidden" name="dia" value="${diaSeleccionado}" />
+                                <input type="hidden" name="mesInicio" value="${mesInicio}" />
+                                <input type="hidden" name="mesFin" value="${mesFin}" />
+                                <input type="hidden" name="anio" value="${anio}" />
+                                <button type="submit" class="secondary-button-admin">Filtrar</button>
+                            </form>
                         </div>
-
-
-
-                        <div class="panel-subcontrols">
-
-                            <div class="control-item">
-
-                                <label for="week-month">Mes</label>
-
-                                <select id="week-month" class="input-control">
-
-                                    <option selected>Junio</option>
-
-                                </select>
-
-                            </div>
-
-
-
-                            <div class="control-item">
-
-                                <label for="week-number">Semana</label>
-
-                                <select id="week-number" class="input-control">
-
-                                    <option>Semana 1</option>
-
-                                    <option selected>Semana 2</option>
-
-                                </select>
-
-                            </div>
-
+                        <div class="chart-wrap">
+                            <canvas id="graficoSemana"></canvas>
                         </div>
-
-
-
-                        <div class="panel-body">
-
-                            <div class="panel-sub">Ventas de los últimos 7 días</div>
-
-                            <div class="chart-wrap">
-
-                                <img src="${pageContext.request.contextPath}/img/ventassemana.jpg" alt="Ejemplo ventas por semana" class="chart-example">
-
+                        <div class="panel-foot">
+                            <div class="metric-total">
+                                <span>Total semana</span>
+                                <span class="total-value">S/ <c:out value="${totalSemana != null ? totalSemana : 0}" /></span>
                             </div>
-
-                            <div class="panel-foot">
-
-                                <div class="metric-total">
-
-                                    <span>Total semana</span>
-
-                                    <strong class="total-value">S/ 28,900</strong>
-
-                                </div>
-
+                            <div class="metric-total">
+                                <span>Pedidos</span>
+                                <span class="total-value"><c:out value="${pedidosSemana != null ? pedidosSemana : 0}" /></span>
                             </div>
-
                         </div>
+                    </div>
 
-                    </section>
-
-
-
-                    <%-- PANEL 3: Ventas por mes --%>
-
-                    <section class="metric-panel large-panel">
-
+                    <!-- Panel Mes (grande) -->
+                    <div class="metric-panel large-panel">
                         <div class="panel-header">
-
-                            <h2>Ventas por mes</h2>
-
-                            <div class="panel-controls">
-
-                                <label for="select-month">Mes:</label>
-
-                                <select id="select-month" class="input-control">
-
-                                    <option selected>Junio</option>
-
-                                </select>
-
-                                <label for="select-year">Año:</label>
-
-                                <select id="select-year" class="input-control">
-
-                                    <option selected>2025</option>
-
-                                </select>
-
-                            </div>
-
+                            <h2>Ventas por Mes</h2>
+                            <form action="/admin/metricas" method="get" class="panel-controls">
+                                <input type="number" name="mesInicio" min="1" max="12" value="${mesInicio}" placeholder="Mes inicio" />
+                                <input type="number" name="mesFin" min="1" max="12" value="${mesFin}" placeholder="Mes fin" />
+                                <input type="number" name="anio" value="${anio}" placeholder="Año" />
+                                <input type="hidden" name="dia" value="${diaSeleccionado}" />
+                                <input type="hidden" name="semana" value="${fechaSemana}" />
+                                <button type="submit" class="secondary-button-admin">Filtrar</button>
+                            </form>
                         </div>
-
-
-
-                        <div class="panel-body">
-
-                            <div class="panel-sub">Ejemplo de ventas semanales en el mes</div>
-
-                            <div class="chart-wrap">
-
-                                <img src="${pageContext.request.contextPath}/img/ventasmes.jpg" alt="Ejemplo ventas por mes" class="chart-example">
-
-                            </div>
-
-                            <div class="panel-foot">
-
-                                <div class="metric-total">
-
-                                    <span>Total mes</span>
-
-                                    <strong class="total-value">S/ 43,300</strong>
-
-                                </div>
-
-                            </div>
-
+                        <div class="chart-wrap">
+                            <canvas id="graficoMes"></canvas>
                         </div>
-
-                    </section>
+                        <div class="panel-foot">
+                            <div class="metric-total">
+                                <span>Total mes</span>
+                                <span class="total-value">S/ <c:out value="${totalMes != null ? totalMes : 0}" /></span>
+                            </div>
+                            <div class="metric-total">
+                                <span>Pedidos</span>
+                                <span class="total-value"><c:out value="${pedidosMes != null ? pedidosMes : 0}" /></span>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
-
             </section>
-
         </div>
-
     </main>
-
-
-
 </div>
 
-</body>
+<script>
+    const pedidosDiaHoras = [<c:forEach var="p" items="${listaPedidosDia}" varStatus="status">'${p.hora}'<c:if test="${!status.last}">,</c:if></c:forEach>];
+    const pedidosDiaTotales = [<c:forEach var="p" items="${listaPedidosDia}" varStatus="status">${p.total}<c:if test="${!status.last}">,</c:if></c:forEach>];
 
+    new Chart(document.getElementById('graficoDia').getContext('2d'), {
+        type: 'bar',
+        data: { labels: pedidosDiaHoras, datasets: [{ label: 'Total por pedido S/.', data: pedidosDiaTotales, backgroundColor: 'rgba(54, 162, 235, 0.7)', borderColor: 'rgba(54, 162, 235, 1)', borderWidth: 1 }] },
+        options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
+    });
+
+    const diasSemana = [<c:forEach var="d" items="${listaDiasSemana}" varStatus="status">'${d.fecha}'<c:if test="${!status.last}">,</c:if></c:forEach>];
+    const totalesSemana = [<c:forEach var="d" items="${listaDiasSemana}" varStatus="status">${d.total}<c:if test="${!status.last}">,</c:if></c:forEach>];
+
+    new Chart(document.getElementById('graficoSemana').getContext('2d'), {
+        type: 'line',
+        data: { labels: diasSemana, datasets: [{ label: 'Total por día S/.', data: totalesSemana, fill: false, borderColor: 'rgba(255, 159, 64, 1)', tension: 0.2 }] },
+        options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
+    });
+
+    const meses = [<c:forEach var="m" items="${listaMeses}" varStatus="status">'${m.mes}'<c:if test="${!status.last}">,</c:if></c:forEach>];
+    const totalesMes = [<c:forEach var="m" items="${listaMeses}" varStatus="status">${m.total}<c:if test="${!status.last}">,</c:if></c:forEach>];
+
+    new Chart(document.getElementById('graficoMes').getContext('2d'), {
+        type: 'line',
+        data: { labels: meses, datasets: [{ label: 'Total mensual S/.', data: totalesMes, fill: true, backgroundColor: 'rgba(75, 192, 192, 0.3)', borderColor: 'rgba(75, 192, 192, 1)', tension: 0.2 }] },
+        options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
+    });
+</script>
+
+</body>
 </html>
